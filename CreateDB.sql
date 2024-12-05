@@ -1,0 +1,148 @@
+-- 1. Create the database
+USE master;
+GO
+
+IF DB_ID('HotelManagement') IS NOT NULL
+    DROP DATABASE HotelManagement;
+GO
+
+CREATE DATABASE HotelManagement;
+GO
+
+USE HotelManagement;
+GO
+
+-- 2. Create the Rooms table
+CREATE TABLE Rooms (
+    RoomID INT PRIMARY KEY IDENTITY(1,1),
+    RoomType NVARCHAR(50) NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL,
+    Amenities NVARCHAR(MAX),
+    Availability BIT NOT NULL,
+    RoomNumber NVARCHAR(10) UNIQUE NOT NULL,
+    CleaningStatus INT NOT NULL DEFAULT 0 -- 0: Dirty, 1: Clean, 2: Under Maintenance
+);
+GO
+
+ALTER TABLE Rooms
+ADD CONSTRAINT DF_Availability DEFAULT 1 FOR Availability;
+
+ALTER TABLE Rooms
+ADD CONSTRAINT DF_Amenities DEFAULT 'Wi-Fi' FOR Amenities;
+GO
+
+-- 3. Create the Customers table
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY IDENTITY(1,1),
+    FirstName NVARCHAR(50) NOT NULL,
+    LastName NVARCHAR(50) NOT NULL,
+    Phone NVARCHAR(15) NOT NULL,
+    Email NVARCHAR(100) NOT NULL,
+    IsActive BIT NOT NULL DEFAULT 1
+);
+GO
+
+-- 4. Create the Bookings table
+CREATE TABLE Bookings (
+    BookingID INT PRIMARY KEY IDENTITY(1,1),
+    CustomerID INT NOT NULL FOREIGN KEY REFERENCES Customers(CustomerID),
+    RoomID INT NOT NULL FOREIGN KEY REFERENCES Rooms(RoomID),
+    CheckInDate DATE NOT NULL,
+    CheckOutDate DATE NOT NULL,
+    TotalPrice DECIMAL(10, 2) NOT NULL,
+    BookingStatus NVARCHAR(20) NOT NULL
+);
+GO
+
+-- 5. Insert initial data into the Rooms table
+INSERT INTO Rooms (RoomType, Price, Amenities, Availability, RoomNumber, CleaningStatus)
+VALUES
+    ('Single', 100.00, 'Wi-Fi, Breakfast', 1, 'R001', 1), -- Clean
+    ('Double', 150.00, 'Wi-Fi, Pool', 1, 'R002', 0),      -- Dirty
+    ('Suite', 300.00, 'Wi-Fi, Breakfast, Pool, Gym', 1, 'R003', 2), -- Under Maintenance
+    ('Single', 120.00, 'Wi-Fi, Parking', 0, 'R004', 1),  -- Clean
+    ('Double', 180.00, 'Wi-Fi, Breakfast, Pool', 1, 'R005', 0), -- Dirty
+    ('Suite', 350.00, 'Wi-Fi, Breakfast, Spa', 0, 'R006', 2), -- Under Maintenance
+    ('Single', 130.00, 'Wi-Fi, Breakfast, Gym', 1, 'R007', 1), -- Clean
+    ('Double', 200.00, 'Wi-Fi, Pool, Spa', 1, 'R008', 0), -- Dirty
+    ('Suite', 400.00, 'Wi-Fi, Breakfast, Pool, Lounge', 0, 'R009', 2), -- Under Maintenance
+    ('Single', 90.00, 'Wi-Fi, Parking', 0, 'R010', 1),   -- Clean
+    ('Double', 170.00, 'Wi-Fi, Breakfast', 1, 'R011', 0), -- Dirty
+    ('Suite', 380.00, 'Wi-Fi, Breakfast, Gym, Spa', 0, 'R012', 2); -- Under Maintenance
+GO
+
+-- 6. Insert initial data into the Customers table
+INSERT INTO Customers (FirstName, LastName, Phone, Email)
+VALUES
+    ('John', 'Doe', '1234567890', 'john.doe@example.com'),
+    ('Jane', 'Smith', '0987654321', 'jane.smith@example.com'),
+    ('Alice', 'Brown', '5678901234', 'alice.brown@example.com'),
+    ('Bob', 'Johnson', '4567890123', 'bob.johnson@example.com'),
+    ('Charlie', 'Davis', '3456789012', 'charlie.davis@example.com'),
+    ('Eve', 'Adams', '1112223333', 'eve.adams@example.com'),
+    ('Grace', 'Clark', '4445556666', 'grace.clark@example.com'),
+    ('Mallory', 'Taylor', '7778889999', 'mallory.taylor@example.com'),
+    ('Oscar', 'Miller', '2223334444', 'oscar.miller@example.com'),
+    ('Peggy', 'Wilson', '5556667777', 'peggy.wilson@example.com');
+GO
+
+-- 7. Insert initial data into the Bookings table
+INSERT INTO Bookings (CustomerID, RoomID, CheckInDate, CheckOutDate, TotalPrice, BookingStatus)
+VALUES
+    (1, 1, '2024-12-01', '2024-12-05', 400.00, 'Confirmed'),
+    (2, 2, '2024-12-10', '2024-12-15', 750.00, 'Confirmed'),
+    (3, 3, '2024-11-20', '2024-11-25', 1500.00, 'Canceled'),
+    (4, 5, '2024-12-20', '2024-12-25', 900.00, 'Confirmed'),
+    (5, 6, '2024-12-30', '2025-01-03', 1400.00, 'Confirmed'),
+    (6, 7, '2024-12-15', '2024-12-18', 390.00, 'Pending'),
+    (7, 8, '2024-11-28', '2024-12-02', 800.00, 'Confirmed'),
+    (8, 9, '2024-12-05', '2024-12-08', 1200.00, 'Confirmed'),
+    (9, 10, '2024-11-22', '2024-11-26', 360.00, 'Canceled'),
+    (10, 11, '2024-12-12', '2024-12-16', 680.00, 'Confirmed');
+GO
+
+-- 8. Create a stored procedure to update booking status
+CREATE PROCEDURE UpdateBookingStatus
+    @BookingID INT,
+    @Status NVARCHAR(20)
+AS
+BEGIN
+    UPDATE Bookings
+    SET BookingStatus = @Status
+    WHERE BookingID = @BookingID;
+END;
+GO
+
+-- 9. Create a trigger to automatically update room availability after a booking
+CREATE TRIGGER UpdateRoomAvailability
+ON Bookings
+AFTER INSERT
+AS
+BEGIN
+    UPDATE Rooms
+    SET Availability = 0
+    WHERE RoomID IN (SELECT RoomID FROM Inserted);
+END;
+GO
+
+-- 10. Create a view to summarize booking and revenue information
+CREATE VIEW BookingSummary AS
+SELECT 
+    b.BookingID,
+    c.FirstName + ' ' + c.LastName AS CustomerName,
+    r.RoomType,
+    r.RoomNumber,
+    b.CheckInDate,
+    b.CheckOutDate,
+    b.TotalPrice,
+    b.BookingStatus
+FROM Bookings b
+JOIN Customers c ON b.CustomerID = c.CustomerID
+JOIN Rooms r ON b.RoomID = r.RoomID;
+GO
+
+-- Test Queries
+SELECT * FROM Rooms;
+SELECT * FROM Customers;
+SELECT * FROM Bookings;
+SELECT * FROM BookingSummary;
