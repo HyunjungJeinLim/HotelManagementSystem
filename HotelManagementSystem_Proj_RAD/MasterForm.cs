@@ -36,9 +36,9 @@ namespace HotelManagementSystem_Proj_RAD
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
 
             // TabControl Design
-            tabControl1.Font = new Font("Arial", 10, FontStyle.Bold);
+            tabControl1.Font = new Font("Arial", 10);
             tabControl1.ItemSize = new Size(150, 40);
-            tabControl1.Padding = new Point(10, 10); 
+            tabControl1.Padding = new Point(10, 10);
         }
 
         private void ClockTimer_Tick(object sender, EventArgs e)
@@ -54,8 +54,8 @@ namespace HotelManagementSystem_Proj_RAD
             // Room Sales Chart
             roomSalesChart = new Chart
             {
-                Size = new Size(300, 300),
-                Location = new Point(30, 200)
+                Size = new Size(350, 350),
+                Location = new Point(160, 430)
             };
             ChartArea roomSalesArea = new ChartArea("RoomSalesArea");
             roomSalesChart.ChartAreas.Add(roomSalesArea);
@@ -70,8 +70,8 @@ namespace HotelManagementSystem_Proj_RAD
             // Cleaning Status Chart
             cleaningStatusChart = new Chart
             {
-                Size = new Size(300, 300),
-                Location = new Point(400, 200)
+                Size = new Size(350, 350),
+                Location = new Point(800, 430)
             };
             ChartArea cleaningStatusArea = new ChartArea("CleaningStatusArea");
             cleaningStatusChart.ChartAreas.Add(cleaningStatusArea);
@@ -239,10 +239,10 @@ namespace HotelManagementSystem_Proj_RAD
                 SqlCommand command = new SqlCommand(query, connection);
                 try
                 {
-                    connection.Open(); 
+                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataTable table = new DataTable();
-                    adapter.Fill(table); 
+                    adapter.Fill(table);
                     dataGridViewBookings.DataSource = table;
                 }
                 catch (Exception ex)
@@ -254,21 +254,7 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void LoadToDoList()
         {
-            // Add Manager's to-do list to the dashboard
-            CheckedListBox todoList = new CheckedListBox
-            {
-                Location = new Point(850, 50),
-                Size = new Size(200, 150),
-                Items = {
-                    "Volunteer at Carewest",
-                    "Finish RAD Project",
-                    "Eat HotPot",
-                    "Laundry",
-                    "Do Assignments",
-                    "Shovel Snow"
-                }
-            };
-            tabPage1.Controls.Add(todoList);
+            
         }
 
         // Event Handlers
@@ -307,12 +293,12 @@ namespace HotelManagementSystem_Proj_RAD
         private void btnAddRoom_Click(object sender, EventArgs e)
         {
             int nextRoomID = GetNextRoomID();
-            
+
             //default data
-            string defaultRoomType = "Single"; 
-            decimal defaultPrice = 100.00m;    
+            string defaultRoomType = "Single";
+            decimal defaultPrice = 100.00m;
             string defaultAmenities = "Wi-Fi";
-            bool defaultAvailability = true;  
+            bool defaultAvailability = true;
             string defaultRoomNumber = "R" + nextRoomID.ToString("D3");
 
             // SQL INSERT QUERY
@@ -345,8 +331,8 @@ namespace HotelManagementSystem_Proj_RAD
         //Room ID calculate
         private int GetNextRoomID()
         {
-            int nextRoomID = 1; 
-            string query = "SELECT MAX(RoomID) FROM Rooms"; 
+            int nextRoomID = 1;
+            string query = "SELECT MAX(RoomID) FROM Rooms";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -470,7 +456,7 @@ namespace HotelManagementSystem_Proj_RAD
                     connection.Open();
                     command.ExecuteNonQuery();
                     MessageBox.Show($"Customer '{defaultFirstName} {defaultLastName}' added successfully.");
-                    LoadCustomers(); 
+                    LoadCustomers();
                 }
                 catch (Exception ex)
                 {
@@ -555,11 +541,11 @@ namespace HotelManagementSystem_Proj_RAD
         private void btnAddBooking_Click(object sender, EventArgs e)
         {
             // default
-            int defaultCustomerID = GetFirstCustomerID(); 
-            int defaultRoomID = GetFirstAvailableRoomID(); 
+            int defaultCustomerID = GetFirstCustomerID();
+            int defaultRoomID = GetFirstAvailableRoomID();
             DateTime defaultCheckInDate = DateTime.Today;
-            DateTime defaultCheckOutDate = DateTime.Today.AddDays(1); 
-            decimal defaultTotalPrice = 100.00m; 
+            DateTime defaultCheckOutDate = DateTime.Today.AddDays(1);
+            decimal defaultTotalPrice = 100.00m;
             string defaultBookingStatus = "Pending";
 
             if (defaultCustomerID == -1 || defaultRoomID == -1)
@@ -587,7 +573,7 @@ namespace HotelManagementSystem_Proj_RAD
                     connection.Open();
                     command.ExecuteNonQuery();
                     MessageBox.Show("Booking added successfully.");
-                    LoadBookings(); 
+                    LoadBookings();
                 }
                 catch (Exception ex)
                 {
@@ -626,7 +612,7 @@ namespace HotelManagementSystem_Proj_RAD
                 {
                     connection.Open();
                     object result = command.ExecuteScalar();
-                    return result != null ? Convert.ToInt32(result) : -1; 
+                    return result != null ? Convert.ToInt32(result) : -1;
                 }
                 catch (Exception ex)
                 {
@@ -710,7 +696,7 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab == tabPage4) 
+            if (tabControl1.SelectedTab == tabPage4)
             {
                 LoadReportData();
             }

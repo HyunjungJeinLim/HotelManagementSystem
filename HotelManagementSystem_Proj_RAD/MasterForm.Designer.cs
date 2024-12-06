@@ -76,566 +76,578 @@ namespace HotelManagementSystem_Proj_RAD
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblDashboard = new System.Windows.Forms.Label();
-            this.lblManageRooms = new System.Windows.Forms.Label();
-            this.lblManageCustomers = new System.Windows.Forms.Label();
-            this.lblManageBookings = new System.Windows.Forms.Label();
-            this.lblReports = new System.Windows.Forms.Label();
-            this.lblWelcomeUser = new System.Windows.Forms.Label();
-            this.lblClock = new System.Windows.Forms.Label();
-            this.btnLogout = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage(); // Dashboard
-
-            this.panelSoldRms = new System.Windows.Forms.Panel();
-            this.lblSoldRmsTitle = new System.Windows.Forms.Label();
-            this.lblSoldRmsValue = new System.Windows.Forms.Label();
-
-            this.panelRmsForSale = new System.Windows.Forms.Panel();
-            this.lblRmsForSaleTitle = new System.Windows.Forms.Label();
-            this.lblRmsForSaleValue = new System.Windows.Forms.Label();
-
-            this.panelCleanVacant = new System.Windows.Forms.Panel();
-            this.lblCleanVacantTitle = new System.Windows.Forms.Label();
-            this.lblCleanVacantValue = new System.Windows.Forms.Label();
-
-            this.panelDirtyRms = new System.Windows.Forms.Panel();
-            this.lblDirtyRmsTitle = new System.Windows.Forms.Label();
-            this.lblDirtyRmsValue = new System.Windows.Forms.Label();
-
-            this.tabPage2 = new System.Windows.Forms.TabPage(); // Manage Rooms
-            this.tabPage3 = new System.Windows.Forms.TabPage(); // Manage Customers
-            this.tabPage4 = new System.Windows.Forms.TabPage(); // Reports
-            this.tabPage5 = new System.Windows.Forms.TabPage(); // Manage Bookings
-            this.dataGridViewRooms = new System.Windows.Forms.DataGridView();
-            this.dataGridViewCustomers = new System.Windows.Forms.DataGridView();
-            this.dataGridViewBookings = new System.Windows.Forms.DataGridView();
-            this.btnAddRoom = new System.Windows.Forms.Button();
-            this.btnUpdateRoom = new System.Windows.Forms.Button();
-            this.btnDeleteRoom = new System.Windows.Forms.Button();
-            this.btnAddCustomer = new System.Windows.Forms.Button();
-            this.btnUpdateCustomer = new System.Windows.Forms.Button();
-            this.btnDeleteCustomer = new System.Windows.Forms.Button();
-            this.btnAddBooking = new System.Windows.Forms.Button();
-            this.btnUpdateBooking = new System.Windows.Forms.Button();
-            this.btnDeleteBooking = new System.Windows.Forms.Button();
-            this.checkedListBoxTasks = new System.Windows.Forms.CheckedListBox();
-            this.lblTaskTitle = new System.Windows.Forms.Label();
-
+            panel1 = new Panel();
+            lblDashboard = new Label();
+            lblManageRooms = new Label();
+            lblManageCustomers = new Label();
+            lblManageBookings = new Label();
+            lblReports = new Label();
+            lblWelcomeUser = new Label();
+            btnLogout = new Button();
+            lblClock = new Label();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            checkedListBoxTasks = new CheckedListBox();
+            lblTaskTitle = new Label();
+            tabPage2 = new TabPage();
+            dataGridViewRooms = new DataGridView();
+            btnAddRoom = new Button();
+            btnUpdateRoom = new Button();
+            btnDeleteRoom = new Button();
+            tabPage3 = new TabPage();
+            dataGridViewCustomers = new DataGridView();
+            btnAddCustomer = new Button();
+            btnUpdateCustomer = new Button();
+            btnDeleteCustomer = new Button();
+            tabPage4 = new TabPage();
+            panelSoldRms = new Panel();
+            lblSoldRmsTitle = new Label();
+            lblSoldRmsValue = new Label();
+            panelRmsForSale = new Panel();
+            lblRmsForSaleTitle = new Label();
+            lblRmsForSaleValue = new Label();
+            panelDirtyRms = new Panel();
+            lblDirtyRmsTitle = new Label();
+            lblDirtyRmsValue = new Label();
+            panelCleanVacant = new Panel();
+            lblCleanVacantTitle = new Label();
+            lblCleanVacantValue = new Label();
+            tabPage5 = new TabPage();
+            dataGridViewBookings = new DataGridView();
+            btnAddBooking = new Button();
+            btnUpdateBooking = new Button();
+            btnDeleteBooking = new Button();
+            panel1.SuspendLayout();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewRooms).BeginInit();
+            tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCustomers).BeginInit();
+            tabPage4.SuspendLayout();
+            panelSoldRms.SuspendLayout();
+            panelRmsForSale.SuspendLayout();
+            panelDirtyRms.SuspendLayout();
+            panelCleanVacant.SuspendLayout();
+            tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBookings).BeginInit();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lblDashboard);
-            this.panel1.Controls.Add(this.lblManageRooms);
-            this.panel1.Controls.Add(this.lblManageCustomers);
-            this.panel1.Controls.Add(this.lblManageBookings);
-            this.panel1.Controls.Add(this.lblReports);
-            this.panel1.Controls.Add(this.lblWelcomeUser);
-            this.panel1.Controls.Add(this.lblClock);
-            this.panel1.Controls.Add(this.btnLogout);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 768);
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(230, 230, 250);
-            this.panel1.TabIndex = 0;
-
+            panel1.BackColor = Color.FromArgb(230, 230, 250);
+            panel1.Controls.Add(lblDashboard);
+            panel1.Controls.Add(lblManageRooms);
+            panel1.Controls.Add(lblManageCustomers);
+            panel1.Controls.Add(lblManageBookings);
+            panel1.Controls.Add(lblReports);
+            panel1.Controls.Add(lblWelcomeUser);
+            panel1.Controls.Add(btnLogout);
+            panel1.Controls.Add(lblClock);
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(250, 960);
+            panel1.TabIndex = 0;
             // 
             // lblDashboard
             // 
-            this.lblDashboard.AutoSize = true;
-            this.lblDashboard.Location = new System.Drawing.Point(20, 150);
-            this.lblDashboard.Name = "lblDashboard";
-            this.lblDashboard.Size = new System.Drawing.Size(81, 20);
-            this.lblDashboard.TabIndex = 0;
-            this.lblDashboard.Text = "Dashboard";
-            this.lblDashboard.Cursor = Cursors.Hand;
-            this.lblDashboard.Click += new System.EventHandler(this.lblDashboard_Click);
-
-            // 
-            // panelSoldRms
-            // 
-            this.panelSoldRms.BackColor = System.Drawing.Color.LightBlue;
-            this.panelSoldRms.Controls.Add(this.lblSoldRmsTitle);
-            this.panelSoldRms.Controls.Add(this.lblSoldRmsValue);
-            this.panelSoldRms.Location = new System.Drawing.Point(20, 50);
-            this.panelSoldRms.Name = "panelSoldRms";
-            this.panelSoldRms.Size = new System.Drawing.Size(180, 100);
-            this.panelSoldRms.TabIndex = 0;
-
-            // 
-            // lblSoldRmsTitle
-            // 
-            this.lblSoldRmsTitle.AutoSize = true;
-            this.lblSoldRmsTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblSoldRmsTitle.Location = new System.Drawing.Point(10, 10);
-            this.lblSoldRmsTitle.Name = "lblSoldRmsTitle";
-            this.lblSoldRmsTitle.Size = new System.Drawing.Size(120, 24);
-            this.lblSoldRmsTitle.TabIndex = 1;
-            this.lblSoldRmsTitle.Text = "Sold Rms";
-
-            // 
-            // lblSoldRmsValue
-            // 
-            this.lblSoldRmsValue.AutoSize = true;
-            this.lblSoldRmsValue.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblSoldRmsValue.Location = new System.Drawing.Point(10, 50);
-            this.lblSoldRmsValue.Name = "lblSoldRmsValue";
-            this.lblSoldRmsValue.Size = new System.Drawing.Size(40, 46);
-            this.lblSoldRmsValue.TabIndex = 2;
-            this.lblSoldRmsValue.Text = "0";
-
-            // 
-            // panelRmsForSale
-            // 
-            this.panelRmsForSale.BackColor = System.Drawing.Color.LightBlue;
-            this.panelRmsForSale.Controls.Add(this.lblRmsForSaleTitle);
-            this.panelRmsForSale.Controls.Add(this.lblRmsForSaleValue);
-            this.panelRmsForSale.Location = new System.Drawing.Point(220, 50);
-            this.panelRmsForSale.Name = "panelRmsForSale";
-            this.panelRmsForSale.Size = new System.Drawing.Size(180, 100);
-            this.panelRmsForSale.TabIndex = 1;
-
-            // 
-            // lblRmsForSaleTitle
-            // 
-            this.lblRmsForSaleTitle.AutoSize = true;
-            this.lblRmsForSaleTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblRmsForSaleTitle.Location = new System.Drawing.Point(10, 10);
-            this.lblRmsForSaleTitle.Name = "lblRmsForSaleTitle";
-            this.lblRmsForSaleTitle.Size = new System.Drawing.Size(150, 24);
-            this.lblRmsForSaleTitle.TabIndex = 1;
-            this.lblRmsForSaleTitle.Text = "Rms for Sale";
-
-            // 
-            // lblRmsForSaleValue
-            // 
-            this.lblRmsForSaleValue.AutoSize = true;
-            this.lblRmsForSaleValue.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblRmsForSaleValue.Location = new System.Drawing.Point(10, 50);
-            this.lblRmsForSaleValue.Name = "lblRmsForSaleValue";
-            this.lblRmsForSaleValue.Size = new System.Drawing.Size(40, 46);
-            this.lblRmsForSaleValue.TabIndex = 2;
-            this.lblRmsForSaleValue.Text = "0";
-
-            // 
-            // panelDirtyRms
-            // 
-            this.panelDirtyRms.BackColor = System.Drawing.Color.LightGreen;
-            this.panelDirtyRms.Controls.Add(this.lblDirtyRmsTitle);
-            this.panelDirtyRms.Controls.Add(this.lblDirtyRmsValue);
-            this.panelDirtyRms.Location = new System.Drawing.Point(420, 50);
-            this.panelDirtyRms.Name = "panelDirtyRms";
-            this.panelDirtyRms.Size = new System.Drawing.Size(180, 100);
-            this.panelDirtyRms.TabIndex = 2;
-
-            // 
-            // lblDirtyRmsTitle
-            // 
-            this.lblDirtyRmsTitle.AutoSize = true;
-            this.lblDirtyRmsTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblDirtyRmsTitle.Location = new System.Drawing.Point(10, 10);
-            this.lblDirtyRmsTitle.Name = "lblDirtyRmsTitle";
-            this.lblDirtyRmsTitle.Size = new System.Drawing.Size(120, 24);
-            this.lblDirtyRmsTitle.TabIndex = 4;
-            this.lblDirtyRmsTitle.Text = "Dirty Rms";
-
-            // 
-            // lblDirtyRmsValue
-            // 
-            this.lblDirtyRmsValue.AutoSize = true;
-            this.lblDirtyRmsValue.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblDirtyRmsValue.Location = new System.Drawing.Point(10, 50);
-            this.lblDirtyRmsValue.Name = "lblDirtyRmsValue";
-            this.lblDirtyRmsValue.Size = new System.Drawing.Size(40, 46);
-            this.lblDirtyRmsValue.TabIndex = 5;
-            this.lblDirtyRmsValue.Text = "0";
-
-            // 
-            // panelCleanVacant
-            // 
-            this.panelCleanVacant.BackColor = System.Drawing.Color.LightGreen;
-            this.panelCleanVacant.Controls.Add(this.lblCleanVacantTitle);
-            this.panelCleanVacant.Controls.Add(this.lblCleanVacantValue);
-            this.panelCleanVacant.Location = new System.Drawing.Point(620, 50);
-            this.panelCleanVacant.Name = "panelCleanVacant";
-            this.panelCleanVacant.Size = new System.Drawing.Size(180, 100);
-            this.panelCleanVacant.TabIndex = 3;
-
-            // 
-            // lblCleanVacantTitle
-            // 
-            this.lblCleanVacantTitle.AutoSize = true;
-            this.lblCleanVacantTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblCleanVacantTitle.Location = new System.Drawing.Point(10, 10);
-            this.lblCleanVacantTitle.Name = "lblCleanVacantTitle";
-            this.lblCleanVacantTitle.Size = new System.Drawing.Size(140, 24);
-            this.lblCleanVacantTitle.TabIndex = 4;
-            this.lblCleanVacantTitle.Text = "Clean Vacant";
-
-            // 
-            // lblCleanVacantValue
-            // 
-            this.lblCleanVacantValue.AutoSize = true;
-            this.lblCleanVacantValue.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblCleanVacantValue.Location = new System.Drawing.Point(10, 50);
-            this.lblCleanVacantValue.Name = "lblCleanVacantValue";
-            this.lblCleanVacantValue.Size = new System.Drawing.Size(40, 46);
-            this.lblCleanVacantValue.TabIndex = 5;
-            this.lblCleanVacantValue.Text = "0";
-
-
+            lblDashboard.AutoSize = true;
+            lblDashboard.BackColor = Color.FromArgb(192, 192, 255);
+            lblDashboard.Cursor = Cursors.Hand;
+            lblDashboard.Location = new Point(102, 242);
+            lblDashboard.Margin = new Padding(4, 0, 4, 0);
+            lblDashboard.Name = "lblDashboard";
+            lblDashboard.Size = new Size(100, 25);
+            lblDashboard.TabIndex = 0;
+            lblDashboard.Text = "Dashboard";
+            lblDashboard.Click += lblDashboard_Click;
             // 
             // lblManageRooms
             // 
-            this.lblManageRooms.AutoSize = true;
-            this.lblManageRooms.Location = new System.Drawing.Point(20, 200);
-            this.lblManageRooms.Name = "lblManageRooms";
-            this.lblManageRooms.Size = new System.Drawing.Size(108, 20);
-            this.lblManageRooms.TabIndex = 1;
-            this.lblManageRooms.Text = "Manage Rooms";
-            this.lblManageRooms.Cursor = Cursors.Hand;
-            this.lblManageRooms.Click += new System.EventHandler(this.lblManageRooms_Click);
-
+            lblManageRooms.AutoSize = true;
+            lblManageRooms.BackColor = Color.FromArgb(192, 192, 255);
+            lblManageRooms.Cursor = Cursors.Hand;
+            lblManageRooms.Location = new Point(65, 327);
+            lblManageRooms.Margin = new Padding(4, 0, 4, 0);
+            lblManageRooms.Name = "lblManageRooms";
+            lblManageRooms.Size = new Size(137, 25);
+            lblManageRooms.TabIndex = 1;
+            lblManageRooms.Text = "Manage Rooms";
+            lblManageRooms.Click += lblManageRooms_Click;
             // 
             // lblManageCustomers
             // 
-            this.lblManageCustomers.AutoSize = true;
-            this.lblManageCustomers.Location = new System.Drawing.Point(20, 250);
-            this.lblManageCustomers.Name = "lblManageCustomers";
-            this.lblManageCustomers.Size = new System.Drawing.Size(135, 20);
-            this.lblManageCustomers.TabIndex = 2;
-            this.lblManageCustomers.Text = "Manage Customers";
-            this.lblManageCustomers.Cursor = Cursors.Hand;
-            this.lblManageCustomers.Click += new System.EventHandler(this.lblManageCustomers_Click);
-
+            lblManageCustomers.AutoSize = true;
+            lblManageCustomers.BackColor = Color.FromArgb(192, 192, 255);
+            lblManageCustomers.Cursor = Cursors.Hand;
+            lblManageCustomers.Location = new Point(36, 417);
+            lblManageCustomers.Margin = new Padding(4, 0, 4, 0);
+            lblManageCustomers.Name = "lblManageCustomers";
+            lblManageCustomers.Size = new Size(166, 25);
+            lblManageCustomers.TabIndex = 2;
+            lblManageCustomers.Text = "Manage Customers";
+            lblManageCustomers.Click += lblManageCustomers_Click;
             // 
             // lblManageBookings
             // 
-            this.lblManageBookings.AutoSize = true;
-            this.lblManageBookings.Location = new System.Drawing.Point(20, 300);
-            this.lblManageBookings.Name = "lblManageBookings";
-            this.lblManageBookings.Size = new System.Drawing.Size(130, 20);
-            this.lblManageBookings.TabIndex = 3;
-            this.lblManageBookings.Text = "Manage Bookings";
-            this.lblManageBookings.Cursor = Cursors.Hand;
-            this.lblManageBookings.Click += new System.EventHandler(this.lblManageBookings_Click);
-
+            lblManageBookings.AutoSize = true;
+            lblManageBookings.BackColor = Color.FromArgb(192, 192, 255);
+            lblManageBookings.Cursor = Cursors.Hand;
+            lblManageBookings.Location = new Point(47, 499);
+            lblManageBookings.Margin = new Padding(4, 0, 4, 0);
+            lblManageBookings.Name = "lblManageBookings";
+            lblManageBookings.Size = new Size(155, 25);
+            lblManageBookings.TabIndex = 3;
+            lblManageBookings.Text = "Manage Bookings";
+            lblManageBookings.Click += lblManageBookings_Click;
             // 
             // lblReports
             // 
-            this.lblReports.AutoSize = true;
-            this.lblReports.Location = new System.Drawing.Point(20, 350);
-            this.lblReports.Name = "lblReports";
-            this.lblReports.Size = new System.Drawing.Size(60, 20);
-            this.lblReports.TabIndex = 4;
-            this.lblReports.Text = "Reports";
-            this.lblReports.Cursor = Cursors.Hand;
-            this.lblReports.Click += new System.EventHandler(this.lblReports_Click);
-
+            lblReports.AutoSize = true;
+            lblReports.BackColor = Color.FromArgb(192, 192, 255);
+            lblReports.Cursor = Cursors.Hand;
+            lblReports.Location = new Point(129, 590);
+            lblReports.Margin = new Padding(4, 0, 4, 0);
+            lblReports.Name = "lblReports";
+            lblReports.Size = new Size(73, 25);
+            lblReports.TabIndex = 4;
+            lblReports.Text = "Reports";
+            lblReports.Click += lblReports_Click;
             // 
             // lblWelcomeUser
             // 
-            this.lblWelcomeUser.AutoSize = true;
-            this.lblWelcomeUser.Location = new System.Drawing.Point(20, 50);
-            this.lblWelcomeUser.Name = "lblWelcomeUser";
-            this.lblWelcomeUser.Size = new System.Drawing.Size(113, 20);
-            this.lblWelcomeUser.TabIndex = 5;
-            this.lblWelcomeUser.Text = "Welcome Admin";
-
-            // 
-            // lblClock
-            // 
-            this.lblClock.AutoSize = true;
-            this.lblClock.Location = new System.Drawing.Point(20, 660); // btnLogout 위로 이동
-            this.lblClock.Name = "lblClock";
-            this.lblClock.Size = new System.Drawing.Size(100, 20);
-            this.lblClock.TabIndex = 6;
-            this.lblClock.Text = "Clock";
-            this.panel1.Controls.Add(this.lblClock);
-
+            lblWelcomeUser.AutoSize = true;
+            lblWelcomeUser.Font = new Font("Arial Rounded MT Bold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblWelcomeUser.Location = new Point(47, 81);
+            lblWelcomeUser.Margin = new Padding(4, 0, 4, 0);
+            lblWelcomeUser.Name = "lblWelcomeUser";
+            lblWelcomeUser.Size = new Size(167, 23);
+            lblWelcomeUser.TabIndex = 5;
+            lblWelcomeUser.Text = "Welcome Admin";
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(20, 700);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(100, 40);
-            this.btnLogout.TabIndex = 7;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-
+            btnLogout.Location = new Point(66, 871);
+            btnLogout.Margin = new Padding(4);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(125, 50);
+            btnLogout.TabIndex = 7;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
+            // 
+            // lblClock
+            // 
+            lblClock.AutoSize = true;
+            lblClock.Location = new Point(81, 815);
+            lblClock.Margin = new Padding(4, 0, 4, 0);
+            lblClock.Name = "lblClock";
+            lblClock.Size = new Size(55, 25);
+            lblClock.TabIndex = 6;
+            lblClock.Text = "Clock";
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1); // Dashboard
-            this.tabControl1.Controls.Add(this.tabPage2); // Manage Rooms
-            this.tabControl1.Controls.Add(this.tabPage3); // Manage Customers
-            this.tabControl1.Controls.Add(this.tabPage4); // Reports
-            this.tabControl1.Controls.Add(this.tabPage5); // Manage Bookings
-            this.tabControl1.Location = new System.Drawing.Point(200, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1080, 768);
-            this.tabControl1.TabIndex = 1;
-
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage5);
+            tabControl1.Location = new Point(250, 0);
+            tabControl1.Margin = new Padding(4);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(1350, 960);
+            tabControl1.TabIndex = 1;
             // 
-            // tabPage1 - Dashboard
+            // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.checkedListBoxTasks);
-            this.tabPage1.Controls.Add(this.lblTaskTitle);
-            this.tabPage1.Text = "Dashboard";
-
-            // 
-            // lblTaskTitle
-            // 
-            this.lblTaskTitle.AutoSize = true;
-            this.lblTaskTitle.Location = new System.Drawing.Point(850, 20);
-            this.lblTaskTitle.Name = "lblTaskTitle";
-            this.lblTaskTitle.Size = new System.Drawing.Size(155, 20);
-            this.lblTaskTitle.TabIndex = 1;
-            this.lblTaskTitle.Text = "Manager's To-Do List";
-
+            tabPage1.Controls.Add(checkedListBoxTasks);
+            tabPage1.Controls.Add(lblTaskTitle);
+            tabPage1.Location = new Point(4, 34);
+            tabPage1.Margin = new Padding(4);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Size = new Size(1342, 922);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Dashboard";
             // 
             // checkedListBoxTasks
             // 
-            this.checkedListBoxTasks.FormattingEnabled = true;
-            this.checkedListBoxTasks.Items.AddRange(new object[] {
-            "Volunteer at Carewest",
-            "Finish RAD Project",
-            "Eat HotPot",
-            "Laundry",
-            "Do Assignments",
-            "Shovel Snow"});
-            this.checkedListBoxTasks.Location = new System.Drawing.Point(850, 50);
-            this.checkedListBoxTasks.Name = "checkedListBoxTasks";
-            this.checkedListBoxTasks.Size = new System.Drawing.Size(200, 150);
-            this.checkedListBoxTasks.TabIndex = 2;
-
+            checkedListBoxTasks.FormattingEnabled = true;
+            checkedListBoxTasks.Items.AddRange(new object[] { "Volunteer at Carewest", "Finish RAD Project", "Eat HotPot", "Laundry", "Do Assignments", "Shovel Snow" });
+            checkedListBoxTasks.Location = new Point(1020, 114);
+            checkedListBoxTasks.Margin = new Padding(4);
+            checkedListBoxTasks.Name = "checkedListBoxTasks";
+            checkedListBoxTasks.Size = new Size(249, 536);
+            checkedListBoxTasks.TabIndex = 2;
             // 
-            // tabPage2 - Manage Rooms
+            // lblTaskTitle
             // 
-            this.tabPage2.Controls.Add(this.dataGridViewRooms);
-            this.tabPage2.Controls.Add(this.btnAddRoom);
-            this.tabPage2.Controls.Add(this.btnUpdateRoom);
-            this.tabPage2.Controls.Add(this.btnDeleteRoom);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1072, 735);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Manage Rooms";
-            this.tabPage2.UseVisualStyleBackColor = true;
-
+            lblTaskTitle.AutoSize = true;
+            lblTaskTitle.Location = new Point(1020, 77);
+            lblTaskTitle.Margin = new Padding(4, 0, 4, 0);
+            lblTaskTitle.Name = "lblTaskTitle";
+            lblTaskTitle.Size = new Size(179, 25);
+            lblTaskTitle.TabIndex = 1;
+            lblTaskTitle.Text = "Manager's To-Do List";
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(dataGridViewRooms);
+            tabPage2.Controls.Add(btnAddRoom);
+            tabPage2.Controls.Add(btnUpdateRoom);
+            tabPage2.Controls.Add(btnDeleteRoom);
+            tabPage2.Location = new Point(4, 34);
+            tabPage2.Margin = new Padding(4);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(4);
+            tabPage2.Size = new Size(1342, 922);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Manage Rooms";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // dataGridViewRooms
             // 
-            this.dataGridViewRooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewRooms.Location = new System.Drawing.Point(20, 20);
-            this.dataGridViewRooms.Name = "dataGridViewRooms";
-            this.dataGridViewRooms.RowHeadersWidth = 51;
-            this.dataGridViewRooms.RowTemplate.Height = 29;
-            this.dataGridViewRooms.Size = new System.Drawing.Size(1000, 600);
-            this.dataGridViewRooms.TabIndex = 0;
-
+            dataGridViewRooms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewRooms.Location = new Point(25, 25);
+            dataGridViewRooms.Margin = new Padding(4);
+            dataGridViewRooms.Name = "dataGridViewRooms";
+            dataGridViewRooms.RowHeadersWidth = 51;
+            dataGridViewRooms.RowTemplate.Height = 29;
+            dataGridViewRooms.Size = new Size(1250, 750);
+            dataGridViewRooms.TabIndex = 0;
             // 
             // btnAddRoom
             // 
-            this.btnAddRoom.Location = new System.Drawing.Point(20, 650);
-            this.btnAddRoom.Name = "btnAddRoom";
-            this.btnAddRoom.Size = new System.Drawing.Size(150, 40);
-            this.btnAddRoom.TabIndex = 1;
-            this.btnAddRoom.Text = "Add Room";
-            this.btnAddRoom.UseVisualStyleBackColor = true;
-            this.btnAddRoom.Click += new System.EventHandler(this.btnAddRoom_Click);
-
+            btnAddRoom.Location = new Point(238, 812);
+            btnAddRoom.Margin = new Padding(4);
+            btnAddRoom.Name = "btnAddRoom";
+            btnAddRoom.Size = new Size(188, 50);
+            btnAddRoom.TabIndex = 1;
+            btnAddRoom.Text = "Add Room";
+            btnAddRoom.UseVisualStyleBackColor = true;
+            btnAddRoom.Click += btnAddRoom_Click;
             // 
             // btnUpdateRoom
             // 
-            this.btnUpdateRoom.Location = new System.Drawing.Point(190, 650);
-            this.btnUpdateRoom.Name = "btnUpdateRoom";
-            this.btnUpdateRoom.Size = new System.Drawing.Size(150, 40);
-            this.btnUpdateRoom.TabIndex = 2;
-            this.btnUpdateRoom.Text = "Update Room";
-            this.btnUpdateRoom.UseVisualStyleBackColor = true;
-            this.btnUpdateRoom.Click += new System.EventHandler(this.btnUpdateRoom_Click);
-
+            btnUpdateRoom.Location = new Point(593, 812);
+            btnUpdateRoom.Margin = new Padding(4);
+            btnUpdateRoom.Name = "btnUpdateRoom";
+            btnUpdateRoom.Size = new Size(188, 50);
+            btnUpdateRoom.TabIndex = 2;
+            btnUpdateRoom.Text = "Update Room";
+            btnUpdateRoom.UseVisualStyleBackColor = true;
+            btnUpdateRoom.Click += btnUpdateRoom_Click;
             // 
             // btnDeleteRoom
             // 
-            this.btnDeleteRoom.Location = new System.Drawing.Point(360, 650);
-            this.btnDeleteRoom.Name = "btnDeleteRoom";
-            this.btnDeleteRoom.Size = new System.Drawing.Size(150, 40);
-            this.btnDeleteRoom.TabIndex = 3;
-            this.btnDeleteRoom.Text = "Delete Room";
-            this.btnDeleteRoom.UseVisualStyleBackColor = true;
-            this.btnDeleteRoom.Click += new System.EventHandler(this.btnDeleteRoom_Click);
-
+            btnDeleteRoom.Location = new Point(938, 812);
+            btnDeleteRoom.Margin = new Padding(4);
+            btnDeleteRoom.Name = "btnDeleteRoom";
+            btnDeleteRoom.Size = new Size(188, 50);
+            btnDeleteRoom.TabIndex = 3;
+            btnDeleteRoom.Text = "Delete Room";
+            btnDeleteRoom.UseVisualStyleBackColor = true;
+            btnDeleteRoom.Click += btnDeleteRoom_Click;
             // 
-            // tabPage3 - Manage Customers
+            // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.dataGridViewCustomers);
-            this.tabPage3.Controls.Add(this.btnAddCustomer);
-            this.tabPage3.Controls.Add(this.btnUpdateCustomer);
-            this.tabPage3.Controls.Add(this.btnDeleteCustomer);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1072, 735);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Manage Customers";
-            this.tabPage3.UseVisualStyleBackColor = true;
-
+            tabPage3.Controls.Add(dataGridViewCustomers);
+            tabPage3.Controls.Add(btnAddCustomer);
+            tabPage3.Controls.Add(btnUpdateCustomer);
+            tabPage3.Controls.Add(btnDeleteCustomer);
+            tabPage3.Location = new Point(4, 34);
+            tabPage3.Margin = new Padding(4);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(4);
+            tabPage3.Size = new Size(1342, 922);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Manage Customers";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // dataGridViewCustomers
             // 
-            this.dataGridViewCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCustomers.Location = new System.Drawing.Point(20, 20);
-            this.dataGridViewCustomers.Name = "dataGridViewCustomers";
-            this.dataGridViewCustomers.RowHeadersWidth = 51;
-            this.dataGridViewCustomers.RowTemplate.Height = 29;
-            this.dataGridViewCustomers.Size = new System.Drawing.Size(1000, 600);
-            this.dataGridViewCustomers.TabIndex = 0;
-
+            dataGridViewCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCustomers.Location = new Point(25, 25);
+            dataGridViewCustomers.Margin = new Padding(4);
+            dataGridViewCustomers.Name = "dataGridViewCustomers";
+            dataGridViewCustomers.RowHeadersWidth = 51;
+            dataGridViewCustomers.RowTemplate.Height = 29;
+            dataGridViewCustomers.Size = new Size(1250, 750);
+            dataGridViewCustomers.TabIndex = 0;
             // 
             // btnAddCustomer
             // 
-            this.btnAddCustomer.Location = new System.Drawing.Point(20, 650);
-            this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(150, 40);
-            this.btnAddCustomer.TabIndex = 1;
-            this.btnAddCustomer.Text = "Add Customer";
-            this.btnAddCustomer.UseVisualStyleBackColor = true;
-            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
-
+            btnAddCustomer.Location = new Point(238, 812);
+            btnAddCustomer.Margin = new Padding(4);
+            btnAddCustomer.Name = "btnAddCustomer";
+            btnAddCustomer.Size = new Size(188, 50);
+            btnAddCustomer.TabIndex = 1;
+            btnAddCustomer.Text = "Add Customer";
+            btnAddCustomer.UseVisualStyleBackColor = true;
+            btnAddCustomer.Click += btnAddCustomer_Click;
             // 
             // btnUpdateCustomer
             // 
-            this.btnUpdateCustomer.Location = new System.Drawing.Point(190, 650);
-            this.btnUpdateCustomer.Name = "btnUpdateCustomer";
-            this.btnUpdateCustomer.Size = new System.Drawing.Size(150, 40);
-            this.btnUpdateCustomer.TabIndex = 2;
-            this.btnUpdateCustomer.Text = "Update Customer";
-            this.btnUpdateCustomer.UseVisualStyleBackColor = true;
-            this.btnUpdateCustomer.Click += new System.EventHandler(this.btnUpdateCustomer_Click);
-
+            btnUpdateCustomer.Location = new Point(593, 812);
+            btnUpdateCustomer.Margin = new Padding(4);
+            btnUpdateCustomer.Name = "btnUpdateCustomer";
+            btnUpdateCustomer.Size = new Size(188, 50);
+            btnUpdateCustomer.TabIndex = 2;
+            btnUpdateCustomer.Text = "Update Customer";
+            btnUpdateCustomer.UseVisualStyleBackColor = true;
+            btnUpdateCustomer.Click += btnUpdateCustomer_Click;
             // 
             // btnDeleteCustomer
             // 
-            this.btnDeleteCustomer.Location = new System.Drawing.Point(360, 650);
-            this.btnDeleteCustomer.Name = "btnDeleteCustomer";
-            this.btnDeleteCustomer.Size = new System.Drawing.Size(150, 40);
-            this.btnDeleteCustomer.TabIndex = 3;
-            this.btnDeleteCustomer.Text = "Delete Customer";
-            this.btnDeleteCustomer.UseVisualStyleBackColor = true;
-            this.btnDeleteCustomer.Click += new System.EventHandler(this.btnDeleteCustomer_Click);
-
+            btnDeleteCustomer.Location = new Point(938, 812);
+            btnDeleteCustomer.Margin = new Padding(4);
+            btnDeleteCustomer.Name = "btnDeleteCustomer";
+            btnDeleteCustomer.Size = new Size(188, 50);
+            btnDeleteCustomer.TabIndex = 3;
+            btnDeleteCustomer.Text = "Delete Customer";
+            btnDeleteCustomer.UseVisualStyleBackColor = true;
+            btnDeleteCustomer.Click += btnDeleteCustomer_Click;
             // 
-            // tabPage4 - Reports
+            // tabPage4
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1072, 735);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Reports";
-            this.tabPage4.UseVisualStyleBackColor = true;
-
-            // Add the panels to the tabPage4
-            this.tabPage4.Controls.Add(this.panelSoldRms);
-            this.tabPage4.Controls.Add(this.panelRmsForSale);
-            this.tabPage4.Controls.Add(this.panelDirtyRms);
-            this.tabPage4.Controls.Add(this.panelCleanVacant);
-
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1072, 735);
-            this.tabPage4.TabIndex = 0;
-            this.tabPage4.Text = "Report";
-            this.tabPage4.UseVisualStyleBackColor = true;
-
+            tabPage4.Controls.Add(panelSoldRms);
+            tabPage4.Controls.Add(panelRmsForSale);
+            tabPage4.Controls.Add(panelDirtyRms);
+            tabPage4.Controls.Add(panelCleanVacant);
+            tabPage4.Location = new Point(4, 34);
+            tabPage4.Margin = new Padding(4);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(4);
+            tabPage4.Size = new Size(1342, 922);
+            tabPage4.TabIndex = 0;
+            tabPage4.Text = "Report";
+            tabPage4.UseVisualStyleBackColor = true;
             // 
-            // tabPage5 - Manage Bookings
+            // panelSoldRms
             // 
-            this.tabPage5.Controls.Add(this.dataGridViewBookings);
-            this.tabPage5.Controls.Add(this.btnAddBooking);
-            this.tabPage5.Controls.Add(this.btnUpdateBooking);
-            this.tabPage5.Controls.Add(this.btnDeleteBooking);
-            this.tabPage5.Location = new System.Drawing.Point(4, 29);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1072, 735);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Manage Bookings";
-            this.tabPage5.UseVisualStyleBackColor = true;
-
+            panelSoldRms.BackColor = Color.LightBlue;
+            panelSoldRms.Controls.Add(lblSoldRmsTitle);
+            panelSoldRms.Controls.Add(lblSoldRmsValue);
+            panelSoldRms.Location = new Point(72, 108);
+            panelSoldRms.Margin = new Padding(4);
+            panelSoldRms.Name = "panelSoldRms";
+            panelSoldRms.Size = new Size(225, 125);
+            panelSoldRms.TabIndex = 0;
+            // 
+            // lblSoldRmsTitle
+            // 
+            lblSoldRmsTitle.AutoSize = true;
+            lblSoldRmsTitle.Font = new Font("Arial", 12F, FontStyle.Bold);
+            lblSoldRmsTitle.Location = new Point(12, 12);
+            lblSoldRmsTitle.Margin = new Padding(4, 0, 4, 0);
+            lblSoldRmsTitle.Name = "lblSoldRmsTitle";
+            lblSoldRmsTitle.Size = new Size(124, 29);
+            lblSoldRmsTitle.TabIndex = 1;
+            lblSoldRmsTitle.Text = "Sold Rms";
+            // 
+            // lblSoldRmsValue
+            // 
+            lblSoldRmsValue.AutoSize = true;
+            lblSoldRmsValue.Font = new Font("Arial", 24F, FontStyle.Bold);
+            lblSoldRmsValue.Location = new Point(12, 62);
+            lblSoldRmsValue.Margin = new Padding(4, 0, 4, 0);
+            lblSoldRmsValue.Name = "lblSoldRmsValue";
+            lblSoldRmsValue.Size = new Size(51, 56);
+            lblSoldRmsValue.TabIndex = 2;
+            lblSoldRmsValue.Text = "0";
+            // 
+            // panelRmsForSale
+            // 
+            panelRmsForSale.BackColor = Color.LightBlue;
+            panelRmsForSale.Controls.Add(lblRmsForSaleTitle);
+            panelRmsForSale.Controls.Add(lblRmsForSaleValue);
+            panelRmsForSale.Location = new Point(384, 108);
+            panelRmsForSale.Margin = new Padding(4);
+            panelRmsForSale.Name = "panelRmsForSale";
+            panelRmsForSale.Size = new Size(225, 125);
+            panelRmsForSale.TabIndex = 1;
+            // 
+            // lblRmsForSaleTitle
+            // 
+            lblRmsForSaleTitle.AutoSize = true;
+            lblRmsForSaleTitle.Font = new Font("Arial", 12F, FontStyle.Bold);
+            lblRmsForSaleTitle.Location = new Point(12, 12);
+            lblRmsForSaleTitle.Margin = new Padding(4, 0, 4, 0);
+            lblRmsForSaleTitle.Name = "lblRmsForSaleTitle";
+            lblRmsForSaleTitle.Size = new Size(159, 29);
+            lblRmsForSaleTitle.TabIndex = 1;
+            lblRmsForSaleTitle.Text = "Rms for Sale";
+            // 
+            // lblRmsForSaleValue
+            // 
+            lblRmsForSaleValue.AutoSize = true;
+            lblRmsForSaleValue.Font = new Font("Arial", 24F, FontStyle.Bold);
+            lblRmsForSaleValue.Location = new Point(12, 62);
+            lblRmsForSaleValue.Margin = new Padding(4, 0, 4, 0);
+            lblRmsForSaleValue.Name = "lblRmsForSaleValue";
+            lblRmsForSaleValue.Size = new Size(51, 56);
+            lblRmsForSaleValue.TabIndex = 2;
+            lblRmsForSaleValue.Text = "0";
+            // 
+            // panelDirtyRms
+            // 
+            panelDirtyRms.BackColor = Color.LightGreen;
+            panelDirtyRms.Controls.Add(lblDirtyRmsTitle);
+            panelDirtyRms.Controls.Add(lblDirtyRmsValue);
+            panelDirtyRms.Location = new Point(722, 108);
+            panelDirtyRms.Margin = new Padding(4);
+            panelDirtyRms.Name = "panelDirtyRms";
+            panelDirtyRms.Size = new Size(225, 125);
+            panelDirtyRms.TabIndex = 2;
+            // 
+            // lblDirtyRmsTitle
+            // 
+            lblDirtyRmsTitle.AutoSize = true;
+            lblDirtyRmsTitle.Font = new Font("Arial", 12F, FontStyle.Bold);
+            lblDirtyRmsTitle.Location = new Point(12, 12);
+            lblDirtyRmsTitle.Margin = new Padding(4, 0, 4, 0);
+            lblDirtyRmsTitle.Name = "lblDirtyRmsTitle";
+            lblDirtyRmsTitle.Size = new Size(125, 29);
+            lblDirtyRmsTitle.TabIndex = 4;
+            lblDirtyRmsTitle.Text = "Dirty Rms";
+            // 
+            // lblDirtyRmsValue
+            // 
+            lblDirtyRmsValue.AutoSize = true;
+            lblDirtyRmsValue.Font = new Font("Arial", 24F, FontStyle.Bold);
+            lblDirtyRmsValue.Location = new Point(12, 62);
+            lblDirtyRmsValue.Margin = new Padding(4, 0, 4, 0);
+            lblDirtyRmsValue.Name = "lblDirtyRmsValue";
+            lblDirtyRmsValue.Size = new Size(51, 56);
+            lblDirtyRmsValue.TabIndex = 5;
+            lblDirtyRmsValue.Text = "0";
+            // 
+            // panelCleanVacant
+            // 
+            panelCleanVacant.BackColor = Color.LightGreen;
+            panelCleanVacant.Controls.Add(lblCleanVacantTitle);
+            panelCleanVacant.Controls.Add(lblCleanVacantValue);
+            panelCleanVacant.Location = new Point(1040, 108);
+            panelCleanVacant.Margin = new Padding(4);
+            panelCleanVacant.Name = "panelCleanVacant";
+            panelCleanVacant.Size = new Size(225, 125);
+            panelCleanVacant.TabIndex = 3;
+            // 
+            // lblCleanVacantTitle
+            // 
+            lblCleanVacantTitle.AutoSize = true;
+            lblCleanVacantTitle.Font = new Font("Arial", 12F, FontStyle.Bold);
+            lblCleanVacantTitle.Location = new Point(12, 12);
+            lblCleanVacantTitle.Margin = new Padding(4, 0, 4, 0);
+            lblCleanVacantTitle.Name = "lblCleanVacantTitle";
+            lblCleanVacantTitle.Size = new Size(162, 29);
+            lblCleanVacantTitle.TabIndex = 4;
+            lblCleanVacantTitle.Text = "Clean Vacant";
+            // 
+            // lblCleanVacantValue
+            // 
+            lblCleanVacantValue.AutoSize = true;
+            lblCleanVacantValue.Font = new Font("Arial", 24F, FontStyle.Bold);
+            lblCleanVacantValue.Location = new Point(12, 62);
+            lblCleanVacantValue.Margin = new Padding(4, 0, 4, 0);
+            lblCleanVacantValue.Name = "lblCleanVacantValue";
+            lblCleanVacantValue.Size = new Size(51, 56);
+            lblCleanVacantValue.TabIndex = 5;
+            lblCleanVacantValue.Text = "0";
+            // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(dataGridViewBookings);
+            tabPage5.Controls.Add(btnAddBooking);
+            tabPage5.Controls.Add(btnUpdateBooking);
+            tabPage5.Controls.Add(btnDeleteBooking);
+            tabPage5.Location = new Point(4, 34);
+            tabPage5.Margin = new Padding(4);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(4);
+            tabPage5.Size = new Size(1342, 922);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "Manage Bookings";
+            tabPage5.UseVisualStyleBackColor = true;
             // 
             // dataGridViewBookings
             // 
-            this.dataGridViewBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewBookings.Location = new System.Drawing.Point(20, 20);
-            this.dataGridViewBookings.Name = "dataGridViewBookings";
-            this.dataGridViewBookings.RowHeadersWidth = 51;
-            this.dataGridViewBookings.RowTemplate.Height = 29;
-            this.dataGridViewBookings.Size = new System.Drawing.Size(1000, 600);
-            this.dataGridViewBookings.TabIndex = 0;
-
+            dataGridViewBookings.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewBookings.Location = new Point(25, 25);
+            dataGridViewBookings.Margin = new Padding(4);
+            dataGridViewBookings.Name = "dataGridViewBookings";
+            dataGridViewBookings.RowHeadersWidth = 51;
+            dataGridViewBookings.RowTemplate.Height = 29;
+            dataGridViewBookings.Size = new Size(1250, 750);
+            dataGridViewBookings.TabIndex = 0;
             // 
             // btnAddBooking
             // 
-            this.btnAddBooking.Location = new System.Drawing.Point(20, 650);
-            this.btnAddBooking.Name = "btnAddBooking";
-            this.btnAddBooking.Size = new System.Drawing.Size(150, 40);
-            this.btnAddBooking.TabIndex = 1;
-            this.btnAddBooking.Text = "Add Booking";
-            this.btnAddBooking.UseVisualStyleBackColor = true;
-            this.btnAddBooking.Click += new System.EventHandler(this.btnAddBooking_Click);
-
+            btnAddBooking.Location = new Point(238, 812);
+            btnAddBooking.Margin = new Padding(4);
+            btnAddBooking.Name = "btnAddBooking";
+            btnAddBooking.Size = new Size(188, 50);
+            btnAddBooking.TabIndex = 1;
+            btnAddBooking.Text = "Add Booking";
+            btnAddBooking.UseVisualStyleBackColor = true;
+            btnAddBooking.Click += btnAddBooking_Click;
             // 
             // btnUpdateBooking
             // 
-            this.btnUpdateBooking.Location = new System.Drawing.Point(190, 650);
-            this.btnUpdateBooking.Name = "btnUpdateBooking";
-            this.btnUpdateBooking.Size = new System.Drawing.Size(150, 40);
-            this.btnUpdateBooking.TabIndex = 2;
-            this.btnUpdateBooking.Text = "Update Booking";
-            this.btnUpdateBooking.UseVisualStyleBackColor = true;
-            this.btnUpdateBooking.Click += new System.EventHandler(this.btnUpdateBooking_Click);
-
+            btnUpdateBooking.Location = new Point(593, 812);
+            btnUpdateBooking.Margin = new Padding(4);
+            btnUpdateBooking.Name = "btnUpdateBooking";
+            btnUpdateBooking.Size = new Size(188, 50);
+            btnUpdateBooking.TabIndex = 2;
+            btnUpdateBooking.Text = "Update Booking";
+            btnUpdateBooking.UseVisualStyleBackColor = true;
+            btnUpdateBooking.Click += btnUpdateBooking_Click;
             // 
             // btnDeleteBooking
             // 
-            this.btnDeleteBooking.Location = new System.Drawing.Point(360, 650);
-            this.btnDeleteBooking.Name = "btnDeleteBooking";
-            this.btnDeleteBooking.Size = new System.Drawing.Size(150, 40);
-            this.btnDeleteBooking.TabIndex = 3;
-            this.btnDeleteBooking.Text = "Delete Booking";
-            this.btnDeleteBooking.UseVisualStyleBackColor = true;
-            this.btnDeleteBooking.Click += new System.EventHandler(this.btnDeleteBooking_Click);
-
+            btnDeleteBooking.Location = new Point(938, 812);
+            btnDeleteBooking.Margin = new Padding(4);
+            btnDeleteBooking.Name = "btnDeleteBooking";
+            btnDeleteBooking.Size = new Size(188, 50);
+            btnDeleteBooking.TabIndex = 3;
+            btnDeleteBooking.Text = "Delete Booking";
+            btnDeleteBooking.UseVisualStyleBackColor = true;
+            btnDeleteBooking.Click += btnDeleteBooking_Click;
             // 
             // MasterForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 768);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.panel1);
-            this.Name = "MasterForm";
-            this.Text = "Hotel Management System";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRooms)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBookings)).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1600, 960);
+            Controls.Add(tabControl1);
+            Controls.Add(panel1);
+            Margin = new Padding(4);
+            Name = "MasterForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Hotel Management System";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewRooms).EndInit();
+            tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCustomers).EndInit();
+            tabPage4.ResumeLayout(false);
+            panelSoldRms.ResumeLayout(false);
+            panelSoldRms.PerformLayout();
+            panelRmsForSale.ResumeLayout(false);
+            panelRmsForSale.PerformLayout();
+            panelDirtyRms.ResumeLayout(false);
+            panelDirtyRms.PerformLayout();
+            panelCleanVacant.ResumeLayout(false);
+            panelCleanVacant.PerformLayout();
+            tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBookings).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
