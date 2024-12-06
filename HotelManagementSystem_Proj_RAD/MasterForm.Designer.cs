@@ -87,19 +87,6 @@ namespace HotelManagementSystem_Proj_RAD
             lblClock = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            checkedListBoxTasks = new CheckedListBox();
-            lblTaskTitle = new Label();
-            tabPage2 = new TabPage();
-            dataGridViewRooms = new DataGridView();
-            btnAddRoom = new Button();
-            btnUpdateRoom = new Button();
-            btnDeleteRoom = new Button();
-            tabPage3 = new TabPage();
-            dataGridViewCustomers = new DataGridView();
-            btnAddCustomer = new Button();
-            btnUpdateCustomer = new Button();
-            btnDeleteCustomer = new Button();
-            tabPage4 = new TabPage();
             panelSoldRms = new Panel();
             lblSoldRmsTitle = new Label();
             lblSoldRmsValue = new Label();
@@ -112,6 +99,20 @@ namespace HotelManagementSystem_Proj_RAD
             panelCleanVacant = new Panel();
             lblCleanVacantTitle = new Label();
             lblCleanVacantValue = new Label();
+            tabPage2 = new TabPage();
+            dataGridViewRooms = new DataGridView();
+            btnAddRoom = new Button();
+            btnUpdateRoom = new Button();
+            btnDeleteRoom = new Button();
+            tabPage3 = new TabPage();
+            dataGridViewCustomers = new DataGridView();
+            btnAddCustomer = new Button();
+            btnUpdateCustomer = new Button();
+            btnDeleteCustomer = new Button();
+            tabPage4 = new TabPage();
+            dgvReport = new DataGridView();
+            btnGenerateReport = new Button();
+            cbReportType = new ComboBox();
             tabPage5 = new TabPage();
             dataGridViewBookings = new DataGridView();
             btnAddBooking = new Button();
@@ -120,15 +121,16 @@ namespace HotelManagementSystem_Proj_RAD
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            panelSoldRms.SuspendLayout();
+            panelRmsForSale.SuspendLayout();
+            panelDirtyRms.SuspendLayout();
+            panelCleanVacant.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRooms).BeginInit();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCustomers).BeginInit();
             tabPage4.SuspendLayout();
-            panelSoldRms.SuspendLayout();
-            panelRmsForSale.SuspendLayout();
-            panelDirtyRms.SuspendLayout();
-            panelCleanVacant.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvReport).BeginInit();
             tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewBookings).BeginInit();
             SuspendLayout();
@@ -263,8 +265,11 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(checkedListBoxTasks);
-            tabPage1.Controls.Add(lblTaskTitle);
+            tabPage1.BackColor = Color.White;
+            tabPage1.Controls.Add(panelSoldRms);
+            tabPage1.Controls.Add(panelRmsForSale);
+            tabPage1.Controls.Add(panelDirtyRms);
+            tabPage1.Controls.Add(panelCleanVacant);
             tabPage1.Location = new Point(4, 34);
             tabPage1.Margin = new Padding(4);
             tabPage1.Name = "tabPage1";
@@ -272,25 +277,137 @@ namespace HotelManagementSystem_Proj_RAD
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Dashboard";
             // 
-            // checkedListBoxTasks
+            // panelSoldRms
             // 
-            checkedListBoxTasks.FormattingEnabled = true;
-            checkedListBoxTasks.Items.AddRange(new object[] { "Volunteer at Carewest", "Finish RAD Project", "Eat HotPot", "Laundry", "Do Assignments", "Shovel Snow" });
-            checkedListBoxTasks.Location = new Point(1020, 114);
-            checkedListBoxTasks.Margin = new Padding(4);
-            checkedListBoxTasks.Name = "checkedListBoxTasks";
-            checkedListBoxTasks.Size = new Size(249, 536);
-            checkedListBoxTasks.TabIndex = 2;
+            panelSoldRms.BackColor = Color.LightBlue;
+            panelSoldRms.Controls.Add(lblSoldRmsTitle);
+            panelSoldRms.Controls.Add(lblSoldRmsValue);
+            panelSoldRms.Location = new Point(68, 91);
+            panelSoldRms.Margin = new Padding(4);
+            panelSoldRms.Name = "panelSoldRms";
+            panelSoldRms.Size = new Size(225, 125);
+            panelSoldRms.TabIndex = 4;
             // 
-            // lblTaskTitle
+            // lblSoldRmsTitle
             // 
-            lblTaskTitle.AutoSize = true;
-            lblTaskTitle.Location = new Point(1020, 77);
-            lblTaskTitle.Margin = new Padding(4, 0, 4, 0);
-            lblTaskTitle.Name = "lblTaskTitle";
-            lblTaskTitle.Size = new Size(179, 25);
-            lblTaskTitle.TabIndex = 1;
-            lblTaskTitle.Text = "Manager's To-Do List";
+            lblSoldRmsTitle.AutoSize = true;
+            lblSoldRmsTitle.Font = new Font("Arial", 12F, FontStyle.Bold);
+            lblSoldRmsTitle.Location = new Point(12, 12);
+            lblSoldRmsTitle.Margin = new Padding(4, 0, 4, 0);
+            lblSoldRmsTitle.Name = "lblSoldRmsTitle";
+            lblSoldRmsTitle.Size = new Size(124, 29);
+            lblSoldRmsTitle.TabIndex = 1;
+            lblSoldRmsTitle.Text = "Sold Rms";
+            // 
+            // lblSoldRmsValue
+            // 
+            lblSoldRmsValue.AutoSize = true;
+            lblSoldRmsValue.Font = new Font("Arial", 24F, FontStyle.Bold);
+            lblSoldRmsValue.Location = new Point(12, 62);
+            lblSoldRmsValue.Margin = new Padding(4, 0, 4, 0);
+            lblSoldRmsValue.Name = "lblSoldRmsValue";
+            lblSoldRmsValue.Size = new Size(51, 56);
+            lblSoldRmsValue.TabIndex = 2;
+            lblSoldRmsValue.Text = "0";
+            // 
+            // panelRmsForSale
+            // 
+            panelRmsForSale.BackColor = Color.LightBlue;
+            panelRmsForSale.Controls.Add(lblRmsForSaleTitle);
+            panelRmsForSale.Controls.Add(lblRmsForSaleValue);
+            panelRmsForSale.Location = new Point(380, 91);
+            panelRmsForSale.Margin = new Padding(4);
+            panelRmsForSale.Name = "panelRmsForSale";
+            panelRmsForSale.Size = new Size(225, 125);
+            panelRmsForSale.TabIndex = 5;
+            // 
+            // lblRmsForSaleTitle
+            // 
+            lblRmsForSaleTitle.AutoSize = true;
+            lblRmsForSaleTitle.Font = new Font("Arial", 12F, FontStyle.Bold);
+            lblRmsForSaleTitle.Location = new Point(12, 12);
+            lblRmsForSaleTitle.Margin = new Padding(4, 0, 4, 0);
+            lblRmsForSaleTitle.Name = "lblRmsForSaleTitle";
+            lblRmsForSaleTitle.Size = new Size(159, 29);
+            lblRmsForSaleTitle.TabIndex = 1;
+            lblRmsForSaleTitle.Text = "Rms for Sale";
+            // 
+            // lblRmsForSaleValue
+            // 
+            lblRmsForSaleValue.AutoSize = true;
+            lblRmsForSaleValue.Font = new Font("Arial", 24F, FontStyle.Bold);
+            lblRmsForSaleValue.Location = new Point(12, 62);
+            lblRmsForSaleValue.Margin = new Padding(4, 0, 4, 0);
+            lblRmsForSaleValue.Name = "lblRmsForSaleValue";
+            lblRmsForSaleValue.Size = new Size(51, 56);
+            lblRmsForSaleValue.TabIndex = 2;
+            lblRmsForSaleValue.Text = "0";
+            // 
+            // panelDirtyRms
+            // 
+            panelDirtyRms.BackColor = Color.LightGreen;
+            panelDirtyRms.Controls.Add(lblDirtyRmsTitle);
+            panelDirtyRms.Controls.Add(lblDirtyRmsValue);
+            panelDirtyRms.Location = new Point(718, 91);
+            panelDirtyRms.Margin = new Padding(4);
+            panelDirtyRms.Name = "panelDirtyRms";
+            panelDirtyRms.Size = new Size(225, 125);
+            panelDirtyRms.TabIndex = 6;
+            // 
+            // lblDirtyRmsTitle
+            // 
+            lblDirtyRmsTitle.AutoSize = true;
+            lblDirtyRmsTitle.Font = new Font("Arial", 12F, FontStyle.Bold);
+            lblDirtyRmsTitle.Location = new Point(12, 12);
+            lblDirtyRmsTitle.Margin = new Padding(4, 0, 4, 0);
+            lblDirtyRmsTitle.Name = "lblDirtyRmsTitle";
+            lblDirtyRmsTitle.Size = new Size(125, 29);
+            lblDirtyRmsTitle.TabIndex = 4;
+            lblDirtyRmsTitle.Text = "Dirty Rms";
+            // 
+            // lblDirtyRmsValue
+            // 
+            lblDirtyRmsValue.AutoSize = true;
+            lblDirtyRmsValue.Font = new Font("Arial", 24F, FontStyle.Bold);
+            lblDirtyRmsValue.Location = new Point(12, 62);
+            lblDirtyRmsValue.Margin = new Padding(4, 0, 4, 0);
+            lblDirtyRmsValue.Name = "lblDirtyRmsValue";
+            lblDirtyRmsValue.Size = new Size(51, 56);
+            lblDirtyRmsValue.TabIndex = 5;
+            lblDirtyRmsValue.Text = "0";
+            // 
+            // panelCleanVacant
+            // 
+            panelCleanVacant.BackColor = Color.LightGreen;
+            panelCleanVacant.Controls.Add(lblCleanVacantTitle);
+            panelCleanVacant.Controls.Add(lblCleanVacantValue);
+            panelCleanVacant.Location = new Point(1036, 91);
+            panelCleanVacant.Margin = new Padding(4);
+            panelCleanVacant.Name = "panelCleanVacant";
+            panelCleanVacant.Size = new Size(225, 125);
+            panelCleanVacant.TabIndex = 7;
+            // 
+            // lblCleanVacantTitle
+            // 
+            lblCleanVacantTitle.AutoSize = true;
+            lblCleanVacantTitle.Font = new Font("Arial", 12F, FontStyle.Bold);
+            lblCleanVacantTitle.Location = new Point(12, 12);
+            lblCleanVacantTitle.Margin = new Padding(4, 0, 4, 0);
+            lblCleanVacantTitle.Name = "lblCleanVacantTitle";
+            lblCleanVacantTitle.Size = new Size(162, 29);
+            lblCleanVacantTitle.TabIndex = 4;
+            lblCleanVacantTitle.Text = "Clean Vacant";
+            // 
+            // lblCleanVacantValue
+            // 
+            lblCleanVacantValue.AutoSize = true;
+            lblCleanVacantValue.Font = new Font("Arial", 24F, FontStyle.Bold);
+            lblCleanVacantValue.Location = new Point(12, 62);
+            lblCleanVacantValue.Margin = new Padding(4, 0, 4, 0);
+            lblCleanVacantValue.Name = "lblCleanVacantValue";
+            lblCleanVacantValue.Size = new Size(51, 56);
+            lblCleanVacantValue.TabIndex = 5;
+            lblCleanVacantValue.Text = "0";
             // 
             // tabPage2
             // 
@@ -412,10 +529,9 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // tabPage4
             // 
-            tabPage4.Controls.Add(panelSoldRms);
-            tabPage4.Controls.Add(panelRmsForSale);
-            tabPage4.Controls.Add(panelDirtyRms);
-            tabPage4.Controls.Add(panelCleanVacant);
+            tabPage4.Controls.Add(dgvReport);
+            tabPage4.Controls.Add(btnGenerateReport);
+            tabPage4.Controls.Add(cbReportType);
             tabPage4.Location = new Point(4, 34);
             tabPage4.Margin = new Padding(4);
             tabPage4.Name = "tabPage4";
@@ -425,137 +541,32 @@ namespace HotelManagementSystem_Proj_RAD
             tabPage4.Text = "Report";
             tabPage4.UseVisualStyleBackColor = true;
             // 
-            // panelSoldRms
+            // dgvReport
             // 
-            panelSoldRms.BackColor = Color.LightBlue;
-            panelSoldRms.Controls.Add(lblSoldRmsTitle);
-            panelSoldRms.Controls.Add(lblSoldRmsValue);
-            panelSoldRms.Location = new Point(72, 108);
-            panelSoldRms.Margin = new Padding(4);
-            panelSoldRms.Name = "panelSoldRms";
-            panelSoldRms.Size = new Size(225, 125);
-            panelSoldRms.TabIndex = 0;
+            dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvReport.Location = new Point(7, 8);
+            dgvReport.Name = "dgvReport";
+            dgvReport.RowHeadersWidth = 62;
+            dgvReport.Size = new Size(1327, 656);
+            dgvReport.TabIndex = 3;
             // 
-            // lblSoldRmsTitle
+            // btnGenerateReport
             // 
-            lblSoldRmsTitle.AutoSize = true;
-            lblSoldRmsTitle.Font = new Font("Arial", 12F, FontStyle.Bold);
-            lblSoldRmsTitle.Location = new Point(12, 12);
-            lblSoldRmsTitle.Margin = new Padding(4, 0, 4, 0);
-            lblSoldRmsTitle.Name = "lblSoldRmsTitle";
-            lblSoldRmsTitle.Size = new Size(124, 29);
-            lblSoldRmsTitle.TabIndex = 1;
-            lblSoldRmsTitle.Text = "Sold Rms";
+            btnGenerateReport.Location = new Point(85, 814);
+            btnGenerateReport.Name = "btnGenerateReport";
+            btnGenerateReport.Size = new Size(112, 34);
+            btnGenerateReport.TabIndex = 2;
+            btnGenerateReport.Text = "Generate";
+            btnGenerateReport.UseVisualStyleBackColor = true;
+            btnGenerateReport.Click += btnGenerateReport_Click;
             // 
-            // lblSoldRmsValue
+            // cbReportType
             // 
-            lblSoldRmsValue.AutoSize = true;
-            lblSoldRmsValue.Font = new Font("Arial", 24F, FontStyle.Bold);
-            lblSoldRmsValue.Location = new Point(12, 62);
-            lblSoldRmsValue.Margin = new Padding(4, 0, 4, 0);
-            lblSoldRmsValue.Name = "lblSoldRmsValue";
-            lblSoldRmsValue.Size = new Size(51, 56);
-            lblSoldRmsValue.TabIndex = 2;
-            lblSoldRmsValue.Text = "0";
-            // 
-            // panelRmsForSale
-            // 
-            panelRmsForSale.BackColor = Color.LightBlue;
-            panelRmsForSale.Controls.Add(lblRmsForSaleTitle);
-            panelRmsForSale.Controls.Add(lblRmsForSaleValue);
-            panelRmsForSale.Location = new Point(384, 108);
-            panelRmsForSale.Margin = new Padding(4);
-            panelRmsForSale.Name = "panelRmsForSale";
-            panelRmsForSale.Size = new Size(225, 125);
-            panelRmsForSale.TabIndex = 1;
-            // 
-            // lblRmsForSaleTitle
-            // 
-            lblRmsForSaleTitle.AutoSize = true;
-            lblRmsForSaleTitle.Font = new Font("Arial", 12F, FontStyle.Bold);
-            lblRmsForSaleTitle.Location = new Point(12, 12);
-            lblRmsForSaleTitle.Margin = new Padding(4, 0, 4, 0);
-            lblRmsForSaleTitle.Name = "lblRmsForSaleTitle";
-            lblRmsForSaleTitle.Size = new Size(159, 29);
-            lblRmsForSaleTitle.TabIndex = 1;
-            lblRmsForSaleTitle.Text = "Rms for Sale";
-            // 
-            // lblRmsForSaleValue
-            // 
-            lblRmsForSaleValue.AutoSize = true;
-            lblRmsForSaleValue.Font = new Font("Arial", 24F, FontStyle.Bold);
-            lblRmsForSaleValue.Location = new Point(12, 62);
-            lblRmsForSaleValue.Margin = new Padding(4, 0, 4, 0);
-            lblRmsForSaleValue.Name = "lblRmsForSaleValue";
-            lblRmsForSaleValue.Size = new Size(51, 56);
-            lblRmsForSaleValue.TabIndex = 2;
-            lblRmsForSaleValue.Text = "0";
-            // 
-            // panelDirtyRms
-            // 
-            panelDirtyRms.BackColor = Color.LightGreen;
-            panelDirtyRms.Controls.Add(lblDirtyRmsTitle);
-            panelDirtyRms.Controls.Add(lblDirtyRmsValue);
-            panelDirtyRms.Location = new Point(722, 108);
-            panelDirtyRms.Margin = new Padding(4);
-            panelDirtyRms.Name = "panelDirtyRms";
-            panelDirtyRms.Size = new Size(225, 125);
-            panelDirtyRms.TabIndex = 2;
-            // 
-            // lblDirtyRmsTitle
-            // 
-            lblDirtyRmsTitle.AutoSize = true;
-            lblDirtyRmsTitle.Font = new Font("Arial", 12F, FontStyle.Bold);
-            lblDirtyRmsTitle.Location = new Point(12, 12);
-            lblDirtyRmsTitle.Margin = new Padding(4, 0, 4, 0);
-            lblDirtyRmsTitle.Name = "lblDirtyRmsTitle";
-            lblDirtyRmsTitle.Size = new Size(125, 29);
-            lblDirtyRmsTitle.TabIndex = 4;
-            lblDirtyRmsTitle.Text = "Dirty Rms";
-            // 
-            // lblDirtyRmsValue
-            // 
-            lblDirtyRmsValue.AutoSize = true;
-            lblDirtyRmsValue.Font = new Font("Arial", 24F, FontStyle.Bold);
-            lblDirtyRmsValue.Location = new Point(12, 62);
-            lblDirtyRmsValue.Margin = new Padding(4, 0, 4, 0);
-            lblDirtyRmsValue.Name = "lblDirtyRmsValue";
-            lblDirtyRmsValue.Size = new Size(51, 56);
-            lblDirtyRmsValue.TabIndex = 5;
-            lblDirtyRmsValue.Text = "0";
-            // 
-            // panelCleanVacant
-            // 
-            panelCleanVacant.BackColor = Color.LightGreen;
-            panelCleanVacant.Controls.Add(lblCleanVacantTitle);
-            panelCleanVacant.Controls.Add(lblCleanVacantValue);
-            panelCleanVacant.Location = new Point(1040, 108);
-            panelCleanVacant.Margin = new Padding(4);
-            panelCleanVacant.Name = "panelCleanVacant";
-            panelCleanVacant.Size = new Size(225, 125);
-            panelCleanVacant.TabIndex = 3;
-            // 
-            // lblCleanVacantTitle
-            // 
-            lblCleanVacantTitle.AutoSize = true;
-            lblCleanVacantTitle.Font = new Font("Arial", 12F, FontStyle.Bold);
-            lblCleanVacantTitle.Location = new Point(12, 12);
-            lblCleanVacantTitle.Margin = new Padding(4, 0, 4, 0);
-            lblCleanVacantTitle.Name = "lblCleanVacantTitle";
-            lblCleanVacantTitle.Size = new Size(162, 29);
-            lblCleanVacantTitle.TabIndex = 4;
-            lblCleanVacantTitle.Text = "Clean Vacant";
-            // 
-            // lblCleanVacantValue
-            // 
-            lblCleanVacantValue.AutoSize = true;
-            lblCleanVacantValue.Font = new Font("Arial", 24F, FontStyle.Bold);
-            lblCleanVacantValue.Location = new Point(12, 62);
-            lblCleanVacantValue.Margin = new Padding(4, 0, 4, 0);
-            lblCleanVacantValue.Name = "lblCleanVacantValue";
-            lblCleanVacantValue.Size = new Size(51, 56);
-            lblCleanVacantValue.TabIndex = 5;
-            lblCleanVacantValue.Text = "0";
+            cbReportType.FormattingEnabled = true;
+            cbReportType.Location = new Point(86, 762);
+            cbReportType.Name = "cbReportType";
+            cbReportType.Size = new Size(182, 33);
+            cbReportType.TabIndex = 1;
             // 
             // tabPage5
             // 
@@ -631,12 +642,6 @@ namespace HotelManagementSystem_Proj_RAD
             panel1.PerformLayout();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
-            tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridViewRooms).EndInit();
-            tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridViewCustomers).EndInit();
-            tabPage4.ResumeLayout(false);
             panelSoldRms.ResumeLayout(false);
             panelSoldRms.PerformLayout();
             panelRmsForSale.ResumeLayout(false);
@@ -645,11 +650,23 @@ namespace HotelManagementSystem_Proj_RAD
             panelDirtyRms.PerformLayout();
             panelCleanVacant.ResumeLayout(false);
             panelCleanVacant.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewRooms).EndInit();
+            tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCustomers).EndInit();
+            tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvReport).EndInit();
             tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewBookings).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView dgvReport;
+        private Button btnGenerateReport;
+        private ComboBox cbReportType;
+        private DateTimePicker dtpReportTime;
+
     }
 }

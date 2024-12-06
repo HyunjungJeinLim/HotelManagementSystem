@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManagementSystem_Proj;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,9 +11,11 @@ namespace HotelManagementSystem_Proj_RAD
 {
     public partial class MasterForm : Form
     {
-        private string connectionString = "Server=JEIN\\SQLEXPRESS;Database=HotelManagement;Trusted_Connection=True;";
+        //private string connectionString = "Server=JEIN\\SQLEXPRESS;Database=HotelManagement;Trusted_Connection=True;";
+        private string connectionString = "Server=STEPH-LAPTOP\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
         private Chart roomSalesChart;
         private Chart cleaningStatusChart;
+        private readonly Reports _reports;
 
         public MasterForm()
         {
@@ -39,6 +42,22 @@ namespace HotelManagementSystem_Proj_RAD
             tabControl1.Font = new Font("Arial", 10);
             tabControl1.ItemSize = new Size(150, 40);
             tabControl1.Padding = new Point(10, 10);
+
+            MainForm_Load(this, EventArgs.Empty);
+            _reports = new Reports(connectionString);
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // Initialize ComboBox items and set default selection
+            cbReportType.Items.Clear();
+            cbReportType.Items.AddRange(new string[] { "Monthly Sales", "Booking Rates", "Cancellation Rates" });
+
+            if (cbReportType.Items.Count > 0)
+            {
+                cbReportType.SelectedIndex = 0; // Default selection
+            }
         }
 
         private void ClockTimer_Tick(object sender, EventArgs e)
@@ -83,8 +102,8 @@ namespace HotelManagementSystem_Proj_RAD
             cleaningStatusChart.Series.Add(cleaningStatusSeries);
             cleaningStatusChart.Titles.Add("Cleaning Status");
 
-            tabPage4.Controls.Add(roomSalesChart);
-            tabPage4.Controls.Add(cleaningStatusChart);
+            tabPage1.Controls.Add(roomSalesChart);
+            tabPage1.Controls.Add(cleaningStatusChart);
         }
 
 
@@ -165,6 +184,8 @@ namespace HotelManagementSystem_Proj_RAD
             // Update Chart data
             UpdatePieChart(roomSalesChart, roomSalesData, "Room Sales");
             UpdatePieChart(cleaningStatusChart, cleaningStatusData, "Cleaning Status");
+
+
         }
 
         private void UpdatePieChart(Chart chart, Dictionary<string, int> data, string title)
@@ -254,7 +275,7 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void LoadToDoList()
         {
-            
+
         }
 
         // Event Handlers
@@ -280,7 +301,7 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void lblReports_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedTab = tabPage4;
+            tabControl1.SelectedTab = tabPage1;
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -696,10 +717,59 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab == tabPage4)
+            if (tabControl1.SelectedTab == tabPage1)
             {
                 LoadReportData();
             }
         }
+
+        // Reports tab
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            // Check if cbReportType is initialized
+            if (cbReportType == null)
+            {
+                MessageBox.Show("ComboBox is not initialized", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Get selected report type from ComboBox
+            string reportType = cbReportType.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(reportType))
+            {
+                MessageBox.Show("Please select a report type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if _reports is initialized
+            if (_reports == null)
+            {
+                MessageBox.Show("_reports is not initialized", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                // Fetch the report data from the Reports class (using the selected report type)
+                DataTable reportData = _reports.GenerateReport(reportType); // Using DateTime.Now as default if no date is needed
+
+                // Display the report data in the DataGridView if data is available
+                if (reportData != null && reportData.Rows.Count > 0)
+                {
+                    dgvReport.DataSource = reportData;
+                }
+                else
+                {
+                    MessageBox.Show("No data found for the selected report.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error generating report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }
