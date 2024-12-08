@@ -109,15 +109,15 @@ namespace HotelManagementSystem_Proj_RAD
             btnAddCustomer = new Button();
             btnUpdateCustomer = new Button();
             btnDeleteCustomer = new Button();
-            tabPage4 = new TabPage();
-            dgvReport = new DataGridView();
-            btnGenerateReport = new Button();
-            cbReportType = new ComboBox();
             tabPage5 = new TabPage();
             dataGridViewBookings = new DataGridView();
             btnAddBooking = new Button();
             btnUpdateBooking = new Button();
             btnDeleteBooking = new Button();
+            tabPage4 = new TabPage();
+            dgvReport = new DataGridView();
+            btnGenerateReport = new Button();
+            cbReportType = new ComboBox();
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -129,10 +129,10 @@ namespace HotelManagementSystem_Proj_RAD
             ((System.ComponentModel.ISupportInitialize)dataGridViewRooms).BeginInit();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCustomers).BeginInit();
-            tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvReport).BeginInit();
             tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewBookings).BeginInit();
+            tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvReport).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -254,8 +254,8 @@ namespace HotelManagementSystem_Proj_RAD
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage5);
+            tabControl1.Controls.Add(tabPage4);
             tabControl1.Location = new Point(250, 0);
             tabControl1.Margin = new Padding(4);
             tabControl1.Name = "tabControl1";
@@ -527,47 +527,6 @@ namespace HotelManagementSystem_Proj_RAD
             btnDeleteCustomer.UseVisualStyleBackColor = true;
             btnDeleteCustomer.Click += btnDeleteCustomer_Click;
             // 
-            // tabPage4
-            // 
-            tabPage4.Controls.Add(dgvReport);
-            tabPage4.Controls.Add(btnGenerateReport);
-            tabPage4.Controls.Add(cbReportType);
-            tabPage4.Location = new Point(4, 34);
-            tabPage4.Margin = new Padding(4);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(4);
-            tabPage4.Size = new Size(1342, 922);
-            tabPage4.TabIndex = 0;
-            tabPage4.Text = "Report";
-            tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // dgvReport
-            // 
-            dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvReport.Location = new Point(7, 8);
-            dgvReport.Name = "dgvReport";
-            dgvReport.RowHeadersWidth = 62;
-            dgvReport.Size = new Size(1327, 656);
-            dgvReport.TabIndex = 3;
-            // 
-            // btnGenerateReport
-            // 
-            btnGenerateReport.Location = new Point(85, 814);
-            btnGenerateReport.Name = "btnGenerateReport";
-            btnGenerateReport.Size = new Size(112, 34);
-            btnGenerateReport.TabIndex = 2;
-            btnGenerateReport.Text = "Generate";
-            btnGenerateReport.UseVisualStyleBackColor = true;
-            btnGenerateReport.Click += btnGenerateReport_Click;
-            // 
-            // cbReportType
-            // 
-            cbReportType.FormattingEnabled = true;
-            cbReportType.Location = new Point(86, 762);
-            cbReportType.Name = "cbReportType";
-            cbReportType.Size = new Size(182, 33);
-            cbReportType.TabIndex = 1;
-            // 
             // tabPage5
             // 
             tabPage5.Controls.Add(dataGridViewBookings);
@@ -627,6 +586,47 @@ namespace HotelManagementSystem_Proj_RAD
             btnDeleteBooking.UseVisualStyleBackColor = true;
             btnDeleteBooking.Click += btnDeleteBooking_Click;
             // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(dgvReport);
+            tabPage4.Controls.Add(btnGenerateReport);
+            tabPage4.Controls.Add(cbReportType);
+            tabPage4.Location = new Point(4, 34);
+            tabPage4.Margin = new Padding(4);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(4);
+            tabPage4.Size = new Size(1342, 922);
+            tabPage4.TabIndex = 0;
+            tabPage4.Text = "Report";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // dgvReport
+            // 
+            dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvReport.Location = new Point(7, 8);
+            dgvReport.Name = "dgvReport";
+            dgvReport.RowHeadersWidth = 62;
+            dgvReport.Size = new Size(1327, 656);
+            dgvReport.TabIndex = 3;
+            // 
+            // btnGenerateReport
+            // 
+            btnGenerateReport.Location = new Point(85, 814);
+            btnGenerateReport.Name = "btnGenerateReport";
+            btnGenerateReport.Size = new Size(112, 34);
+            btnGenerateReport.TabIndex = 2;
+            btnGenerateReport.Text = "Generate";
+            btnGenerateReport.UseVisualStyleBackColor = true;
+            btnGenerateReport.Click += btnGenerateReport_Click;
+            // 
+            // cbReportType
+            // 
+            cbReportType.FormattingEnabled = true;
+            cbReportType.Location = new Point(86, 762);
+            cbReportType.Name = "cbReportType";
+            cbReportType.Size = new Size(182, 33);
+            cbReportType.TabIndex = 1;
+            // 
             // MasterForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -654,10 +654,10 @@ namespace HotelManagementSystem_Proj_RAD
             ((System.ComponentModel.ISupportInitialize)dataGridViewRooms).EndInit();
             tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewCustomers).EndInit();
-            tabPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvReport).EndInit();
             tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewBookings).EndInit();
+            tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvReport).EndInit();
             ResumeLayout(false);
         }
 
@@ -667,6 +667,5 @@ namespace HotelManagementSystem_Proj_RAD
         private Button btnGenerateReport;
         private ComboBox cbReportType;
         private DateTimePicker dtpReportTime;
-
     }
 }

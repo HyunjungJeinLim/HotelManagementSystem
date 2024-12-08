@@ -4,15 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Reflection.Metadata;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+
 
 namespace HotelManagementSystem_Proj_RAD
 {
     public partial class MasterForm : Form
     {
         //private string connectionString = "Server=JEIN\\SQLEXPRESS;Database=HotelManagement;Trusted_Connection=True;";
-        private string connectionString = "Server=STEPH-LAPTOP\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
+        private string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
         private Chart roomSalesChart;
         private Chart cleaningStatusChart;
         private readonly Reports _reports;
@@ -39,7 +41,7 @@ namespace HotelManagementSystem_Proj_RAD
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
 
             // TabControl Design
-            tabControl1.Font = new Font("Arial", 10);
+         
             tabControl1.ItemSize = new Size(150, 40);
             tabControl1.Padding = new Point(10, 10);
 
@@ -313,14 +315,52 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void btnAddRoom_Click(object sender, EventArgs e)
         {
-            int nextRoomID = GetNextRoomID();
+            // Ensure that the user has provided all required data before proceeding
+            if (dataGridViewRooms.CurrentRow == null)
+            {
+                MessageBox.Show("Please add room details in the grid before saving.");
+                return;
+            }
 
-            //default data
-            string defaultRoomType = "Single";
-            decimal defaultPrice = 100.00m;
-            string defaultAmenities = "Wi-Fi";
-            bool defaultAvailability = true;
-            string defaultRoomNumber = "R" + nextRoomID.ToString("D3");
+            var currentRow = dataGridViewRooms.CurrentRow;
+
+            // Retrieve RoomType
+            string roomType = currentRow.Cells["RoomType"].Value?.ToString();
+            if (string.IsNullOrWhiteSpace(roomType))
+            {
+                MessageBox.Show("Room Type cannot be empty. Please provide a valid value.");
+                return;
+            }
+
+            // Retrieve Price
+            if (!decimal.TryParse(currentRow.Cells["Price"].Value?.ToString(), out decimal price))
+            {
+                MessageBox.Show("Invalid Price. Please provide a valid numeric value.");
+                return;
+            }
+
+            // Retrieve Amenities
+            string amenities = currentRow.Cells["Amenities"].Value?.ToString();
+            if (string.IsNullOrWhiteSpace(amenities))
+            {
+                MessageBox.Show("Amenities cannot be empty. Please provide a valid value.");
+                return;
+            }
+
+            // Retrieve Availability
+            if (!bool.TryParse(currentRow.Cells["Availability"].Value?.ToString(), out bool availability))
+            {
+                MessageBox.Show("Invalid Availability value. Please provide a valid value.");
+                return;
+            }
+
+            // Retrieve RoomNumber
+            string roomNumber = currentRow.Cells["RoomNumber"].Value?.ToString();
+            if (string.IsNullOrWhiteSpace(roomNumber))
+            {
+                MessageBox.Show("Room Number cannot be empty. Please provide a valid value.");
+                return;
+            }
 
             // SQL INSERT QUERY
             string query = "INSERT INTO Rooms (RoomType, Price, Amenities, Availability, RoomNumber) " +
@@ -329,18 +369,18 @@ namespace HotelManagementSystem_Proj_RAD
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@RoomType", defaultRoomType);
-                command.Parameters.AddWithValue("@Price", defaultPrice);
-                command.Parameters.AddWithValue("@Amenities", defaultAmenities);
-                command.Parameters.AddWithValue("@Availability", defaultAvailability);
-                command.Parameters.AddWithValue("@RoomNumber", defaultRoomNumber);
+                command.Parameters.AddWithValue("@RoomType", roomType);
+                command.Parameters.AddWithValue("@Price", price);
+                command.Parameters.AddWithValue("@Amenities", amenities);
+                command.Parameters.AddWithValue("@Availability", availability);
+                command.Parameters.AddWithValue("@RoomNumber", roomNumber);
 
                 try
                 {
                     connection.Open();
                     command.ExecuteNonQuery();
-                    MessageBox.Show($"Room {defaultRoomNumber} added successfully with default values.");
-                    LoadRooms(); // 테이블 갱신
+                    MessageBox.Show($"Room {roomNumber} added successfully.");
+                    LoadRooms(); // Refresh the data grid
                 }
                 catch (Exception ex)
                 {
@@ -348,6 +388,7 @@ namespace HotelManagementSystem_Proj_RAD
                 }
             }
         }
+
 
         //Room ID calculate
         private int GetNextRoomID()
@@ -382,11 +423,39 @@ namespace HotelManagementSystem_Proj_RAD
         {
             if (dataGridViewRooms.SelectedRows.Count > 0)
             {
-                int roomId = Convert.ToInt32(dataGridViewRooms.SelectedRows[0].Cells["RoomID"].Value);
-                string roomNumber = "104"; // Replace with input values
-                int roomType = 2; // Replace with input values
-                bool availability = false; // Replace with input values
+                var currentRow = dataGridViewRooms.SelectedRows[0];
 
+                // Retrieve RoomID
+                if (!int.TryParse(currentRow.Cells["RoomID"].Value?.ToString(), out int roomId))
+                {
+                    MessageBox.Show("Invalid RoomID. Please select a valid room.");
+                    return;
+                }
+
+                // Retrieve RoomNumber
+                string roomNumber = currentRow.Cells["RoomNumber"].Value?.ToString();
+                if (string.IsNullOrWhiteSpace(roomNumber))
+                {
+                    MessageBox.Show("Room Number cannot be empty. Please provide a valid value.");
+                    return;
+                }
+
+                // Retrieve RoomType as string
+                string roomType = currentRow.Cells["RoomType"].Value?.ToString();
+                if (string.IsNullOrWhiteSpace(roomType))
+                {
+                    MessageBox.Show("Room Type cannot be empty. Please provide a valid value.");
+                    return;
+                }
+
+                // Retrieve Availability
+                if (!bool.TryParse(currentRow.Cells["Availability"].Value?.ToString(), out bool availability))
+                {
+                    MessageBox.Show("Invalid Availability value. Please provide a valid value.");
+                    return;
+                }
+
+                // SQL Update Query
                 string query = @"UPDATE Rooms 
                          SET RoomNumber = @RoomNumber, RoomType = @RoomType, Availability = @Availability
                          WHERE RoomID = @RoomID";
@@ -404,6 +473,8 @@ namespace HotelManagementSystem_Proj_RAD
                         connection.Open();
                         command.ExecuteNonQuery();
                         MessageBox.Show("Room updated successfully.");
+
+                        // Reload data to reflect the update
                         LoadRooms();
                         LoadReportData();
                     }
@@ -418,6 +489,7 @@ namespace HotelManagementSystem_Proj_RAD
                 MessageBox.Show("Please select a room to update.");
             }
         }
+
 
         private void btnDeleteRoom_Click(object sender, EventArgs e)
         {
@@ -452,52 +524,83 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            // default
-            string defaultFirstName = "New";
-            string defaultLastName = "Customer";
-            string defaultPhone = "0000000000";
-            string defaultEmail = "new.customer@example.com";
-            bool defaultIsActive = true;
-
-            // SQL INSERT Query
-            string query = "INSERT INTO Customers (FirstName, LastName, Phone, Email, IsActive) " +
-                           "VALUES (@FirstName, @LastName, @Phone, @Email, @IsActive)";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            // Check if the DataGridView has a new row for adding a customer
+            if (dataGridViewCustomers.CurrentRow != null)
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@FirstName", defaultFirstName);
-                command.Parameters.AddWithValue("@LastName", defaultLastName);
-                command.Parameters.AddWithValue("@Phone", defaultPhone);
-                command.Parameters.AddWithValue("@Email", defaultEmail);
-                command.Parameters.AddWithValue("@IsActive", defaultIsActive);
+                // Retrieve values from the current row in the grid
+                var currentRow = dataGridViewCustomers.CurrentRow;
 
-                try
+                string firstName = currentRow.Cells["FirstName"].Value?.ToString() ?? "New";
+                string lastName = currentRow.Cells["LastName"].Value?.ToString() ?? "Customer";
+                string phone = currentRow.Cells["Phone"].Value?.ToString() ?? "0000000000";
+                string email = currentRow.Cells["Email"].Value?.ToString() ?? "new.customer@example.com";
+                bool isActive = currentRow.Cells["IsActive"].Value != null
+                                && bool.TryParse(currentRow.Cells["IsActive"].Value.ToString(), out bool result)
+                                ? result
+                                : true;
+
+                // SQL INSERT Query
+                string query = "INSERT INTO Customers (FirstName, LastName, Phone, Email, IsActive) " +
+                               "VALUES (@FirstName, @LastName, @Phone, @Email, @IsActive)";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    MessageBox.Show($"Customer '{defaultFirstName} {defaultLastName}' added successfully.");
-                    LoadCustomers();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error adding customer: {ex.Message}");
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@FirstName", firstName);
+                    command.Parameters.AddWithValue("@LastName", lastName);
+                    command.Parameters.AddWithValue("@Phone", phone);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@IsActive", isActive);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        MessageBox.Show($"Customer '{firstName} {lastName}' added successfully.");
+                        LoadCustomers(); // Refresh the grid
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error adding customer: {ex.Message}");
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("No customer data available in the grid to add.");
+            }
         }
+
 
         private void btnUpdateCustomer_Click(object sender, EventArgs e)
         {
             if (dataGridViewCustomers.SelectedRows.Count > 0)
             {
+                // Retrieve the CustomerID from the selected row
                 int customerId = Convert.ToInt32(dataGridViewCustomers.SelectedRows[0].Cells["CustomerID"].Value);
-                string firstName = "Updated"; // Replace with input values
-                string lastName = "Customer"; // Replace with input values
-                string phone = "0987654321"; // Replace with input values
-                string email = "updated.customer@example.com"; // Replace with input values
 
+                // Get updated values from the grid's selected row
+                var selectedRow = dataGridViewCustomers.SelectedRows[0];
+
+                string firstName = selectedRow.Cells["FirstName"].Value?.ToString();
+                string lastName = selectedRow.Cells["LastName"].Value?.ToString();
+                string phone = selectedRow.Cells["Phone"].Value?.ToString();
+                string email = selectedRow.Cells["Email"].Value?.ToString();
+
+                // Validate inputs (optional)
+                if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) ||
+                    string.IsNullOrWhiteSpace(phone) || string.IsNullOrWhiteSpace(email))
+                {
+                    MessageBox.Show("Please ensure all fields are filled before updating.");
+                    return;
+                }
+
+                // SQL UPDATE Query
                 string query = @"UPDATE Customers 
-                         SET FirstName = @FirstName, LastName = @LastName, Phone = @Phone, Email = @Email
+                         SET FirstName = @FirstName, 
+                             LastName = @LastName, 
+                             Phone = @Phone, 
+                             Email = @Email
                          WHERE CustomerID = @CustomerID";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -527,6 +630,7 @@ namespace HotelManagementSystem_Proj_RAD
                 MessageBox.Show("Please select a customer to update.");
             }
         }
+
 
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
@@ -558,20 +662,63 @@ namespace HotelManagementSystem_Proj_RAD
                 MessageBox.Show("Please select a customer to delete.");
             }
         }
-
         private void btnAddBooking_Click(object sender, EventArgs e)
         {
-            // default
-            int defaultCustomerID = GetFirstCustomerID();
-            int defaultRoomID = GetFirstAvailableRoomID();
-            DateTime defaultCheckInDate = DateTime.Today;
-            DateTime defaultCheckOutDate = DateTime.Today.AddDays(1);
-            decimal defaultTotalPrice = 100.00m;
-            string defaultBookingStatus = "Pending";
-
-            if (defaultCustomerID == -1 || defaultRoomID == -1)
+            if (dataGridViewBookings.CurrentRow == null)
             {
-                MessageBox.Show("Unable to add booking. Ensure customers and available rooms exist.");
+                MessageBox.Show("Please enter booking details in the grid before saving.");
+                return;
+            }
+
+            var currentRow = dataGridViewBookings.CurrentRow;
+
+            // Retrieve CustomerID
+            if (!int.TryParse(currentRow.Cells["CustomerID"].Value?.ToString(), out int customerId))
+            {
+                MessageBox.Show("Invalid CustomerID. Please provide a valid value.");
+                return;
+            }
+
+            // Retrieve RoomID
+            if (!int.TryParse(currentRow.Cells["RoomID"].Value?.ToString(), out int roomId))
+            {
+                MessageBox.Show("Invalid RoomID. Please provide a valid value.");
+                return;
+            }
+
+            // Retrieve CheckInDate
+            if (!DateTime.TryParse(currentRow.Cells["CheckInDate"].Value?.ToString(), out DateTime checkInDate))
+            {
+                MessageBox.Show("Invalid Check-In Date. Please provide a valid date.");
+                return;
+            }
+
+            // Retrieve CheckOutDate
+            if (!DateTime.TryParse(currentRow.Cells["CheckOutDate"].Value?.ToString(), out DateTime checkOutDate))
+            {
+                MessageBox.Show("Invalid Check-Out Date. Please provide a valid date.");
+                return;
+            }
+
+            // Ensure CheckOutDate is after CheckInDate
+            if (checkOutDate <= checkInDate)
+            {
+                MessageBox.Show("Check-Out Date must be after Check-In Date.");
+                return;
+            }
+
+            // Retrieve TotalPrice
+            if (!decimal.TryParse(currentRow.Cells["TotalPrice"].Value?.ToString(), out decimal totalPrice))
+            {
+                MessageBox.Show("Invalid Total Price. Please provide a valid numeric value.");
+                return;
+            }
+
+            // Retrieve BookingStatus
+            string bookingStatus = currentRow.Cells["BookingStatus"].Value?.ToString();
+            if (string.IsNullOrWhiteSpace(bookingStatus))
+            {
+                MessageBox.Show("Booking Status cannot be empty. Please provide a valid value.");
                 return;
             }
 
@@ -582,19 +729,19 @@ namespace HotelManagementSystem_Proj_RAD
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@CustomerID", defaultCustomerID);
-                command.Parameters.AddWithValue("@RoomID", defaultRoomID);
-                command.Parameters.AddWithValue("@CheckInDate", defaultCheckInDate);
-                command.Parameters.AddWithValue("@CheckOutDate", defaultCheckOutDate);
-                command.Parameters.AddWithValue("@TotalPrice", defaultTotalPrice);
-                command.Parameters.AddWithValue("@BookingStatus", defaultBookingStatus);
+                command.Parameters.AddWithValue("@CustomerID", customerId);
+                command.Parameters.AddWithValue("@RoomID", roomId);
+                command.Parameters.AddWithValue("@CheckInDate", checkInDate);
+                command.Parameters.AddWithValue("@CheckOutDate", checkOutDate);
+                command.Parameters.AddWithValue("@TotalPrice", totalPrice);
+                command.Parameters.AddWithValue("@BookingStatus", bookingStatus);
 
                 try
                 {
                     connection.Open();
                     command.ExecuteNonQuery();
                     MessageBox.Show("Booking added successfully.");
-                    LoadBookings();
+                    LoadBookings(); // Refresh the bookings data
                 }
                 catch (Exception ex)
                 {
@@ -602,6 +749,7 @@ namespace HotelManagementSystem_Proj_RAD
                 }
             }
         }
+
 
         private int GetFirstAvailableRoomID()
         {
@@ -648,29 +796,83 @@ namespace HotelManagementSystem_Proj_RAD
         {
             if (dataGridViewBookings.SelectedRows.Count > 0)
             {
-                int bookingId = Convert.ToInt32(dataGridViewBookings.SelectedRows[0].Cells["BookingID"].Value);
-                string roomNumber = "202"; // Replace with input values
-                DateTime checkInDate = DateTime.Now; // Replace with input values
-                DateTime checkOutDate = DateTime.Now.AddDays(2); // Replace with input values
+                // Commit any pending edits in the DataGridView
+                dataGridViewBookings.EndEdit();
 
+                var selectedRow = dataGridViewBookings.SelectedRows[0];
+
+                // Retrieve BookingID
+                if (!int.TryParse(selectedRow.Cells["BookingID"].Value?.ToString(), out int bookingId))
+                {
+                    MessageBox.Show("Invalid BookingID. Please select a valid booking.");
+                    return;
+                }
+
+                // Retrieve RoomID
+                if (!int.TryParse(selectedRow.Cells["RoomID"].Value?.ToString(), out int roomId))
+                {
+                    MessageBox.Show("Invalid RoomID. Please provide a valid value.");
+                    return;
+                }
+
+                // Retrieve CheckInDate
+                if (!DateTime.TryParse(selectedRow.Cells["CheckInDate"].Value?.ToString(), out DateTime checkInDate))
+                {
+                    MessageBox.Show("Invalid Check-In Date. Please provide a valid date.");
+                    return;
+                }
+
+                // Retrieve CheckOutDate
+                if (!DateTime.TryParse(selectedRow.Cells["CheckOutDate"].Value?.ToString(), out DateTime checkOutDate))
+                {
+                    MessageBox.Show("Invalid Check-Out Date. Please provide a valid date.");
+                    return;
+                }
+
+                // Ensure CheckOutDate is after CheckInDate
+                if (checkOutDate <= checkInDate)
+                {
+                    MessageBox.Show("Check-Out Date must be after Check-In Date.");
+                    return;
+                }
+
+                // Retrieve TotalPrice
+                if (!decimal.TryParse(selectedRow.Cells["TotalPrice"].Value?.ToString(), out decimal totalPrice))
+                {
+                    MessageBox.Show("Invalid Total Price. Please provide a valid numeric value.");
+                    return;
+                }
+
+                // Retrieve BookingStatus
+                string bookingStatus = selectedRow.Cells["BookingStatus"].Value?.ToString();
+                if (string.IsNullOrWhiteSpace(bookingStatus))
+                {
+                    MessageBox.Show("Booking Status cannot be empty. Please provide a valid value.");
+                    return;
+                }
+
+                // SQL UPDATE Query
                 string query = @"UPDATE Bookings 
-                         SET RoomNumber = @RoomNumber, CheckInDate = @CheckInDate, CheckOutDate = @CheckOutDate
+                         SET RoomID = @RoomID, CheckInDate = @CheckInDate, CheckOutDate = @CheckOutDate, 
+                             TotalPrice = @TotalPrice, BookingStatus = @BookingStatus
                          WHERE BookingID = @BookingID";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@BookingID", bookingId);
-                    command.Parameters.AddWithValue("@RoomNumber", roomNumber);
+                    command.Parameters.AddWithValue("@RoomID", roomId);
                     command.Parameters.AddWithValue("@CheckInDate", checkInDate);
                     command.Parameters.AddWithValue("@CheckOutDate", checkOutDate);
+                    command.Parameters.AddWithValue("@TotalPrice", totalPrice);
+                    command.Parameters.AddWithValue("@BookingStatus", bookingStatus);
 
                     try
                     {
                         connection.Open();
                         command.ExecuteNonQuery();
                         MessageBox.Show("Booking updated successfully.");
-                        LoadBookings(); // Refresh the DataGridView
+                        LoadBookings(); // Refresh the bookings data
                     }
                     catch (Exception ex)
                     {
@@ -683,6 +885,8 @@ namespace HotelManagementSystem_Proj_RAD
                 MessageBox.Show("Please select a booking to update.");
             }
         }
+
+
 
         private void btnDeleteBooking_Click(object sender, EventArgs e)
         {
@@ -769,7 +973,6 @@ namespace HotelManagementSystem_Proj_RAD
                 MessageBox.Show($"Error generating report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
     }
 }
