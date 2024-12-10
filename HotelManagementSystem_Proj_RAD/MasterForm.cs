@@ -24,7 +24,7 @@ namespace HotelManagementSystem_Proj_RAD
         {
             InitializeComponent();
 
-            // Configure the pictureBoxLogo
+            //Configure the pictureBoxLogo
            // pictureBoxLogo2.Image = Image.FromFile("Images\\hyarriot-hotel-logo.png"); // Provide the path to your logo
            // pictureBoxLogo2.SizeMode = PictureBoxSizeMode.Zoom;
 
