@@ -456,6 +456,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // dataGridViewRooms
             // 
+            dataGridViewRooms.BackgroundColor = Color.FromArgb(14, 36, 66);
             dataGridViewRooms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewRooms.Location = new Point(8, 8);
             dataGridViewRooms.Margin = new Padding(4);
@@ -516,6 +517,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             dataGridViewCustomers.AllowUserToAddRows = false;
             dataGridViewCustomers.AllowUserToDeleteRows = false;
+            dataGridViewCustomers.BackgroundColor = Color.FromArgb(14, 36, 66);
             dataGridViewCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCustomers.Location = new Point(8, 8);
             dataGridViewCustomers.Margin = new Padding(4);
@@ -563,6 +565,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // dataGridViewBookings
             // 
+            dataGridViewBookings.BackgroundColor = Color.FromArgb(14, 36, 66);
             dataGridViewBookings.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewBookings.Location = new Point(8, 8);
             dataGridViewBookings.Margin = new Padding(4);
@@ -599,6 +602,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // dgvReport
             // 
+            dgvReport.BackgroundColor = Color.FromArgb(14, 36, 66);
             dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvReport.Location = new Point(7, 8);
             dgvReport.Name = "dgvReport";
