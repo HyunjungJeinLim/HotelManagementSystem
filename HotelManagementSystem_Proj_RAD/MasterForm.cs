@@ -14,7 +14,8 @@ namespace HotelManagementSystem_Proj_RAD
     public partial class MasterForm : Form
     {
         //private string connectionString = "Server=JEIN\\SQLEXPRESS;Database=HotelManagement;Trusted_Connection=True;";
-        private string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
+        //private string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
+        private string connectionString = "Server=STEPH-LAPTOP\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
         private Chart roomSalesChart;
         private Chart cleaningStatusChart;
         private readonly Reports _reports;
@@ -303,7 +304,7 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void lblReports_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedTab = tabPage1;
+            tabControl1.SelectedTab = tabPage4;
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
