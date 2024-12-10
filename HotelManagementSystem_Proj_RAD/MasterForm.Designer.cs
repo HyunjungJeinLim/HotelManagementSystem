@@ -16,7 +16,7 @@ namespace HotelManagementSystem_Proj_RAD
         private System.Windows.Forms.Label lblClock;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1; // Dashboard
+        private System.Windows.Forms.TabPage tabPageDashboard; // Dashboard
 
         // Additional UI elements for the dashboard
         private System.Windows.Forms.Panel panelSoldRms;
@@ -36,10 +36,10 @@ namespace HotelManagementSystem_Proj_RAD
         private System.Windows.Forms.Label lblDirtyRmsValue;
 
 
-        private System.Windows.Forms.TabPage tabPage2; // Manage Rooms
-        private System.Windows.Forms.TabPage tabPage3; // Manage Customers
-        private System.Windows.Forms.TabPage tabPage4; // Reports
-        private System.Windows.Forms.TabPage tabPage5; // Manage Bookings
+        private System.Windows.Forms.TabPage tabPageRooms; // Manage Rooms
+        private System.Windows.Forms.TabPage tabPageCustomers; // Manage Customers
+        private System.Windows.Forms.TabPage tabPageReport; // Reports
+        private System.Windows.Forms.TabPage tabPageBookings; // Manage Bookings
         private System.Windows.Forms.DataGridView dataGridViewRooms;
         private System.Windows.Forms.DataGridView dataGridViewCustomers;
         private System.Windows.Forms.DataGridView dataGridViewBookings;
@@ -86,7 +86,7 @@ namespace HotelManagementSystem_Proj_RAD
             btnLogout = new Button();
             lblClock = new Label();
             tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
+            tabPageDashboard = new TabPage();
             panelSoldRms = new Panel();
             lblSoldRmsTitle = new Label();
             lblSoldRmsValue = new Label();
@@ -99,39 +99,39 @@ namespace HotelManagementSystem_Proj_RAD
             panelCleanVacant = new Panel();
             lblCleanVacantTitle = new Label();
             lblCleanVacantValue = new Label();
-            tabPage2 = new TabPage();
+            tabPageRooms = new TabPage();
             dataGridViewRooms = new DataGridView();
             btnAddRoom = new Button();
             btnUpdateRoom = new Button();
             btnDeleteRoom = new Button();
-            tabPage3 = new TabPage();
+            tabPageCustomers = new TabPage();
             dataGridViewCustomers = new DataGridView();
             btnAddCustomer = new Button();
             btnUpdateCustomer = new Button();
             btnDeleteCustomer = new Button();
-            tabPage5 = new TabPage();
+            tabPageBookings = new TabPage();
             dataGridViewBookings = new DataGridView();
             btnAddBooking = new Button();
             btnUpdateBooking = new Button();
             btnDeleteBooking = new Button();
-            tabPage4 = new TabPage();
+            tabPageReport = new TabPage();
             dgvReport = new DataGridView();
             btnGenerateReport = new Button();
             cbReportType = new ComboBox();
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
-            tabPage1.SuspendLayout();
+            tabPageDashboard.SuspendLayout();
             panelSoldRms.SuspendLayout();
             panelRmsForSale.SuspendLayout();
             panelDirtyRms.SuspendLayout();
             panelCleanVacant.SuspendLayout();
-            tabPage2.SuspendLayout();
+            tabPageRooms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRooms).BeginInit();
-            tabPage3.SuspendLayout();
+            tabPageCustomers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCustomers).BeginInit();
-            tabPage5.SuspendLayout();
+            tabPageBookings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewBookings).BeginInit();
-            tabPage4.SuspendLayout();
+            tabPageReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvReport).BeginInit();
             SuspendLayout();
             // 
@@ -251,11 +251,11 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // tabControl1
             // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage5);
-            tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPageDashboard);
+            tabControl1.Controls.Add(tabPageRooms);
+            tabControl1.Controls.Add(tabPageCustomers);
+            tabControl1.Controls.Add(tabPageBookings);
+            tabControl1.Controls.Add(tabPageReport);
             tabControl1.Location = new Point(250, 0);
             tabControl1.Margin = new Padding(4);
             tabControl1.Name = "tabControl1";
@@ -263,19 +263,19 @@ namespace HotelManagementSystem_Proj_RAD
             tabControl1.Size = new Size(1350, 960);
             tabControl1.TabIndex = 1;
             // 
-            // tabPage1
+            // tabPageDashboard
             // 
-            tabPage1.BackColor = Color.White;
-            tabPage1.Controls.Add(panelSoldRms);
-            tabPage1.Controls.Add(panelRmsForSale);
-            tabPage1.Controls.Add(panelDirtyRms);
-            tabPage1.Controls.Add(panelCleanVacant);
-            tabPage1.Location = new Point(4, 34);
-            tabPage1.Margin = new Padding(4);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Size = new Size(1342, 922);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Dashboard";
+            tabPageDashboard.BackColor = Color.White;
+            tabPageDashboard.Controls.Add(panelSoldRms);
+            tabPageDashboard.Controls.Add(panelRmsForSale);
+            tabPageDashboard.Controls.Add(panelDirtyRms);
+            tabPageDashboard.Controls.Add(panelCleanVacant);
+            tabPageDashboard.Location = new Point(4, 34);
+            tabPageDashboard.Margin = new Padding(4);
+            tabPageDashboard.Name = "tabPageDashboard";
+            tabPageDashboard.Size = new Size(1342, 922);
+            tabPageDashboard.TabIndex = 0;
+            tabPageDashboard.Text = "Dashboard";
             // 
             // panelSoldRms
             // 
@@ -409,30 +409,30 @@ namespace HotelManagementSystem_Proj_RAD
             lblCleanVacantValue.TabIndex = 5;
             lblCleanVacantValue.Text = "0";
             // 
-            // tabPage2
+            // tabPageRooms
             // 
-            tabPage2.Controls.Add(dataGridViewRooms);
-            tabPage2.Controls.Add(btnAddRoom);
-            tabPage2.Controls.Add(btnUpdateRoom);
-            tabPage2.Controls.Add(btnDeleteRoom);
-            tabPage2.Location = new Point(4, 34);
-            tabPage2.Margin = new Padding(4);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(4);
-            tabPage2.Size = new Size(1342, 922);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Manage Rooms";
-            tabPage2.UseVisualStyleBackColor = true;
+            tabPageRooms.Controls.Add(dataGridViewRooms);
+            tabPageRooms.Controls.Add(btnAddRoom);
+            tabPageRooms.Controls.Add(btnUpdateRoom);
+            tabPageRooms.Controls.Add(btnDeleteRoom);
+            tabPageRooms.Location = new Point(4, 34);
+            tabPageRooms.Margin = new Padding(4);
+            tabPageRooms.Name = "tabPageRooms";
+            tabPageRooms.Padding = new Padding(4);
+            tabPageRooms.Size = new Size(1342, 922);
+            tabPageRooms.TabIndex = 1;
+            tabPageRooms.Text = "Manage Rooms";
+            tabPageRooms.UseVisualStyleBackColor = true;
             // 
             // dataGridViewRooms
             // 
             dataGridViewRooms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewRooms.Location = new Point(25, 25);
+            dataGridViewRooms.Location = new Point(8, 8);
             dataGridViewRooms.Margin = new Padding(4);
             dataGridViewRooms.Name = "dataGridViewRooms";
             dataGridViewRooms.RowHeadersWidth = 51;
             dataGridViewRooms.RowTemplate.Height = 29;
-            dataGridViewRooms.Size = new Size(1250, 750);
+            dataGridViewRooms.Size = new Size(1325, 750);
             dataGridViewRooms.TabIndex = 0;
             // 
             // btnAddRoom
@@ -468,30 +468,33 @@ namespace HotelManagementSystem_Proj_RAD
             btnDeleteRoom.UseVisualStyleBackColor = true;
             btnDeleteRoom.Click += btnDeleteRoom_Click;
             // 
-            // tabPage3
+            // tabPageCustomers
             // 
-            tabPage3.Controls.Add(dataGridViewCustomers);
-            tabPage3.Controls.Add(btnAddCustomer);
-            tabPage3.Controls.Add(btnUpdateCustomer);
-            tabPage3.Controls.Add(btnDeleteCustomer);
-            tabPage3.Location = new Point(4, 34);
-            tabPage3.Margin = new Padding(4);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(4);
-            tabPage3.Size = new Size(1342, 922);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Manage Customers";
-            tabPage3.UseVisualStyleBackColor = true;
+            tabPageCustomers.Controls.Add(dataGridViewCustomers);
+            tabPageCustomers.Controls.Add(btnAddCustomer);
+            tabPageCustomers.Controls.Add(btnUpdateCustomer);
+            tabPageCustomers.Controls.Add(btnDeleteCustomer);
+            tabPageCustomers.Location = new Point(4, 34);
+            tabPageCustomers.Margin = new Padding(4);
+            tabPageCustomers.Name = "tabPageCustomers";
+            tabPageCustomers.Padding = new Padding(4);
+            tabPageCustomers.Size = new Size(1342, 922);
+            tabPageCustomers.TabIndex = 2;
+            tabPageCustomers.Text = "Manage Customers";
+            tabPageCustomers.UseVisualStyleBackColor = true;
             // 
             // dataGridViewCustomers
             // 
+            dataGridViewCustomers.AllowUserToAddRows = false;
+            dataGridViewCustomers.AllowUserToDeleteRows = false;
             dataGridViewCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCustomers.Location = new Point(25, 25);
+            dataGridViewCustomers.Location = new Point(8, 8);
             dataGridViewCustomers.Margin = new Padding(4);
             dataGridViewCustomers.Name = "dataGridViewCustomers";
+            dataGridViewCustomers.ReadOnly = true;
             dataGridViewCustomers.RowHeadersWidth = 51;
             dataGridViewCustomers.RowTemplate.Height = 29;
-            dataGridViewCustomers.Size = new Size(1250, 750);
+            dataGridViewCustomers.Size = new Size(1325, 750);
             dataGridViewCustomers.TabIndex = 0;
             // 
             // btnAddCustomer
@@ -527,30 +530,30 @@ namespace HotelManagementSystem_Proj_RAD
             btnDeleteCustomer.UseVisualStyleBackColor = true;
             btnDeleteCustomer.Click += btnDeleteCustomer_Click;
             // 
-            // tabPage5
+            // tabPageBookings
             // 
-            tabPage5.Controls.Add(dataGridViewBookings);
-            tabPage5.Controls.Add(btnAddBooking);
-            tabPage5.Controls.Add(btnUpdateBooking);
-            tabPage5.Controls.Add(btnDeleteBooking);
-            tabPage5.Location = new Point(4, 34);
-            tabPage5.Margin = new Padding(4);
-            tabPage5.Name = "tabPage5";
-            tabPage5.Padding = new Padding(4);
-            tabPage5.Size = new Size(1342, 922);
-            tabPage5.TabIndex = 4;
-            tabPage5.Text = "Manage Bookings";
-            tabPage5.UseVisualStyleBackColor = true;
+            tabPageBookings.Controls.Add(dataGridViewBookings);
+            tabPageBookings.Controls.Add(btnAddBooking);
+            tabPageBookings.Controls.Add(btnUpdateBooking);
+            tabPageBookings.Controls.Add(btnDeleteBooking);
+            tabPageBookings.Location = new Point(4, 34);
+            tabPageBookings.Margin = new Padding(4);
+            tabPageBookings.Name = "tabPageBookings";
+            tabPageBookings.Padding = new Padding(4);
+            tabPageBookings.Size = new Size(1342, 922);
+            tabPageBookings.TabIndex = 4;
+            tabPageBookings.Text = "Manage Bookings";
+            tabPageBookings.UseVisualStyleBackColor = true;
             // 
             // dataGridViewBookings
             // 
             dataGridViewBookings.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewBookings.Location = new Point(25, 25);
+            dataGridViewBookings.Location = new Point(8, 8);
             dataGridViewBookings.Margin = new Padding(4);
             dataGridViewBookings.Name = "dataGridViewBookings";
             dataGridViewBookings.RowHeadersWidth = 51;
             dataGridViewBookings.RowTemplate.Height = 29;
-            dataGridViewBookings.Size = new Size(1250, 750);
+            dataGridViewBookings.Size = new Size(1326, 750);
             dataGridViewBookings.TabIndex = 0;
             // 
             // btnAddBooking
@@ -586,19 +589,19 @@ namespace HotelManagementSystem_Proj_RAD
             btnDeleteBooking.UseVisualStyleBackColor = true;
             btnDeleteBooking.Click += btnDeleteBooking_Click;
             // 
-            // tabPage4
+            // tabPageReport
             // 
-            tabPage4.Controls.Add(dgvReport);
-            tabPage4.Controls.Add(btnGenerateReport);
-            tabPage4.Controls.Add(cbReportType);
-            tabPage4.Location = new Point(4, 34);
-            tabPage4.Margin = new Padding(4);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(4);
-            tabPage4.Size = new Size(1342, 922);
-            tabPage4.TabIndex = 0;
-            tabPage4.Text = "Report";
-            tabPage4.UseVisualStyleBackColor = true;
+            tabPageReport.Controls.Add(dgvReport);
+            tabPageReport.Controls.Add(btnGenerateReport);
+            tabPageReport.Controls.Add(cbReportType);
+            tabPageReport.Location = new Point(4, 34);
+            tabPageReport.Margin = new Padding(4);
+            tabPageReport.Name = "tabPageReport";
+            tabPageReport.Padding = new Padding(4);
+            tabPageReport.Size = new Size(1342, 922);
+            tabPageReport.TabIndex = 0;
+            tabPageReport.Text = "Report";
+            tabPageReport.UseVisualStyleBackColor = true;
             // 
             // dgvReport
             // 
@@ -641,7 +644,7 @@ namespace HotelManagementSystem_Proj_RAD
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             tabControl1.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
+            tabPageDashboard.ResumeLayout(false);
             panelSoldRms.ResumeLayout(false);
             panelSoldRms.PerformLayout();
             panelRmsForSale.ResumeLayout(false);
@@ -650,13 +653,13 @@ namespace HotelManagementSystem_Proj_RAD
             panelDirtyRms.PerformLayout();
             panelCleanVacant.ResumeLayout(false);
             panelCleanVacant.PerformLayout();
-            tabPage2.ResumeLayout(false);
+            tabPageRooms.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewRooms).EndInit();
-            tabPage3.ResumeLayout(false);
+            tabPageCustomers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewCustomers).EndInit();
-            tabPage5.ResumeLayout(false);
+            tabPageBookings.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewBookings).EndInit();
-            tabPage4.ResumeLayout(false);
+            tabPageReport.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvReport).EndInit();
             ResumeLayout(false);
         }

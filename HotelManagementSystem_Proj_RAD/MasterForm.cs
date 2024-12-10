@@ -105,8 +105,8 @@ namespace HotelManagementSystem_Proj_RAD
             cleaningStatusChart.Series.Add(cleaningStatusSeries);
             cleaningStatusChart.Titles.Add("Cleaning Status");
 
-            tabPage1.Controls.Add(roomSalesChart);
-            tabPage1.Controls.Add(cleaningStatusChart);
+            tabPageDashboard.Controls.Add(roomSalesChart);
+            tabPageDashboard.Controls.Add(cleaningStatusChart);
         }
 
 
@@ -236,7 +236,7 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void LoadCustomers()
         {
-            string query = "SELECT * FROM Customers";
+            string query = "SELECT CustomerID, FirstName, LastName, Phone, Email, IsActive FROM Customers";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
@@ -247,6 +247,12 @@ namespace HotelManagementSystem_Proj_RAD
                     DataTable table = new DataTable();
                     adapter.Fill(table);
                     dataGridViewCustomers.DataSource = table;
+
+                    // Hide CustomerID column
+                    if (dataGridViewCustomers.Columns["CustomerID"] != null)
+                    {
+                        dataGridViewCustomers.Columns["CustomerID"].Visible = false;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -284,27 +290,27 @@ namespace HotelManagementSystem_Proj_RAD
         // Event Handlers
         private void lblDashboard_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedTab = tabPage1;
+            tabControl1.SelectedTab = tabPageDashboard;
         }
 
         private void lblManageRooms_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedTab = tabPage2;
+            tabControl1.SelectedTab = tabPageRooms;
         }
 
         private void lblManageCustomers_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedTab = tabPage3;
+            tabControl1.SelectedTab = tabPageCustomers;
         }
 
         private void lblManageBookings_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedTab = tabPage5;
+            tabControl1.SelectedTab = tabPageBookings;
         }
 
         private void lblReports_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedTab = tabPage4;
+            tabControl1.SelectedTab = tabPageReport;
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -525,51 +531,9 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            // Check if the DataGridView has a new row for adding a customer
-            if (dataGridViewCustomers.CurrentRow != null)
-            {
-                // Retrieve values from the current row in the grid
-                var currentRow = dataGridViewCustomers.CurrentRow;
-
-                string firstName = currentRow.Cells["FirstName"].Value?.ToString() ?? "New";
-                string lastName = currentRow.Cells["LastName"].Value?.ToString() ?? "Customer";
-                string phone = currentRow.Cells["Phone"].Value?.ToString() ?? "0000000000";
-                string email = currentRow.Cells["Email"].Value?.ToString() ?? "new.customer@example.com";
-                bool isActive = currentRow.Cells["IsActive"].Value != null
-                                && bool.TryParse(currentRow.Cells["IsActive"].Value.ToString(), out bool result)
-                                ? result
-                                : true;
-
-                // SQL INSERT Query
-                string query = "INSERT INTO Customers (FirstName, LastName, Phone, Email, IsActive) " +
-                               "VALUES (@FirstName, @LastName, @Phone, @Email, @IsActive)";
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@FirstName", firstName);
-                    command.Parameters.AddWithValue("@LastName", lastName);
-                    command.Parameters.AddWithValue("@Phone", phone);
-                    command.Parameters.AddWithValue("@Email", email);
-                    command.Parameters.AddWithValue("@IsActive", isActive);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show($"Customer '{firstName} {lastName}' added successfully.");
-                        LoadCustomers(); // Refresh the grid
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error adding customer: {ex.Message}");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("No customer data available in the grid to add.");
-            }
+            AddCustomer addCustomerForm = new AddCustomer(connectionString);
+            addCustomerForm.ShowDialog(); // Show as a modal dialog
+            LoadCustomers(); // Refresh the DataGridView after adding a customer
         }
 
 
@@ -577,58 +541,19 @@ namespace HotelManagementSystem_Proj_RAD
         {
             if (dataGridViewCustomers.SelectedRows.Count > 0)
             {
-                // Retrieve the CustomerID from the selected row
+                // Get the selected customer's ID
                 int customerId = Convert.ToInt32(dataGridViewCustomers.SelectedRows[0].Cells["CustomerID"].Value);
 
-                // Get updated values from the grid's selected row
-                var selectedRow = dataGridViewCustomers.SelectedRows[0];
+                // Open the AddCustomerForm for editing
+                AddCustomer addCustomerForm = new AddCustomer(connectionString, customerId);
+                addCustomerForm.ShowDialog();
 
-                string firstName = selectedRow.Cells["FirstName"].Value?.ToString();
-                string lastName = selectedRow.Cells["LastName"].Value?.ToString();
-                string phone = selectedRow.Cells["Phone"].Value?.ToString();
-                string email = selectedRow.Cells["Email"].Value?.ToString();
-
-                // Validate inputs (optional)
-                if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) ||
-                    string.IsNullOrWhiteSpace(phone) || string.IsNullOrWhiteSpace(email))
-                {
-                    MessageBox.Show("Please ensure all fields are filled before updating.");
-                    return;
-                }
-
-                // SQL UPDATE Query
-                string query = @"UPDATE Customers 
-                         SET FirstName = @FirstName, 
-                             LastName = @LastName, 
-                             Phone = @Phone, 
-                             Email = @Email
-                         WHERE CustomerID = @CustomerID";
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@CustomerID", customerId);
-                    command.Parameters.AddWithValue("@FirstName", firstName);
-                    command.Parameters.AddWithValue("@LastName", lastName);
-                    command.Parameters.AddWithValue("@Phone", phone);
-                    command.Parameters.AddWithValue("@Email", email);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Customer updated successfully.");
-                        LoadCustomers(); // Refresh the DataGridView
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error updating customer: {ex.Message}");
-                    }
-                }
+                // Refresh the customer data grid after the form closes
+                LoadCustomers();
             }
             else
             {
-                MessageBox.Show("Please select a customer to update.");
+                MessageBox.Show("Please select a customer to update.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -637,32 +562,48 @@ namespace HotelManagementSystem_Proj_RAD
         {
             if (dataGridViewCustomers.SelectedRows.Count > 0)
             {
+                // Get the selected CustomerID
                 int customerId = Convert.ToInt32(dataGridViewCustomers.SelectedRows[0].Cells["CustomerID"].Value);
-                string query = "DELETE FROM Customers WHERE CustomerID = @CustomerID";
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                // Confirm deletion
+                DialogResult confirmResult = MessageBox.Show(
+                    "Are you sure you want to delete this customer?",
+                    "Confirm Delete",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirmResult == DialogResult.Yes)
                 {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@CustomerID", customerId);
+                    // SQL DELETE Query
+                    string query = "DELETE FROM Customers WHERE CustomerID = @CustomerID";
 
-                    try
+                    using (SqlConnection connection = new SqlConnection(connectionString))
                     {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Customer deleted successfully.");
-                        LoadCustomers(); // Refresh the DataGridView
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error deleting customer: {ex.Message}");
+                        SqlCommand command = new SqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@CustomerID", customerId);
+
+                        try
+                        {
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Customer deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Refresh the DataGridView
+                            LoadCustomers();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error deleting customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Please select a customer to delete.");
+                MessageBox.Show("Please select a customer to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void btnAddBooking_Click(object sender, EventArgs e)
         {
             if (dataGridViewBookings.CurrentRow == null)
@@ -751,46 +692,6 @@ namespace HotelManagementSystem_Proj_RAD
             }
         }
 
-
-        private int GetFirstAvailableRoomID()
-        {
-            string query = "SELECT TOP 1 RoomID FROM Rooms WHERE Availability = 1 ORDER BY RoomID";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand(query, connection);
-                try
-                {
-                    connection.Open();
-                    object result = command.ExecuteScalar();
-                    return result != null ? Convert.ToInt32(result) : -1;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error fetching available RoomID: {ex.Message}");
-                    return -1;
-                }
-            }
-        }
-
-        private int GetFirstCustomerID()
-        {
-            string query = "SELECT TOP 1 CustomerID FROM Customers ORDER BY CustomerID";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand(query, connection);
-                try
-                {
-                    connection.Open();
-                    object result = command.ExecuteScalar();
-                    return result != null ? Convert.ToInt32(result) : -1;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error fetching first CustomerID: {ex.Message}");
-                    return -1;
-                }
-            }
-        }
 
 
         private void btnUpdateBooking_Click(object sender, EventArgs e)
@@ -922,7 +823,7 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab == tabPage1)
+            if (tabControl1.SelectedTab == tabPageDashboard)
             {
                 LoadReportData();
             }
