@@ -14,8 +14,8 @@ namespace HotelManagementSystem_Proj_RAD
     public partial class MasterForm : Form
     {
         //private string connectionString = "Server=JEIN\\SQLEXPRESS;Database=HotelManagement;Trusted_Connection=True;";
-        //private string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
-        private string connectionString = "Server=STEPH-LAPTOP\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
+        private string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
+       // private string connectionString = "Server=STEPH-LAPTOP\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
         private Chart roomSalesChart;
         private Chart cleaningStatusChart;
         private readonly Reports _reports;
@@ -25,8 +25,8 @@ namespace HotelManagementSystem_Proj_RAD
             InitializeComponent();
 
             // Configure the pictureBoxLogo
-            pictureBoxLogo2.Image = Image.FromFile("Images\\hyarriot-hotel-logo.png"); // Provide the path to your logo
-            pictureBoxLogo2.SizeMode = PictureBoxSizeMode.Zoom;
+           // pictureBoxLogo2.Image = Image.FromFile("Images\\hyarriot-hotel-logo.png"); // Provide the path to your logo
+           // pictureBoxLogo2.SizeMode = PictureBoxSizeMode.Zoom;
 
             // Initialize Clock
             lblClock.Text = DateTime.Now.ToString("hh:mm:ss tt");
