@@ -1,6 +1,6 @@
 ﻿namespace HotelManagementSystem_Proj
 {
-    partial class AddCustomer
+    partial class CustomerInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -44,7 +44,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(66, 48);
+            label1.Location = new Point(49, 48);
             label1.Name = "label1";
             label1.Size = new Size(101, 25);
             label1.TabIndex = 0;
@@ -53,7 +53,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(73, 100);
+            label2.Location = new Point(49, 100);
             label2.Name = "label2";
             label2.Size = new Size(94, 25);
             label2.TabIndex = 1;
@@ -62,7 +62,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(101, 152);
+            label3.Location = new Point(49, 152);
             label3.Name = "label3";
             label3.Size = new Size(66, 25);
             label3.TabIndex = 2;
@@ -71,7 +71,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(109, 204);
+            label4.Location = new Point(49, 204);
             label4.Name = "label4";
             label4.Size = new Size(58, 25);
             label4.TabIndex = 3;
@@ -79,28 +79,28 @@
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(166, 48);
+            txtFirstName.Location = new Point(170, 48);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(150, 31);
             txtFirstName.TabIndex = 4;
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(166, 100);
+            txtLastName.Location = new Point(170, 100);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(150, 31);
             txtLastName.TabIndex = 5;
             // 
             // txtPhone
             // 
-            txtPhone.Location = new Point(166, 152);
+            txtPhone.Location = new Point(170, 152);
             txtPhone.Name = "txtPhone";
             txtPhone.Size = new Size(150, 31);
             txtPhone.TabIndex = 6;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(166, 204);
+            txtEmail.Location = new Point(170, 204);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(150, 31);
             txtEmail.TabIndex = 7;
@@ -108,16 +108,16 @@
             // chkIsActive
             // 
             chkIsActive.AutoSize = true;
-            chkIsActive.Location = new Point(166, 255);
+            chkIsActive.Location = new Point(170, 255);
             chkIsActive.Name = "chkIsActive";
-            chkIsActive.Size = new Size(94, 29);
+            chkIsActive.Size = new Size(86, 29);
             chkIsActive.TabIndex = 8;
-            chkIsActive.Text = "Active?";
+            chkIsActive.Text = "Active";
             chkIsActive.UseVisualStyleBackColor = true;
             // 
             // btnSaveCustomer
             // 
-            btnSaveCustomer.Location = new Point(101, 319);
+            btnSaveCustomer.Location = new Point(87, 319);
             btnSaveCustomer.Name = "btnSaveCustomer";
             btnSaveCustomer.Size = new Size(112, 34);
             btnSaveCustomer.TabIndex = 9;
@@ -127,7 +127,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(219, 319);
+            btnCancel.Location = new Point(238, 319);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(112, 34);
             btnCancel.TabIndex = 10;

@@ -38,7 +38,6 @@ namespace HotelManagementSystem_Proj_RAD
             LoadRooms();
             LoadCustomers();
             LoadBookings();
-            LoadToDoList();
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
 
             // TabControl Design
@@ -215,7 +214,8 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void LoadRooms()
         {
-            string query = "SELECT * FROM Rooms";
+            string query = "SELECT RoomID, RoomType, Price, Amenities, Availability, RoomNumber, CleaningStatus FROM Rooms";
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
@@ -225,7 +225,42 @@ namespace HotelManagementSystem_Proj_RAD
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataTable table = new DataTable();
                     adapter.Fill(table);
+
+                    // Add a new column for the descriptive cleaning status
+                    table.Columns.Add("CleaningStatusDescription", typeof(string));
+
+                    // Map numeric CleaningStatus values to descriptions
+                    foreach (DataRow row in table.Rows)
+                    {
+                        int cleaningStatus = Convert.ToInt32(row["CleaningStatus"]);
+                        row["CleaningStatusDescription"] = cleaningStatus switch
+                        {
+                            0 => "Dirty",
+                            1 => "Clean",
+                            2 => "Under Maintenance",
+                            _ => "Unknown"
+                        };
+                    }
+
                     dataGridViewRooms.DataSource = table;
+
+                    // Hide the numeric CleaningStatus column
+                    if (dataGridViewRooms.Columns["CleaningStatus"] != null)
+                    {
+                        dataGridViewRooms.Columns["CleaningStatus"].Visible = false;
+                    }
+
+                    // Optionally, rename the descriptive column header
+                    if (dataGridViewRooms.Columns["CleaningStatusDescription"] != null)
+                    {
+                        dataGridViewRooms.Columns["CleaningStatusDescription"].HeaderText = "Cleaning Status";
+                    }
+
+                    // Hide RoomID column
+                    if (dataGridViewRooms.Columns["RoomID"] != null)
+                    {
+                        dataGridViewRooms.Columns["RoomID"].Visible = false;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -233,6 +268,8 @@ namespace HotelManagementSystem_Proj_RAD
                 }
             }
         }
+
+
 
         private void LoadCustomers()
         {
@@ -282,10 +319,6 @@ namespace HotelManagementSystem_Proj_RAD
             }
         }
 
-        private void LoadToDoList()
-        {
-
-        }
 
         // Event Handlers
         private void lblDashboard_Click(object sender, EventArgs e)
@@ -322,107 +355,9 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void btnAddRoom_Click(object sender, EventArgs e)
         {
-            // Ensure that the user has provided all required data before proceeding
-            if (dataGridViewRooms.CurrentRow == null)
-            {
-                MessageBox.Show("Please add room details in the grid before saving.");
-                return;
-            }
-
-            var currentRow = dataGridViewRooms.CurrentRow;
-
-            // Retrieve RoomType
-            string roomType = currentRow.Cells["RoomType"].Value?.ToString();
-            if (string.IsNullOrWhiteSpace(roomType))
-            {
-                MessageBox.Show("Room Type cannot be empty. Please provide a valid value.");
-                return;
-            }
-
-            // Retrieve Price
-            if (!decimal.TryParse(currentRow.Cells["Price"].Value?.ToString(), out decimal price))
-            {
-                MessageBox.Show("Invalid Price. Please provide a valid numeric value.");
-                return;
-            }
-
-            // Retrieve Amenities
-            string amenities = currentRow.Cells["Amenities"].Value?.ToString();
-            if (string.IsNullOrWhiteSpace(amenities))
-            {
-                MessageBox.Show("Amenities cannot be empty. Please provide a valid value.");
-                return;
-            }
-
-            // Retrieve Availability
-            if (!bool.TryParse(currentRow.Cells["Availability"].Value?.ToString(), out bool availability))
-            {
-                MessageBox.Show("Invalid Availability value. Please provide a valid value.");
-                return;
-            }
-
-            // Retrieve RoomNumber
-            string roomNumber = currentRow.Cells["RoomNumber"].Value?.ToString();
-            if (string.IsNullOrWhiteSpace(roomNumber))
-            {
-                MessageBox.Show("Room Number cannot be empty. Please provide a valid value.");
-                return;
-            }
-
-            // SQL INSERT QUERY
-            string query = "INSERT INTO Rooms (RoomType, Price, Amenities, Availability, RoomNumber) " +
-                           "VALUES (@RoomType, @Price, @Amenities, @Availability, @RoomNumber)";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@RoomType", roomType);
-                command.Parameters.AddWithValue("@Price", price);
-                command.Parameters.AddWithValue("@Amenities", amenities);
-                command.Parameters.AddWithValue("@Availability", availability);
-                command.Parameters.AddWithValue("@RoomNumber", roomNumber);
-
-                try
-                {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    MessageBox.Show($"Room {roomNumber} added successfully.");
-                    LoadRooms(); // Refresh the data grid
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error adding room: {ex.Message}");
-                }
-            }
-        }
-
-
-        //Room ID calculate
-        private int GetNextRoomID()
-        {
-            int nextRoomID = 1;
-            string query = "SELECT MAX(RoomID) FROM Rooms";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand(query, connection);
-
-                try
-                {
-                    connection.Open();
-                    object result = command.ExecuteScalar();
-                    if (result != DBNull.Value)
-                    {
-                        nextRoomID = Convert.ToInt32(result) + 1;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error fetching next RoomID: {ex.Message}");
-                }
-            }
-
-            return nextRoomID;
+            RoomInfo addRoomForm = new RoomInfo(connectionString);
+            addRoomForm.ShowDialog(); // Open as modal dialog
+            LoadRooms(); // Refresh the grid after adding a room
         }
 
 
@@ -430,70 +365,19 @@ namespace HotelManagementSystem_Proj_RAD
         {
             if (dataGridViewRooms.SelectedRows.Count > 0)
             {
-                var currentRow = dataGridViewRooms.SelectedRows[0];
+                // Get the selected RoomID
+                int roomId = Convert.ToInt32(dataGridViewRooms.SelectedRows[0].Cells["RoomID"].Value);
 
-                // Retrieve RoomID
-                if (!int.TryParse(currentRow.Cells["RoomID"].Value?.ToString(), out int roomId))
-                {
-                    MessageBox.Show("Invalid RoomID. Please select a valid room.");
-                    return;
-                }
+                // Open the AddRoomForm for editing
+                RoomInfo addRoomForm = new RoomInfo(connectionString, roomId);
+                addRoomForm.ShowDialog();
 
-                // Retrieve RoomNumber
-                string roomNumber = currentRow.Cells["RoomNumber"].Value?.ToString();
-                if (string.IsNullOrWhiteSpace(roomNumber))
-                {
-                    MessageBox.Show("Room Number cannot be empty. Please provide a valid value.");
-                    return;
-                }
-
-                // Retrieve RoomType as string
-                string roomType = currentRow.Cells["RoomType"].Value?.ToString();
-                if (string.IsNullOrWhiteSpace(roomType))
-                {
-                    MessageBox.Show("Room Type cannot be empty. Please provide a valid value.");
-                    return;
-                }
-
-                // Retrieve Availability
-                if (!bool.TryParse(currentRow.Cells["Availability"].Value?.ToString(), out bool availability))
-                {
-                    MessageBox.Show("Invalid Availability value. Please provide a valid value.");
-                    return;
-                }
-
-                // SQL Update Query
-                string query = @"UPDATE Rooms 
-                         SET RoomNumber = @RoomNumber, RoomType = @RoomType, Availability = @Availability
-                         WHERE RoomID = @RoomID";
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@RoomID", roomId);
-                    command.Parameters.AddWithValue("@RoomNumber", roomNumber);
-                    command.Parameters.AddWithValue("@RoomType", roomType);
-                    command.Parameters.AddWithValue("@Availability", availability);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Room updated successfully.");
-
-                        // Reload data to reflect the update
-                        LoadRooms();
-                        LoadReportData();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error updating room: {ex.Message}");
-                    }
-                }
+                // Refresh the DataGridView after the form closes
+                LoadRooms();
             }
             else
             {
-                MessageBox.Show("Please select a room to update.");
+                MessageBox.Show("Please select a room to update.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -502,36 +386,67 @@ namespace HotelManagementSystem_Proj_RAD
         {
             if (dataGridViewRooms.SelectedRows.Count > 0)
             {
+                // Get the selected RoomID
                 int roomId = Convert.ToInt32(dataGridViewRooms.SelectedRows[0].Cells["RoomID"].Value);
-                string query = "DELETE FROM Rooms WHERE RoomID = @RoomID";
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                // Confirm deletion
+                DialogResult confirmResult = MessageBox.Show(
+                    "Deleting this room may affect related records (e.g., bookings). Are you sure you want to delete this room?",
+                    "Confirm Delete",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirmResult == DialogResult.Yes)
                 {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@RoomID", roomId);
+                    string query = "DELETE FROM Rooms WHERE RoomID = @RoomID";
 
-                    try
+                    using (SqlConnection connection = new SqlConnection(connectionString))
                     {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Room deleted successfully.");
-                        LoadRooms();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error deleting room: {ex.Message}");
+                        SqlCommand command = new SqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@RoomID", roomId);
+
+                        try
+                        {
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Room deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Refresh the DataGridView
+                            LoadRooms();
+                        }
+                        catch (SqlException sqlEx)
+                        {
+                            // Check if the error is related to foreign key constraints
+                            if (sqlEx.Number == 547) // Foreign key violation
+                            {
+                                MessageBox.Show(
+                                    "This room is linked to existing bookings and cannot be deleted. Please delete associated bookings first.",
+                                    "Error",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Error deleting room: {sqlEx.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Please select a room to delete.");
+                MessageBox.Show("Please select a room to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
+
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            AddCustomer addCustomerForm = new AddCustomer(connectionString);
+            CustomerInfo addCustomerForm = new CustomerInfo(connectionString);
             addCustomerForm.ShowDialog(); // Show as a modal dialog
             LoadCustomers(); // Refresh the DataGridView after adding a customer
         }
@@ -545,7 +460,7 @@ namespace HotelManagementSystem_Proj_RAD
                 int customerId = Convert.ToInt32(dataGridViewCustomers.SelectedRows[0].Cells["CustomerID"].Value);
 
                 // Open the AddCustomerForm for editing
-                AddCustomer addCustomerForm = new AddCustomer(connectionString, customerId);
+                CustomerInfo addCustomerForm = new CustomerInfo(connectionString, customerId);
                 addCustomerForm.ShowDialog();
 
                 // Refresh the customer data grid after the form closes

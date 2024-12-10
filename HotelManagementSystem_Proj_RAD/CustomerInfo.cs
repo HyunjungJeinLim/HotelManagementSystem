@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace HotelManagementSystem_Proj
 {
-    public partial class AddCustomer : Form
+    public partial class CustomerInfo : Form
     {
         private readonly string connectionString;
         private readonly int? customerId; // Nullable to handle both add and edit cases
 
-        public AddCustomer(string connectionString, int? customerId = null)
+        public CustomerInfo(string connectionString, int? customerId = null)
         {
             InitializeComponent();
             this.connectionString = connectionString;
