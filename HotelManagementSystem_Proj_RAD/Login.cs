@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using System.IO;
 
 namespace HotelManagementSystem_Proj_RAD
 {
@@ -9,9 +10,21 @@ namespace HotelManagementSystem_Proj_RAD
         {
             InitializeComponent();
 
-            // Configure the pictureBoxLogo
-            pictureBoxLogo.Image = Image.FromFile("Images\\hyarriot-hotel-logo.png"); // Provide the path to your logo
-            pictureBoxLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string projectDirectory = Directory.GetParent(baseDirectory).Parent.Parent.Parent.FullName;
+
+            // Construct the relative path to the image
+            string imagePath = Path.Combine(projectDirectory, "Images", "hyarriot-hotel-logo.png");
+
+            if (File.Exists(imagePath))
+            {
+                pictureBoxLogo.Image = Image.FromFile(imagePath);
+                pictureBoxLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+            else
+            {
+                MessageBox.Show($"Image not found at: {imagePath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
 
             btnLogin.Click += BtnLogin_Click;
