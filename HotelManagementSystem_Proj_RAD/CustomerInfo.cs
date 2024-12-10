@@ -14,7 +14,7 @@ namespace HotelManagementSystem_Proj
     public partial class CustomerInfo : Form
     {
         private readonly string connectionString;
-        private readonly int? customerId; // Nullable to handle both add and edit cases
+        private readonly int? customerId; 
 
         public CustomerInfo(string connectionString, int? customerId = null)
         {
@@ -72,21 +72,10 @@ namespace HotelManagementSystem_Proj
                 return;
             }
 
-            string query;
-
-            if (customerId.HasValue)
-            {
-                // Update query for existing customer
-                query = @"UPDATE Customers 
-                          SET FirstName = @FirstName, LastName = @LastName, Phone = @Phone, Email = @Email, IsActive = @IsActive 
-                          WHERE CustomerID = @CustomerID";
-            }
-            else
-            {
-                // Insert query for new customer
-                query = @"INSERT INTO Customers (FirstName, LastName, Phone, Email, IsActive) 
-                          VALUES (@FirstName, @LastName, @Phone, @Email, @IsActive)";
-            }
+            // Update query for existing customer
+            string query = @"UPDATE Customers 
+                             SET FirstName = @FirstName, LastName = @LastName, Phone = @Phone, Email = @Email, IsActive = @IsActive 
+                             WHERE CustomerID = @CustomerID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -96,17 +85,13 @@ namespace HotelManagementSystem_Proj
                 command.Parameters.AddWithValue("@Phone", phone);
                 command.Parameters.AddWithValue("@Email", email);
                 command.Parameters.AddWithValue("@IsActive", isActive);
-
-                if (customerId.HasValue)
-                {
-                    command.Parameters.AddWithValue("@CustomerID", customerId.Value);
-                }
+                command.Parameters.AddWithValue("@CustomerID", customerId);
 
                 try
                 {
                     connection.Open();
                     command.ExecuteNonQuery();
-                    MessageBox.Show(customerId.HasValue ? "Customer updated successfully." : "Customer added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Customer updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
                 catch (Exception ex)

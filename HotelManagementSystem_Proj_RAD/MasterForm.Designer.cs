@@ -46,12 +46,9 @@ namespace HotelManagementSystem_Proj_RAD
         private System.Windows.Forms.Button btnAddRoom;
         private System.Windows.Forms.Button btnUpdateRoom;
         private System.Windows.Forms.Button btnDeleteRoom;
-        private System.Windows.Forms.Button btnAddCustomer;
         private System.Windows.Forms.Button btnUpdateCustomer;
         private System.Windows.Forms.Button btnDeleteCustomer;
-        private System.Windows.Forms.Button btnAddBooking;
         private System.Windows.Forms.Button btnUpdateBooking;
-        private System.Windows.Forms.Button btnDeleteBooking;
         private System.Windows.Forms.CheckedListBox checkedListBoxTasks;
         private System.Windows.Forms.Label lblTaskTitle;
 
@@ -106,14 +103,11 @@ namespace HotelManagementSystem_Proj_RAD
             btnDeleteRoom = new Button();
             tabPageCustomers = new TabPage();
             dataGridViewCustomers = new DataGridView();
-            btnAddCustomer = new Button();
             btnUpdateCustomer = new Button();
             btnDeleteCustomer = new Button();
             tabPageBookings = new TabPage();
             dataGridViewBookings = new DataGridView();
-            btnAddBooking = new Button();
             btnUpdateBooking = new Button();
-            btnDeleteBooking = new Button();
             tabPageReport = new TabPage();
             dgvReport = new DataGridView();
             btnGenerateReport = new Button();
@@ -471,7 +465,6 @@ namespace HotelManagementSystem_Proj_RAD
             // tabPageCustomers
             // 
             tabPageCustomers.Controls.Add(dataGridViewCustomers);
-            tabPageCustomers.Controls.Add(btnAddCustomer);
             tabPageCustomers.Controls.Add(btnUpdateCustomer);
             tabPageCustomers.Controls.Add(btnDeleteCustomer);
             tabPageCustomers.Location = new Point(4, 34);
@@ -496,17 +489,6 @@ namespace HotelManagementSystem_Proj_RAD
             dataGridViewCustomers.RowTemplate.Height = 29;
             dataGridViewCustomers.Size = new Size(1325, 750);
             dataGridViewCustomers.TabIndex = 0;
-            // 
-            // btnAddCustomer
-            // 
-            btnAddCustomer.Location = new Point(238, 812);
-            btnAddCustomer.Margin = new Padding(4);
-            btnAddCustomer.Name = "btnAddCustomer";
-            btnAddCustomer.Size = new Size(188, 50);
-            btnAddCustomer.TabIndex = 1;
-            btnAddCustomer.Text = "Add Customer";
-            btnAddCustomer.UseVisualStyleBackColor = true;
-            btnAddCustomer.Click += btnAddCustomer_Click;
             // 
             // btnUpdateCustomer
             // 
@@ -533,9 +515,7 @@ namespace HotelManagementSystem_Proj_RAD
             // tabPageBookings
             // 
             tabPageBookings.Controls.Add(dataGridViewBookings);
-            tabPageBookings.Controls.Add(btnAddBooking);
             tabPageBookings.Controls.Add(btnUpdateBooking);
-            tabPageBookings.Controls.Add(btnDeleteBooking);
             tabPageBookings.Location = new Point(4, 34);
             tabPageBookings.Margin = new Padding(4);
             tabPageBookings.Name = "tabPageBookings";
@@ -556,17 +536,6 @@ namespace HotelManagementSystem_Proj_RAD
             dataGridViewBookings.Size = new Size(1326, 750);
             dataGridViewBookings.TabIndex = 0;
             // 
-            // btnAddBooking
-            // 
-            btnAddBooking.Location = new Point(238, 812);
-            btnAddBooking.Margin = new Padding(4);
-            btnAddBooking.Name = "btnAddBooking";
-            btnAddBooking.Size = new Size(188, 50);
-            btnAddBooking.TabIndex = 1;
-            btnAddBooking.Text = "Add Booking";
-            btnAddBooking.UseVisualStyleBackColor = true;
-            btnAddBooking.Click += btnAddBooking_Click;
-            // 
             // btnUpdateBooking
             // 
             btnUpdateBooking.Location = new Point(593, 812);
@@ -577,17 +546,6 @@ namespace HotelManagementSystem_Proj_RAD
             btnUpdateBooking.Text = "Update Booking";
             btnUpdateBooking.UseVisualStyleBackColor = true;
             btnUpdateBooking.Click += btnUpdateBooking_Click;
-            // 
-            // btnDeleteBooking
-            // 
-            btnDeleteBooking.Location = new Point(938, 812);
-            btnDeleteBooking.Margin = new Padding(4);
-            btnDeleteBooking.Name = "btnDeleteBooking";
-            btnDeleteBooking.Size = new Size(188, 50);
-            btnDeleteBooking.TabIndex = 3;
-            btnDeleteBooking.Text = "Delete Booking";
-            btnDeleteBooking.UseVisualStyleBackColor = true;
-            btnDeleteBooking.Click += btnDeleteBooking_Click;
             // 
             // tabPageReport
             // 

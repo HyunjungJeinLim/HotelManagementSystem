@@ -300,7 +300,17 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void LoadBookings()
         {
-            string query = "SELECT * FROM Bookings";
+            string query = @"
+        SELECT 
+            BookingID, 
+            CustomerID, 
+            RoomID, 
+            CheckInDate, 
+            CheckOutDate, 
+            TotalPrice, 
+            BookingStatus 
+        FROM Bookings";
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
@@ -310,14 +320,94 @@ namespace HotelManagementSystem_Proj_RAD
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataTable table = new DataTable();
                     adapter.Fill(table);
+
+                    // Add columns for CustomerName and RoomNumber
+                    table.Columns.Add("CustomerName", typeof(string));
+                    table.Columns.Add("RoomNumber", typeof(string));
+
+                    foreach (DataRow row in table.Rows)
+                    {
+                        row["CustomerName"] = GetCustomerName((int)row["CustomerID"]);
+                        row["RoomNumber"] = GetRoomNumber((int)row["RoomID"]);
+                    }
+
                     dataGridViewBookings.DataSource = table;
+
+                    // Hide internal IDs
+                    if (dataGridViewBookings.Columns["BookingID"] != null)
+                        dataGridViewBookings.Columns["BookingID"].Visible = false;
+                    if (dataGridViewBookings.Columns["CustomerID"] != null)
+                        dataGridViewBookings.Columns["CustomerID"].Visible = false;
+                    if (dataGridViewBookings.Columns["RoomID"] != null)
+                        dataGridViewBookings.Columns["RoomID"].Visible = false;
+
+                    // Set BookingStatus to be editable
+                    if (dataGridViewBookings.Columns["BookingStatus"] != null)
+                        dataGridViewBookings.Columns["BookingStatus"].ReadOnly = false;
+
+                    // Rename columns for better readability
+                    if (dataGridViewBookings.Columns["CustomerName"] != null)
+                        dataGridViewBookings.Columns["CustomerName"].HeaderText = "Customer Name";
+                    if (dataGridViewBookings.Columns["RoomNumber"] != null)
+                        dataGridViewBookings.Columns["RoomNumber"].HeaderText = "Room Number";
+
+                    // Rearrange columns
+                    if (dataGridViewBookings.Columns["RoomNumber"] != null)
+                        dataGridViewBookings.Columns["RoomNumber"].DisplayIndex = 0; // Set RoomNumber as the first column
+                    if (dataGridViewBookings.Columns["CustomerName"] != null)
+                        dataGridViewBookings.Columns["CustomerName"].DisplayIndex = 1; // Set CustomerName as the second column
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error loading bookings: {ex.Message}");
+                    MessageBox.Show($"Error loading bookings: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+
+
+
+        private string GetCustomerName(int customerId)
+        {
+            string query = "SELECT FirstName + ' ' + LastName AS FullName FROM Customers WHERE CustomerID = @CustomerID";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CustomerID", customerId);
+
+                try
+                {
+                    connection.Open();
+                    return command.ExecuteScalar()?.ToString() ?? "Unknown";
+                }
+                catch
+                {
+                    return "Unknown";
+                }
+            }
+        }
+
+        private string GetRoomNumber(int roomId)
+        {
+            string query = "SELECT RoomNumber FROM Rooms WHERE RoomID = @RoomID";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@RoomID", roomId);
+
+                try
+                {
+                    connection.Open();
+                    return command.ExecuteScalar()?.ToString() ?? "Unknown";
+                }
+                catch
+                {
+                    return "Unknown";
+                }
+            }
+        }
+
 
 
         // Event Handlers
@@ -519,93 +609,7 @@ namespace HotelManagementSystem_Proj_RAD
             }
         }
 
-        private void btnAddBooking_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewBookings.CurrentRow == null)
-            {
-                MessageBox.Show("Please enter booking details in the grid before saving.");
-                return;
-            }
-
-            var currentRow = dataGridViewBookings.CurrentRow;
-
-            // Retrieve CustomerID
-            if (!int.TryParse(currentRow.Cells["CustomerID"].Value?.ToString(), out int customerId))
-            {
-                MessageBox.Show("Invalid CustomerID. Please provide a valid value.");
-                return;
-            }
-
-            // Retrieve RoomID
-            if (!int.TryParse(currentRow.Cells["RoomID"].Value?.ToString(), out int roomId))
-            {
-                MessageBox.Show("Invalid RoomID. Please provide a valid value.");
-                return;
-            }
-
-            // Retrieve CheckInDate
-            if (!DateTime.TryParse(currentRow.Cells["CheckInDate"].Value?.ToString(), out DateTime checkInDate))
-            {
-                MessageBox.Show("Invalid Check-In Date. Please provide a valid date.");
-                return;
-            }
-
-            // Retrieve CheckOutDate
-            if (!DateTime.TryParse(currentRow.Cells["CheckOutDate"].Value?.ToString(), out DateTime checkOutDate))
-            {
-                MessageBox.Show("Invalid Check-Out Date. Please provide a valid date.");
-                return;
-            }
-
-            // Ensure CheckOutDate is after CheckInDate
-            if (checkOutDate <= checkInDate)
-            {
-                MessageBox.Show("Check-Out Date must be after Check-In Date.");
-                return;
-            }
-
-            // Retrieve TotalPrice
-            if (!decimal.TryParse(currentRow.Cells["TotalPrice"].Value?.ToString(), out decimal totalPrice))
-            {
-                MessageBox.Show("Invalid Total Price. Please provide a valid numeric value.");
-                return;
-            }
-
-            // Retrieve BookingStatus
-            string bookingStatus = currentRow.Cells["BookingStatus"].Value?.ToString();
-            if (string.IsNullOrWhiteSpace(bookingStatus))
-            {
-                MessageBox.Show("Booking Status cannot be empty. Please provide a valid value.");
-                return;
-            }
-
-            // SQL INSERT QUERY
-            string query = "INSERT INTO Bookings (CustomerID, RoomID, CheckInDate, CheckOutDate, TotalPrice, BookingStatus) " +
-                           "VALUES (@CustomerID, @RoomID, @CheckInDate, @CheckOutDate, @TotalPrice, @BookingStatus)";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@CustomerID", customerId);
-                command.Parameters.AddWithValue("@RoomID", roomId);
-                command.Parameters.AddWithValue("@CheckInDate", checkInDate);
-                command.Parameters.AddWithValue("@CheckOutDate", checkOutDate);
-                command.Parameters.AddWithValue("@TotalPrice", totalPrice);
-                command.Parameters.AddWithValue("@BookingStatus", bookingStatus);
-
-                try
-                {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Booking added successfully.");
-                    LoadBookings(); // Refresh the bookings data
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error adding booking: {ex.Message}");
-                }
-            }
-        }
+ 
 
 
 
@@ -613,128 +617,24 @@ namespace HotelManagementSystem_Proj_RAD
         {
             if (dataGridViewBookings.SelectedRows.Count > 0)
             {
-                // Commit any pending edits in the DataGridView
-                dataGridViewBookings.EndEdit();
-
-                var selectedRow = dataGridViewBookings.SelectedRows[0];
-
-                // Retrieve BookingID
-                if (!int.TryParse(selectedRow.Cells["BookingID"].Value?.ToString(), out int bookingId))
-                {
-                    MessageBox.Show("Invalid BookingID. Please select a valid booking.");
-                    return;
-                }
-
-                // Retrieve RoomID
-                if (!int.TryParse(selectedRow.Cells["RoomID"].Value?.ToString(), out int roomId))
-                {
-                    MessageBox.Show("Invalid RoomID. Please provide a valid value.");
-                    return;
-                }
-
-                // Retrieve CheckInDate
-                if (!DateTime.TryParse(selectedRow.Cells["CheckInDate"].Value?.ToString(), out DateTime checkInDate))
-                {
-                    MessageBox.Show("Invalid Check-In Date. Please provide a valid date.");
-                    return;
-                }
-
-                // Retrieve CheckOutDate
-                if (!DateTime.TryParse(selectedRow.Cells["CheckOutDate"].Value?.ToString(), out DateTime checkOutDate))
-                {
-                    MessageBox.Show("Invalid Check-Out Date. Please provide a valid date.");
-                    return;
-                }
-
-                // Ensure CheckOutDate is after CheckInDate
-                if (checkOutDate <= checkInDate)
-                {
-                    MessageBox.Show("Check-Out Date must be after Check-In Date.");
-                    return;
-                }
-
-                // Retrieve TotalPrice
-                if (!decimal.TryParse(selectedRow.Cells["TotalPrice"].Value?.ToString(), out decimal totalPrice))
-                {
-                    MessageBox.Show("Invalid Total Price. Please provide a valid numeric value.");
-                    return;
-                }
-
-                // Retrieve BookingStatus
-                string bookingStatus = selectedRow.Cells["BookingStatus"].Value?.ToString();
-                if (string.IsNullOrWhiteSpace(bookingStatus))
-                {
-                    MessageBox.Show("Booking Status cannot be empty. Please provide a valid value.");
-                    return;
-                }
-
-                // SQL UPDATE Query
-                string query = @"UPDATE Bookings 
-                         SET RoomID = @RoomID, CheckInDate = @CheckInDate, CheckOutDate = @CheckOutDate, 
-                             TotalPrice = @TotalPrice, BookingStatus = @BookingStatus
-                         WHERE BookingID = @BookingID";
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@BookingID", bookingId);
-                    command.Parameters.AddWithValue("@RoomID", roomId);
-                    command.Parameters.AddWithValue("@CheckInDate", checkInDate);
-                    command.Parameters.AddWithValue("@CheckOutDate", checkOutDate);
-                    command.Parameters.AddWithValue("@TotalPrice", totalPrice);
-                    command.Parameters.AddWithValue("@BookingStatus", bookingStatus);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Booking updated successfully.");
-                        LoadBookings(); // Refresh the bookings data
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error updating booking: {ex.Message}");
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a booking to update.");
-            }
-        }
-
-
-
-        private void btnDeleteBooking_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewBookings.SelectedRows.Count > 0)
-            {
+                // Get the selected BookingID
                 int bookingId = Convert.ToInt32(dataGridViewBookings.SelectedRows[0].Cells["BookingID"].Value);
-                string query = "DELETE FROM Bookings WHERE BookingID = @BookingID";
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@BookingID", bookingId);
+                // Open the BookingInfo form for editing
+                BookingInfo bookingInfoForm = new BookingInfo(connectionString, bookingId);
+                bookingInfoForm.ShowDialog();
 
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Booking deleted successfully.");
-                        LoadBookings(); // Refresh the DataGridView
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error deleting booking: {ex.Message}");
-                    }
-                }
+                // Refresh the bookings data grid after the form closes
+                LoadBookings();
             }
             else
             {
-                MessageBox.Show("Please select a booking to delete.");
+                MessageBox.Show("Please select a booking to update.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+
+
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
