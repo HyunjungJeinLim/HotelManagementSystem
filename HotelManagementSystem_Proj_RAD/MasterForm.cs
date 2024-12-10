@@ -24,6 +24,10 @@ namespace HotelManagementSystem_Proj_RAD
         {
             InitializeComponent();
 
+            // Configure the pictureBoxLogo
+            pictureBoxLogo2.Image = Image.FromFile("Images\\hyarriot-hotel-logo.png"); // Provide the path to your logo
+            pictureBoxLogo2.SizeMode = PictureBoxSizeMode.Zoom;
+
             // Initialize Clock
             lblClock.Text = DateTime.Now.ToString("hh:mm:ss tt");
             System.Windows.Forms.Timer clockTimer = new System.Windows.Forms.Timer
@@ -60,6 +64,7 @@ namespace HotelManagementSystem_Proj_RAD
             {
                 cbReportType.SelectedIndex = 0; // Default selection
             }
+            LoadReportData(); // Load report data when the form loads
         }
 
         private void ClockTimer_Tick(object sender, EventArgs e)
@@ -75,48 +80,82 @@ namespace HotelManagementSystem_Proj_RAD
             // Room Sales Chart
             roomSalesChart = new Chart
             {
-                Size = new Size(350, 350),
-                Location = new Point(160, 430)
+                Size = new Size(450, 450), // Set chart size to 400x400
+                Location = new Point(150, 400), // Adjust position if needed
+                BackColor = Color.Transparent // Set entire chart background to transparent
             };
-            ChartArea roomSalesArea = new ChartArea("RoomSalesArea");
+
+            ChartArea roomSalesArea = new ChartArea("RoomSalesArea")
+            {
+                BackColor = Color.Transparent // Set chart area background to transparent
+            };
             roomSalesChart.ChartAreas.Add(roomSalesArea);
-            Series roomSalesSeries = new Series("RoomSales") { ChartType = SeriesChartType.Pie };
+
+            Series roomSalesSeries = new Series("RoomSales")
+            {
+                ChartType = SeriesChartType.Pie,
+                LabelForeColor = Color.White // Set label color to white
+            };
+
             foreach (var item in roomSalesData)
             {
                 roomSalesSeries.Points.AddXY(item.Key, item.Value);
             }
+
             roomSalesChart.Series.Add(roomSalesSeries);
-            roomSalesChart.Titles.Add("Room Sales");
+            roomSalesChart.Titles.Add(new Title
+            {
+                Text = "Room Sales",
+                ForeColor = Color.White // Set title color to white
+            });
 
             // Cleaning Status Chart
             cleaningStatusChart = new Chart
             {
-                Size = new Size(350, 350),
-                Location = new Point(800, 430)
+                Size = new Size(450, 450), // Set chart size to 400x400
+                Location = new Point(750, 400), // Adjust position if needed
+                BackColor = Color.Transparent // Set entire chart background to transparent
             };
-            ChartArea cleaningStatusArea = new ChartArea("CleaningStatusArea");
+
+            ChartArea cleaningStatusArea = new ChartArea("CleaningStatusArea")
+            {
+                BackColor = Color.Transparent // Set chart area background to transparent
+            };
             cleaningStatusChart.ChartAreas.Add(cleaningStatusArea);
-            Series cleaningStatusSeries = new Series("CleaningStatus") { ChartType = SeriesChartType.Pie };
+
+            Series cleaningStatusSeries = new Series("CleaningStatus")
+            {
+                ChartType = SeriesChartType.Pie,
+                LabelForeColor = Color.White // Set label color to white
+            };
+
             foreach (var item in cleaningStatusData)
             {
                 cleaningStatusSeries.Points.AddXY(item.Key, item.Value);
             }
-            cleaningStatusChart.Series.Add(cleaningStatusSeries);
-            cleaningStatusChart.Titles.Add("Cleaning Status");
 
+            cleaningStatusChart.Series.Add(cleaningStatusSeries);
+            cleaningStatusChart.Titles.Add(new Title
+            {
+                Text = "Cleaning Status",
+                ForeColor = Color.White // Set title color to white
+            });
+
+            // Add charts to the dashboard tab
             tabPageDashboard.Controls.Add(roomSalesChart);
             tabPageDashboard.Controls.Add(cleaningStatusChart);
         }
+
 
 
         private Dictionary<string, int> GetRoomSalesData()
         {
             Dictionary<string, int> data = new Dictionary<string, int>();
             string query = @"
-                SELECT 
-                    SUM(CASE WHEN Availability = 0 THEN 1 ELSE 0 END) AS SoldRooms,
-                    SUM(CASE WHEN Availability = 1 THEN 1 ELSE 0 END) AS AvailableRooms
-                FROM Rooms";
+        SELECT 
+            SUM(CASE WHEN Availability = 0 THEN 1 ELSE 0 END) AS SoldRooms,
+            SUM(CASE WHEN Availability = 1 THEN 1 ELSE 0 END) AS AvailableRooms
+        FROM Rooms";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -129,6 +168,8 @@ namespace HotelManagementSystem_Proj_RAD
                     {
                         data["Sold Rooms"] = reader.GetInt32(0);
                         data["Available Rooms"] = reader.GetInt32(1);
+                        // Debug log
+                        Console.WriteLine($"Sold Rooms: {data["Sold Rooms"]}, Available Rooms: {data["Available Rooms"]}");
                     }
                 }
                 catch (Exception ex)
@@ -138,6 +179,7 @@ namespace HotelManagementSystem_Proj_RAD
             }
             return data;
         }
+
 
         private Dictionary<string, int> GetCleaningStatusData()
         {
@@ -173,42 +215,57 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void LoadReportData()
         {
-            // get data
             Dictionary<string, int> roomSalesData = GetRoomSalesData();
             Dictionary<string, int> cleaningStatusData = GetCleaningStatusData();
 
-            // Update Panel data
             lblSoldRmsValue.Text = roomSalesData.ContainsKey("Sold Rooms") ? roomSalesData["Sold Rooms"].ToString() : "0";
+            lblSoldRmsValue.Refresh(); // Force UI to update immediately
+
             lblRmsForSaleValue.Text = roomSalesData.ContainsKey("Available Rooms") ? roomSalesData["Available Rooms"].ToString() : "0";
+            lblRmsForSaleValue.Refresh();
+
             lblDirtyRmsValue.Text = cleaningStatusData.ContainsKey("Dirty Rooms") ? cleaningStatusData["Dirty Rooms"].ToString() : "0";
+            lblDirtyRmsValue.Refresh();
+
             lblCleanVacantValue.Text = cleaningStatusData.ContainsKey("Clean Rooms") ? cleaningStatusData["Clean Rooms"].ToString() : "0";
+            lblCleanVacantValue.Refresh();
 
             // Update Chart data
             UpdatePieChart(roomSalesChart, roomSalesData, "Room Sales");
             UpdatePieChart(cleaningStatusChart, cleaningStatusData, "Cleaning Status");
-
-
         }
+
 
         private void UpdatePieChart(Chart chart, Dictionary<string, int> data, string title)
         {
-            // chart Clear
+            // Clear existing series and titles
             chart.Series.Clear();
             chart.Titles.Clear();
 
+            // Create a new series for the pie chart
             Series series = new Series
             {
-                ChartType = SeriesChartType.Pie
+                ChartType = SeriesChartType.Pie,
+                LabelForeColor = Color.White // Explicitly set label color to white
             };
-            //Add data
+
+            // Add data points to the series
             foreach (var item in data)
             {
                 series.Points.AddXY(item.Key, item.Value);
             }
 
+            // Add the series to the chart
             chart.Series.Add(series);
-            chart.Titles.Add(title);
+
+            // Add a title with white font color
+            chart.Titles.Add(new Title
+            {
+                Text = title,
+                ForeColor = Color.White // Explicitly set title color to white
+            });
         }
+
 
 
 

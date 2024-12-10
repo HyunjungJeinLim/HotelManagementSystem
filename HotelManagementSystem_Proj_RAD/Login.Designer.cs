@@ -28,26 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             btnLogin = new Button();
             txtUser = new TextBox();
             txtPassword = new TextBox();
             panel1 = new Panel();
+            pictureBoxLogo = new PictureBox();
+            label3 = new Label();
+            label2 = new Label();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).BeginInit();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Lavender;
-            label1.Location = new Point(311, 67);
-            label1.Name = "label1";
-            label1.Size = new Size(164, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Manage Your Hotel";
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(334, 262);
+            btnLogin.Location = new Point(363, 433);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(112, 34);
             btnLogin.TabIndex = 1;
@@ -56,14 +50,14 @@
             // 
             // txtUser
             // 
-            txtUser.Location = new Point(311, 131);
+            txtUser.Location = new Point(337, 326);
             txtUser.Name = "txtUser";
             txtUser.Size = new Size(164, 31);
             txtUser.TabIndex = 3;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(311, 183);
+            txtPassword.Location = new Point(337, 378);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(164, 31);
@@ -71,36 +65,68 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Lavender;
+            panel1.BackColor = Color.FromArgb(14, 36, 66);
+            panel1.Controls.Add(pictureBoxLogo);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(txtPassword);
+            panel1.Controls.Add(btnLogin);
+            panel1.Controls.Add(txtUser);
             panel1.Location = new Point(-1, -3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(799, 456);
+            panel1.Size = new Size(799, 563);
             panel1.TabIndex = 5;
+            // 
+            // pictureBoxLogo
+            // 
+            pictureBoxLogo.Location = new Point(251, 59);
+            pictureBoxLogo.Name = "pictureBoxLogo";
+            pictureBoxLogo.Size = new Size(250, 250);
+            pictureBoxLogo.TabIndex = 7;
+            pictureBoxLogo.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(236, 378);
+            label3.Name = "label3";
+            label3.Size = new Size(91, 25);
+            label3.TabIndex = 6;
+            label3.Text = "Password:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(236, 326);
+            label2.Name = "label2";
+            label2.Size = new Size(95, 25);
+            label2.TabIndex = 5;
+            label2.Text = "Username:";
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(txtPassword);
-            Controls.Add(txtUser);
-            Controls.Add(btnLogin);
-            Controls.Add(label1);
+            ClientSize = new Size(800, 556);
             Controls.Add(panel1);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Home";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
         private Button btnLogin;
         private TextBox txtUser;
         private TextBox txtPassword;
-        private PictureBox pictureBox1;
+        private PictureBox pictureBoxLogo;
         private Panel panel1;
+        private Label label3;
+        private Label label2;
     }
 }

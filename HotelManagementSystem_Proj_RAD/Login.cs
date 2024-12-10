@@ -9,7 +9,11 @@ namespace HotelManagementSystem_Proj_RAD
         {
             InitializeComponent();
 
-          
+            // Configure the pictureBoxLogo
+            pictureBoxLogo.Image = Image.FromFile("Images\\hyarriot-hotel-logo.png"); // Provide the path to your logo
+            pictureBoxLogo.SizeMode = PictureBoxSizeMode.Zoom;
+
+
             btnLogin.Click += BtnLogin_Click;
         }
 

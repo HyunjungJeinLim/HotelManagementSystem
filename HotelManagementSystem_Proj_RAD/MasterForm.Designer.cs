@@ -74,6 +74,8 @@ namespace HotelManagementSystem_Proj_RAD
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label1 = new Label();
+            pictureBoxLogo2 = new PictureBox();
             lblDashboard = new Label();
             lblManageRooms = new Label();
             lblManageCustomers = new Label();
@@ -113,6 +115,7 @@ namespace HotelManagementSystem_Proj_RAD
             btnGenerateReport = new Button();
             cbReportType = new ComboBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogo2).BeginInit();
             tabControl1.SuspendLayout();
             tabPageDashboard.SuspendLayout();
             panelSoldRms.SuspendLayout();
@@ -131,7 +134,9 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(230, 230, 250);
+            panel1.BackColor = Color.FromArgb(14, 36, 66);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(pictureBoxLogo2);
             panel1.Controls.Add(lblDashboard);
             panel1.Controls.Add(lblManageRooms);
             panel1.Controls.Add(lblManageCustomers);
@@ -146,15 +151,35 @@ namespace HotelManagementSystem_Proj_RAD
             panel1.Size = new Size(250, 960);
             panel1.TabIndex = 0;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(36, 801);
+            label1.Name = "label1";
+            label1.Size = new Size(54, 25);
+            label1.TabIndex = 9;
+            label1.Text = "Time:";
+            // 
+            // pictureBoxLogo2
+            // 
+            pictureBoxLogo2.Location = new Point(23, 23);
+            pictureBoxLogo2.Name = "pictureBoxLogo2";
+            pictureBoxLogo2.Size = new Size(204, 181);
+            pictureBoxLogo2.TabIndex = 8;
+            pictureBoxLogo2.TabStop = false;
+            // 
             // lblDashboard
             // 
             lblDashboard.AutoSize = true;
-            lblDashboard.BackColor = Color.FromArgb(192, 192, 255);
+            lblDashboard.BackColor = Color.FromArgb(14, 36, 66);
             lblDashboard.Cursor = Cursors.Hand;
-            lblDashboard.Location = new Point(102, 242);
+            lblDashboard.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblDashboard.ForeColor = Color.White;
+            lblDashboard.Location = new Point(36, 344);
             lblDashboard.Margin = new Padding(4, 0, 4, 0);
             lblDashboard.Name = "lblDashboard";
-            lblDashboard.Size = new Size(100, 25);
+            lblDashboard.Size = new Size(104, 25);
             lblDashboard.TabIndex = 0;
             lblDashboard.Text = "Dashboard";
             lblDashboard.Click += lblDashboard_Click;
@@ -162,12 +187,14 @@ namespace HotelManagementSystem_Proj_RAD
             // lblManageRooms
             // 
             lblManageRooms.AutoSize = true;
-            lblManageRooms.BackColor = Color.FromArgb(192, 192, 255);
+            lblManageRooms.BackColor = Color.FromArgb(14, 36, 66);
             lblManageRooms.Cursor = Cursors.Hand;
-            lblManageRooms.Location = new Point(65, 327);
+            lblManageRooms.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblManageRooms.ForeColor = Color.White;
+            lblManageRooms.Location = new Point(36, 403);
             lblManageRooms.Margin = new Padding(4, 0, 4, 0);
             lblManageRooms.Name = "lblManageRooms";
-            lblManageRooms.Size = new Size(137, 25);
+            lblManageRooms.Size = new Size(144, 25);
             lblManageRooms.TabIndex = 1;
             lblManageRooms.Text = "Manage Rooms";
             lblManageRooms.Click += lblManageRooms_Click;
@@ -175,12 +202,14 @@ namespace HotelManagementSystem_Proj_RAD
             // lblManageCustomers
             // 
             lblManageCustomers.AutoSize = true;
-            lblManageCustomers.BackColor = Color.FromArgb(192, 192, 255);
+            lblManageCustomers.BackColor = Color.FromArgb(14, 36, 66);
             lblManageCustomers.Cursor = Cursors.Hand;
-            lblManageCustomers.Location = new Point(36, 417);
+            lblManageCustomers.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblManageCustomers.ForeColor = Color.White;
+            lblManageCustomers.Location = new Point(36, 465);
             lblManageCustomers.Margin = new Padding(4, 0, 4, 0);
             lblManageCustomers.Name = "lblManageCustomers";
-            lblManageCustomers.Size = new Size(166, 25);
+            lblManageCustomers.Size = new Size(175, 25);
             lblManageCustomers.TabIndex = 2;
             lblManageCustomers.Text = "Manage Customers";
             lblManageCustomers.Click += lblManageCustomers_Click;
@@ -188,12 +217,14 @@ namespace HotelManagementSystem_Proj_RAD
             // lblManageBookings
             // 
             lblManageBookings.AutoSize = true;
-            lblManageBookings.BackColor = Color.FromArgb(192, 192, 255);
+            lblManageBookings.BackColor = Color.FromArgb(14, 36, 66);
             lblManageBookings.Cursor = Cursors.Hand;
-            lblManageBookings.Location = new Point(47, 499);
+            lblManageBookings.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblManageBookings.ForeColor = Color.White;
+            lblManageBookings.Location = new Point(36, 523);
             lblManageBookings.Margin = new Padding(4, 0, 4, 0);
             lblManageBookings.Name = "lblManageBookings";
-            lblManageBookings.Size = new Size(155, 25);
+            lblManageBookings.Size = new Size(165, 25);
             lblManageBookings.TabIndex = 3;
             lblManageBookings.Text = "Manage Bookings";
             lblManageBookings.Click += lblManageBookings_Click;
@@ -201,12 +232,14 @@ namespace HotelManagementSystem_Proj_RAD
             // lblReports
             // 
             lblReports.AutoSize = true;
-            lblReports.BackColor = Color.FromArgb(192, 192, 255);
+            lblReports.BackColor = Color.FromArgb(14, 36, 66);
             lblReports.Cursor = Cursors.Hand;
-            lblReports.Location = new Point(129, 590);
+            lblReports.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblReports.ForeColor = Color.White;
+            lblReports.Location = new Point(36, 582);
             lblReports.Margin = new Padding(4, 0, 4, 0);
             lblReports.Name = "lblReports";
-            lblReports.Size = new Size(73, 25);
+            lblReports.Size = new Size(79, 25);
             lblReports.TabIndex = 4;
             lblReports.Text = "Reports";
             lblReports.Click += lblReports_Click;
@@ -214,17 +247,19 @@ namespace HotelManagementSystem_Proj_RAD
             // lblWelcomeUser
             // 
             lblWelcomeUser.AutoSize = true;
-            lblWelcomeUser.Font = new Font("Arial Rounded MT Bold", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblWelcomeUser.Location = new Point(47, 81);
+            lblWelcomeUser.FlatStyle = FlatStyle.Flat;
+            lblWelcomeUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblWelcomeUser.ForeColor = Color.White;
+            lblWelcomeUser.Location = new Point(23, 268);
             lblWelcomeUser.Margin = new Padding(4, 0, 4, 0);
             lblWelcomeUser.Name = "lblWelcomeUser";
-            lblWelcomeUser.Size = new Size(167, 23);
+            lblWelcomeUser.Size = new Size(217, 32);
             lblWelcomeUser.TabIndex = 5;
-            lblWelcomeUser.Text = "Welcome Admin";
+            lblWelcomeUser.Text = "Welcome, Admin!";
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(66, 871);
+            btnLogout.Location = new Point(62, 860);
             btnLogout.Margin = new Padding(4);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(125, 50);
@@ -236,7 +271,8 @@ namespace HotelManagementSystem_Proj_RAD
             // lblClock
             // 
             lblClock.AutoSize = true;
-            lblClock.Location = new Point(81, 815);
+            lblClock.ForeColor = Color.White;
+            lblClock.Location = new Point(97, 801);
             lblClock.Margin = new Padding(4, 0, 4, 0);
             lblClock.Name = "lblClock";
             lblClock.Size = new Size(55, 25);
@@ -259,7 +295,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // tabPageDashboard
             // 
-            tabPageDashboard.BackColor = Color.White;
+            tabPageDashboard.BackColor = Color.FromArgb(14, 36, 66);
             tabPageDashboard.Controls.Add(panelSoldRms);
             tabPageDashboard.Controls.Add(panelRmsForSale);
             tabPageDashboard.Controls.Add(panelDirtyRms);
@@ -273,7 +309,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // panelSoldRms
             // 
-            panelSoldRms.BackColor = Color.LightBlue;
+            panelSoldRms.BackColor = Color.White;
             panelSoldRms.Controls.Add(lblSoldRmsTitle);
             panelSoldRms.Controls.Add(lblSoldRmsValue);
             panelSoldRms.Location = new Point(68, 91);
@@ -289,9 +325,9 @@ namespace HotelManagementSystem_Proj_RAD
             lblSoldRmsTitle.Location = new Point(12, 12);
             lblSoldRmsTitle.Margin = new Padding(4, 0, 4, 0);
             lblSoldRmsTitle.Name = "lblSoldRmsTitle";
-            lblSoldRmsTitle.Size = new Size(124, 29);
+            lblSoldRmsTitle.Size = new Size(154, 29);
             lblSoldRmsTitle.TabIndex = 1;
-            lblSoldRmsTitle.Text = "Sold Rms";
+            lblSoldRmsTitle.Text = "Sold Rooms";
             // 
             // lblSoldRmsValue
             // 
@@ -306,7 +342,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // panelRmsForSale
             // 
-            panelRmsForSale.BackColor = Color.LightBlue;
+            panelRmsForSale.BackColor = Color.White;
             panelRmsForSale.Controls.Add(lblRmsForSaleTitle);
             panelRmsForSale.Controls.Add(lblRmsForSaleValue);
             panelRmsForSale.Location = new Point(380, 91);
@@ -322,9 +358,9 @@ namespace HotelManagementSystem_Proj_RAD
             lblRmsForSaleTitle.Location = new Point(12, 12);
             lblRmsForSaleTitle.Margin = new Padding(4, 0, 4, 0);
             lblRmsForSaleTitle.Name = "lblRmsForSaleTitle";
-            lblRmsForSaleTitle.Size = new Size(159, 29);
+            lblRmsForSaleTitle.Size = new Size(189, 29);
             lblRmsForSaleTitle.TabIndex = 1;
-            lblRmsForSaleTitle.Text = "Rms for Sale";
+            lblRmsForSaleTitle.Text = "Rooms for Sale";
             // 
             // lblRmsForSaleValue
             // 
@@ -339,7 +375,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // panelDirtyRms
             // 
-            panelDirtyRms.BackColor = Color.LightGreen;
+            panelDirtyRms.BackColor = Color.White;
             panelDirtyRms.Controls.Add(lblDirtyRmsTitle);
             panelDirtyRms.Controls.Add(lblDirtyRmsValue);
             panelDirtyRms.Location = new Point(718, 91);
@@ -355,9 +391,9 @@ namespace HotelManagementSystem_Proj_RAD
             lblDirtyRmsTitle.Location = new Point(12, 12);
             lblDirtyRmsTitle.Margin = new Padding(4, 0, 4, 0);
             lblDirtyRmsTitle.Name = "lblDirtyRmsTitle";
-            lblDirtyRmsTitle.Size = new Size(125, 29);
+            lblDirtyRmsTitle.Size = new Size(155, 29);
             lblDirtyRmsTitle.TabIndex = 4;
-            lblDirtyRmsTitle.Text = "Dirty Rms";
+            lblDirtyRmsTitle.Text = "Dirty Rooms";
             // 
             // lblDirtyRmsValue
             // 
@@ -372,7 +408,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // panelCleanVacant
             // 
-            panelCleanVacant.BackColor = Color.LightGreen;
+            panelCleanVacant.BackColor = Color.White;
             panelCleanVacant.Controls.Add(lblCleanVacantTitle);
             panelCleanVacant.Controls.Add(lblCleanVacantValue);
             panelCleanVacant.Location = new Point(1036, 91);
@@ -405,6 +441,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // tabPageRooms
             // 
+            tabPageRooms.BackColor = Color.FromArgb(14, 36, 66);
             tabPageRooms.Controls.Add(dataGridViewRooms);
             tabPageRooms.Controls.Add(btnAddRoom);
             tabPageRooms.Controls.Add(btnUpdateRoom);
@@ -416,7 +453,6 @@ namespace HotelManagementSystem_Proj_RAD
             tabPageRooms.Size = new Size(1342, 922);
             tabPageRooms.TabIndex = 1;
             tabPageRooms.Text = "Manage Rooms";
-            tabPageRooms.UseVisualStyleBackColor = true;
             // 
             // dataGridViewRooms
             // 
@@ -431,7 +467,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // btnAddRoom
             // 
-            btnAddRoom.Location = new Point(238, 812);
+            btnAddRoom.Location = new Point(675, 826);
             btnAddRoom.Margin = new Padding(4);
             btnAddRoom.Name = "btnAddRoom";
             btnAddRoom.Size = new Size(188, 50);
@@ -442,7 +478,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // btnUpdateRoom
             // 
-            btnUpdateRoom.Location = new Point(593, 812);
+            btnUpdateRoom.Location = new Point(892, 826);
             btnUpdateRoom.Margin = new Padding(4);
             btnUpdateRoom.Name = "btnUpdateRoom";
             btnUpdateRoom.Size = new Size(188, 50);
@@ -453,7 +489,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // btnDeleteRoom
             // 
-            btnDeleteRoom.Location = new Point(938, 812);
+            btnDeleteRoom.Location = new Point(1110, 826);
             btnDeleteRoom.Margin = new Padding(4);
             btnDeleteRoom.Name = "btnDeleteRoom";
             btnDeleteRoom.Size = new Size(188, 50);
@@ -464,6 +500,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // tabPageCustomers
             // 
+            tabPageCustomers.BackColor = Color.FromArgb(14, 36, 66);
             tabPageCustomers.Controls.Add(dataGridViewCustomers);
             tabPageCustomers.Controls.Add(btnUpdateCustomer);
             tabPageCustomers.Controls.Add(btnDeleteCustomer);
@@ -474,7 +511,6 @@ namespace HotelManagementSystem_Proj_RAD
             tabPageCustomers.Size = new Size(1342, 922);
             tabPageCustomers.TabIndex = 2;
             tabPageCustomers.Text = "Manage Customers";
-            tabPageCustomers.UseVisualStyleBackColor = true;
             // 
             // dataGridViewCustomers
             // 
@@ -492,7 +528,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // btnUpdateCustomer
             // 
-            btnUpdateCustomer.Location = new Point(593, 812);
+            btnUpdateCustomer.Location = new Point(881, 826);
             btnUpdateCustomer.Margin = new Padding(4);
             btnUpdateCustomer.Name = "btnUpdateCustomer";
             btnUpdateCustomer.Size = new Size(188, 50);
@@ -503,7 +539,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // btnDeleteCustomer
             // 
-            btnDeleteCustomer.Location = new Point(938, 812);
+            btnDeleteCustomer.Location = new Point(1099, 826);
             btnDeleteCustomer.Margin = new Padding(4);
             btnDeleteCustomer.Name = "btnDeleteCustomer";
             btnDeleteCustomer.Size = new Size(188, 50);
@@ -514,6 +550,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // tabPageBookings
             // 
+            tabPageBookings.BackColor = Color.FromArgb(14, 36, 66);
             tabPageBookings.Controls.Add(dataGridViewBookings);
             tabPageBookings.Controls.Add(btnUpdateBooking);
             tabPageBookings.Location = new Point(4, 34);
@@ -523,7 +560,6 @@ namespace HotelManagementSystem_Proj_RAD
             tabPageBookings.Size = new Size(1342, 922);
             tabPageBookings.TabIndex = 4;
             tabPageBookings.Text = "Manage Bookings";
-            tabPageBookings.UseVisualStyleBackColor = true;
             // 
             // dataGridViewBookings
             // 
@@ -538,10 +574,10 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // btnUpdateBooking
             // 
-            btnUpdateBooking.Location = new Point(593, 812);
+            btnUpdateBooking.Location = new Point(1097, 826);
             btnUpdateBooking.Margin = new Padding(4);
             btnUpdateBooking.Name = "btnUpdateBooking";
-            btnUpdateBooking.Size = new Size(188, 50);
+            btnUpdateBooking.Size = new Size(182, 50);
             btnUpdateBooking.TabIndex = 2;
             btnUpdateBooking.Text = "Update Booking";
             btnUpdateBooking.UseVisualStyleBackColor = true;
@@ -549,6 +585,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // tabPageReport
             // 
+            tabPageReport.BackColor = Color.FromArgb(14, 36, 66);
             tabPageReport.Controls.Add(dgvReport);
             tabPageReport.Controls.Add(btnGenerateReport);
             tabPageReport.Controls.Add(cbReportType);
@@ -559,7 +596,6 @@ namespace HotelManagementSystem_Proj_RAD
             tabPageReport.Size = new Size(1342, 922);
             tabPageReport.TabIndex = 0;
             tabPageReport.Text = "Report";
-            tabPageReport.UseVisualStyleBackColor = true;
             // 
             // dgvReport
             // 
@@ -572,9 +608,9 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // btnGenerateReport
             // 
-            btnGenerateReport.Location = new Point(85, 814);
+            btnGenerateReport.Location = new Point(1129, 826);
             btnGenerateReport.Name = "btnGenerateReport";
-            btnGenerateReport.Size = new Size(112, 34);
+            btnGenerateReport.Size = new Size(127, 50);
             btnGenerateReport.TabIndex = 2;
             btnGenerateReport.Text = "Generate";
             btnGenerateReport.UseVisualStyleBackColor = true;
@@ -583,7 +619,7 @@ namespace HotelManagementSystem_Proj_RAD
             // cbReportType
             // 
             cbReportType.FormattingEnabled = true;
-            cbReportType.Location = new Point(86, 762);
+            cbReportType.Location = new Point(1097, 759);
             cbReportType.Name = "cbReportType";
             cbReportType.Size = new Size(182, 33);
             cbReportType.TabIndex = 1;
@@ -601,6 +637,7 @@ namespace HotelManagementSystem_Proj_RAD
             Text = "Hotel Management System";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogo2).EndInit();
             tabControl1.ResumeLayout(false);
             tabPageDashboard.ResumeLayout(false);
             panelSoldRms.ResumeLayout(false);
@@ -628,5 +665,7 @@ namespace HotelManagementSystem_Proj_RAD
         private Button btnGenerateReport;
         private ComboBox cbReportType;
         private DateTimePicker dtpReportTime;
+        private PictureBox pictureBoxLogo2;
+        private Label label1;
     }
 }
