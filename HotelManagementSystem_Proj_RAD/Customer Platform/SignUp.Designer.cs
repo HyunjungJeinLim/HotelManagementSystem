@@ -70,7 +70,7 @@
             labelLogIn.AutoSize = true;
             labelLogIn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             labelLogIn.ForeColor = Color.White;
-            labelLogIn.Location = new Point(475, 669);
+            labelLogIn.Location = new Point(413, 694);
             labelLogIn.Name = "labelLogIn";
             labelLogIn.Size = new Size(65, 25);
             labelLogIn.TabIndex = 18;
@@ -98,7 +98,7 @@
             // 
             label5.AutoSize = true;
             label5.ForeColor = Color.White;
-            label5.Location = new Point(332, 669);
+            label5.Location = new Point(270, 694);
             label5.Name = "label5";
             label5.Size = new Size(137, 25);
             label5.TabIndex = 15;

@@ -68,7 +68,13 @@ VALUES
     ('Suite', 400.00, 'Wi-Fi, Breakfast, Pool, Lounge', 0, 'R009', 2), -- Under Maintenance
     ('Single', 90.00, 'Wi-Fi, Parking', 0, 'R010', 1),   -- Clean
     ('Double', 170.00, 'Wi-Fi, Breakfast', 1, 'R011', 0), -- Dirty
-    ('Suite', 380.00, 'Wi-Fi, Breakfast, Gym, Spa', 0, 'R012', 2); -- Under Maintenance
+    ('Suite', 380.00, 'Wi-Fi, Breakfast, Gym, Spa', 0, 'R012', 2), -- Under Maintenance
+	('Single', 110.00, 'Wi-Fi, TV', 1, 'R013', 1), -- Clean
+    ('Double', 160.00, 'Wi-Fi, Breakfast', 1, 'R014', 0), -- Dirty
+    ('Suite', 370.00, 'Wi-Fi, Pool, Gym', 1, 'R015', 2), -- Under Maintenance
+    ('Single', 100.00, 'Wi-Fi, Parking', 1, 'R016', 1), -- Clean
+    ('Double', 190.00, 'Wi-Fi, Breakfast, Pool', 1, 'R017', 1), -- Clean
+    ('Suite', 400.00, 'Wi-Fi, Lounge, Spa', 1, 'R018', 0); -- Dirty
 GO
 
 -- 6. Insert initial data into the Customers table
@@ -132,48 +138,8 @@ VALUES
     (10, 11, '2024-12-12', '2024-12-16', 680.00, 'Confirmed');
 
 
--- 8. Create a stored procedure to update booking status
-CREATE PROCEDURE UpdateBookingStatus
-    @BookingID INT,
-    @Status NVARCHAR(20)
-AS
-BEGIN
-    UPDATE Bookings
-    SET BookingStatus = @Status
-    WHERE BookingID = @BookingID;
-END;
-GO
-
--- 9. Create a trigger to automatically update room availability after a booking
-CREATE TRIGGER UpdateRoomAvailability
-ON Bookings
-AFTER INSERT
-AS
-BEGIN
-    UPDATE Rooms
-    SET Availability = 0
-    WHERE RoomID IN (SELECT RoomID FROM Inserted);
-END;
-GO
-
--- 10. Create a view to summarize booking and revenue information
-CREATE VIEW BookingSummary AS
-SELECT 
-    b.BookingID,
-    c.FirstName + ' ' + c.LastName AS CustomerName,
-    r.RoomType,
-    r.RoomNumber,
-    b.CheckInDate,
-    b.CheckOutDate,
-    b.TotalPrice,
-    b.BookingStatus
-FROM Bookings b
-JOIN Customers c ON b.CustomerID = c.CustomerID
-JOIN Rooms r ON b.RoomID = r.RoomID;
-GO
-
 -- Test Queries
 SELECT * FROM Rooms;
 SELECT * FROM Customers;
 SELECT * FROM Bookings;
-SELECT * FROM BookingSummary;
+

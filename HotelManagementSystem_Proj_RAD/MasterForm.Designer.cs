@@ -114,6 +114,7 @@ namespace HotelManagementSystem_Proj_RAD
             dgvReport = new DataGridView();
             btnGenerateReport = new Button();
             cbReportType = new ComboBox();
+            btnDeleteBooking = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo2).BeginInit();
             tabControl1.SuspendLayout();
@@ -553,6 +554,7 @@ namespace HotelManagementSystem_Proj_RAD
             // tabPageBookings
             // 
             tabPageBookings.BackColor = Color.FromArgb(14, 36, 66);
+            tabPageBookings.Controls.Add(btnDeleteBooking);
             tabPageBookings.Controls.Add(dataGridViewBookings);
             tabPageBookings.Controls.Add(btnUpdateBooking);
             tabPageBookings.Location = new Point(4, 34);
@@ -577,7 +579,7 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // btnUpdateBooking
             // 
-            btnUpdateBooking.Location = new Point(1097, 826);
+            btnUpdateBooking.Location = new Point(881, 826);
             btnUpdateBooking.Margin = new Padding(4);
             btnUpdateBooking.Name = "btnUpdateBooking";
             btnUpdateBooking.Size = new Size(182, 50);
@@ -598,7 +600,7 @@ namespace HotelManagementSystem_Proj_RAD
             tabPageReport.Padding = new Padding(4);
             tabPageReport.Size = new Size(1342, 922);
             tabPageReport.TabIndex = 0;
-            tabPageReport.Text = "Report";
+            tabPageReport.Text = "Reports";
             // 
             // dgvReport
             // 
@@ -627,6 +629,16 @@ namespace HotelManagementSystem_Proj_RAD
             cbReportType.Name = "cbReportType";
             cbReportType.Size = new Size(182, 33);
             cbReportType.TabIndex = 1;
+            // 
+            // btnDeleteBooking
+            // 
+            btnDeleteBooking.Location = new Point(1115, 826);
+            btnDeleteBooking.Name = "btnDeleteBooking";
+            btnDeleteBooking.Size = new Size(167, 50);
+            btnDeleteBooking.TabIndex = 3;
+            btnDeleteBooking.Text = "Delete Bookings";
+            btnDeleteBooking.UseVisualStyleBackColor = true;
+            btnDeleteBooking.Click += btnDeleteBooking_Click;
             // 
             // MasterForm
             // 
@@ -671,5 +683,6 @@ namespace HotelManagementSystem_Proj_RAD
         private DateTimePicker dtpReportTime;
         private PictureBox pictureBoxLogo2;
         private Label label1;
+        private Button btnDeleteBooking;
     }
 }

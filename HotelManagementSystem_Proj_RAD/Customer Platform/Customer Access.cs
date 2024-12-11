@@ -11,7 +11,8 @@ namespace HotelManagementSystem_Proj.Customer_Platform
 {
     public partial class Customer_Access : Form
     {
-        private readonly string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
+        //private readonly string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
+        private readonly string connectionString = "Server=STEPH-LAPTOP\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
         private readonly string userEmail;
 
         public Customer_Access(string email)

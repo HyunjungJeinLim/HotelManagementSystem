@@ -14,8 +14,8 @@ namespace HotelManagementSystem_Proj_RAD
     public partial class MasterForm : Form
     {
         //private string connectionString = "Server=JEIN\\SQLEXPRESS;Database=HotelManagement;Trusted_Connection=True;";
-        private string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
-        //private string connectionString = "Server=STEPH-LAPTOP\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
+        //private string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
+        private string connectionString = "Server=STEPH-LAPTOP\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
         private Chart roomSalesChart;
         private Chart cleaningStatusChart;
         private readonly Reports _reports;
@@ -456,6 +456,7 @@ namespace HotelManagementSystem_Proj_RAD
             }
         }
 
+
         private string GetRoomNumber(int roomId)
         {
             string query = "SELECT RoomNumber FROM Rooms WHERE RoomID = @RoomID";
@@ -511,6 +512,8 @@ namespace HotelManagementSystem_Proj_RAD
             Login loginForm = new Login();
             loginForm.Show();
         }
+
+        // Rooms Tab
 
         private void btnAddRoom_Click(object sender, EventArgs e)
         {
@@ -602,7 +605,7 @@ namespace HotelManagementSystem_Proj_RAD
             }
         }
 
-
+        // Customers Tab
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             CustomerInfo addCustomerForm = new CustomerInfo(connectionString);
@@ -680,7 +683,7 @@ namespace HotelManagementSystem_Proj_RAD
 
  
 
-
+        // Bookings Tab
 
         private void btnUpdateBooking_Click(object sender, EventArgs e)
         {
@@ -703,6 +706,56 @@ namespace HotelManagementSystem_Proj_RAD
         }
 
 
+        private void btnDeleteBooking_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewBookings.SelectedRows.Count > 0)
+            {
+                // Get the selected BookingID
+                int bookingId = Convert.ToInt32(dataGridViewBookings.SelectedRows[0].Cells["BookingID"].Value);
+
+                // Confirm deletion
+                DialogResult confirmResult = MessageBox.Show(
+                    "Are you sure you want to delete this booking?",
+                    "Confirm Delete",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // SQL DELETE Query
+                    string query = "DELETE FROM Bookings WHERE BookingID = @BookingID";
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        SqlCommand command = new SqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@BookingID", bookingId);
+
+                        try
+                        {
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Booking deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Refresh the DataGridView
+                            LoadBookings();
+                        }
+                        catch (SqlException sqlEx)
+                        {
+                            // Handle specific SQL exceptions if necessary
+                            MessageBox.Show($"Error deleting booking: {sqlEx.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a booking to delete.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
