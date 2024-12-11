@@ -270,7 +270,7 @@
             btnCancelBooking.TabIndex = 14;
             btnCancelBooking.Text = "Cancel Booking";
             btnCancelBooking.UseVisualStyleBackColor = true;
-            btnCancelBooking.Click += btnCancelBooking_Click_1;
+            this.btnCancelBooking.Click += new System.EventHandler(this.btnCancelBooking_Click);
             // 
             // dataGridViewManageYourBookings
             // 
@@ -332,7 +332,7 @@
             btnLogout.TabIndex = 13;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click_1;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // lblClock
             // 
