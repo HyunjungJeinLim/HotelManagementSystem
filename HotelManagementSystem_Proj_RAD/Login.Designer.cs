@@ -31,7 +31,7 @@
             btnLogin = new Button();
             txtUser = new TextBox();
             panel1 = new Panel();
-            btnSignUp = new Button();
+            label3 = new Label();
             label1 = new Label();
             pictureBoxLogo = new PictureBox();
             label2 = new Label();
@@ -41,7 +41,7 @@
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(363, 386);
+            btnLogin.Location = new Point(374, 440);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(112, 34);
             btnLogin.TabIndex = 1;
@@ -50,7 +50,7 @@
             // 
             // txtUser
             // 
-            txtUser.Location = new Point(337, 326);
+            txtUser.Location = new Point(348, 378);
             txtUser.Name = "txtUser";
             txtUser.Size = new Size(164, 31);
             txtUser.TabIndex = 3;
@@ -58,7 +58,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(14, 36, 66);
-            panel1.Controls.Add(btnSignUp);
+            panel1.Controls.Add(label3);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(pictureBoxLogo);
             panel1.Controls.Add(label2);
@@ -69,21 +69,23 @@
             panel1.Size = new Size(804, 722);
             panel1.TabIndex = 5;
             // 
-            // btnSignUp
+            // label3
             // 
-            btnSignUp.Location = new Point(363, 453);
-            btnSignUp.Name = "btnSignUp";
-            btnSignUp.Size = new Size(112, 34);
-            btnSignUp.TabIndex = 9;
-            btnSignUp.Text = "Sign Up";
-            btnSignUp.UseVisualStyleBackColor = true;
-            btnSignUp.Click += btnSignUp_Click;
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(417, 571);
+            label3.Name = "label3";
+            label3.Size = new Size(78, 25);
+            label3.TabIndex = 10;
+            label3.Text = "Sign Up";
+            label3.Click += btnSignUp_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.White;
-            label1.Location = new Point(207, 458);
+            label1.Location = new Point(299, 571);
             label1.Name = "label1";
             label1.Size = new Size(112, 25);
             label1.TabIndex = 8;
@@ -91,7 +93,7 @@
             // 
             // pictureBoxLogo
             // 
-            pictureBoxLogo.Location = new Point(251, 59);
+            pictureBoxLogo.Location = new Point(262, 101);
             pictureBoxLogo.Name = "pictureBoxLogo";
             pictureBoxLogo.Size = new Size(250, 250);
             pictureBoxLogo.TabIndex = 7;
@@ -101,7 +103,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.White;
-            label2.Location = new Point(261, 326);
+            label2.Location = new Point(272, 378);
             label2.Name = "label2";
             label2.Size = new Size(58, 25);
             label2.TabIndex = 5;
@@ -115,7 +117,7 @@
             Controls.Add(panel1);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Home";
+            Text = "Log in";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).EndInit();
@@ -129,6 +131,6 @@
         private Panel panel1;
         private Label label2;
         private Label label1;
-        private Button btnSignUp;
+        private Label label3;
     }
 }

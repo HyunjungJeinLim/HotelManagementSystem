@@ -163,9 +163,9 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // pictureBoxLogo2
             // 
-            pictureBoxLogo2.Location = new Point(23, 23);
+            pictureBoxLogo2.Location = new Point(36, 34);
             pictureBoxLogo2.Name = "pictureBoxLogo2";
-            pictureBoxLogo2.Size = new Size(204, 181);
+            pictureBoxLogo2.Size = new Size(181, 181);
             pictureBoxLogo2.TabIndex = 8;
             pictureBoxLogo2.TabStop = false;
             // 
@@ -638,7 +638,7 @@ namespace HotelManagementSystem_Proj_RAD
             Margin = new Padding(4);
             Name = "MasterForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Hotel Management System";
+            Text = "Hyarriot Hotel Management System";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo2).EndInit();

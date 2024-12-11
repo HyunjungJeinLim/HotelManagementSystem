@@ -28,20 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Customer_Access));
             tabControl1 = new TabControl();
             tabPageHome = new TabPage();
+            axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             tabPageFindARoom = new TabPage();
+            tabPageManageYourBookings = new TabPage();
             panel1 = new Panel();
+            pictureBoxLogo3 = new PictureBox();
+            label1 = new Label();
+            btnLogout = new Button();
+            lblClock = new Label();
             lblHome = new Label();
             lblFindARoom = new Label();
             lblManageYourBookings = new Label();
             lblWelcomeUser = new Label();
-            label1 = new Label();
-            btnLogout = new Button();
-            lblClock = new Label();
-            tabPageManageYourBookings = new TabPage();
             tabControl1.SuspendLayout();
+            tabPageHome.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogo3).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -57,13 +63,23 @@
             // 
             // tabPageHome
             // 
+            tabPageHome.BackColor = Color.FromArgb(14, 36, 66);
+            tabPageHome.Controls.Add(axWindowsMediaPlayer);
             tabPageHome.Location = new Point(4, 34);
             tabPageHome.Name = "tabPageHome";
             tabPageHome.Padding = new Padding(3);
             tabPageHome.Size = new Size(1342, 922);
             tabPageHome.TabIndex = 0;
             tabPageHome.Text = "Home";
-            tabPageHome.UseVisualStyleBackColor = true;
+            // 
+            // axWindowsMediaPlayer
+            // 
+            axWindowsMediaPlayer.Enabled = true;
+            axWindowsMediaPlayer.Location = new Point(-4, 0);
+            axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
+            axWindowsMediaPlayer.OcxState = (AxHost.State)resources.GetObject("axWindowsMediaPlayer.OcxState");
+            axWindowsMediaPlayer.Size = new Size(1343, 755);
+            axWindowsMediaPlayer.TabIndex = 1;
             // 
             // tabPageFindARoom
             // 
@@ -75,9 +91,19 @@
             tabPageFindARoom.Text = "Find A Room";
             tabPageFindARoom.UseVisualStyleBackColor = true;
             // 
+            // tabPageManageYourBookings
+            // 
+            tabPageManageYourBookings.Location = new Point(4, 34);
+            tabPageManageYourBookings.Name = "tabPageManageYourBookings";
+            tabPageManageYourBookings.Size = new Size(1342, 922);
+            tabPageManageYourBookings.TabIndex = 2;
+            tabPageManageYourBookings.Text = "Manage Your Bookings";
+            tabPageManageYourBookings.UseVisualStyleBackColor = true;
+            // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(14, 36, 66);
+            panel1.Controls.Add(pictureBoxLogo3);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(btnLogout);
             panel1.Controls.Add(lblClock);
@@ -90,60 +116,13 @@
             panel1.Size = new Size(250, 960);
             panel1.TabIndex = 1;
             // 
-            // lblHome
+            // pictureBoxLogo3
             // 
-            lblHome.AutoSize = true;
-            lblHome.BackColor = Color.FromArgb(14, 36, 66);
-            lblHome.Cursor = Cursors.Hand;
-            lblHome.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblHome.ForeColor = Color.White;
-            lblHome.Location = new Point(30, 387);
-            lblHome.Margin = new Padding(4, 0, 4, 0);
-            lblHome.Name = "lblHome";
-            lblHome.Size = new Size(63, 25);
-            lblHome.TabIndex = 6;
-            lblHome.Text = "Home";
-            // 
-            // lblFindARoom
-            // 
-            lblFindARoom.AutoSize = true;
-            lblFindARoom.BackColor = Color.FromArgb(14, 36, 66);
-            lblFindARoom.Cursor = Cursors.Hand;
-            lblFindARoom.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblFindARoom.ForeColor = Color.White;
-            lblFindARoom.Location = new Point(30, 446);
-            lblFindARoom.Margin = new Padding(4, 0, 4, 0);
-            lblFindARoom.Name = "lblFindARoom";
-            lblFindARoom.Size = new Size(121, 25);
-            lblFindARoom.TabIndex = 7;
-            lblFindARoom.Text = "Find A Room";
-            // 
-            // lblManageYourBookings
-            // 
-            lblManageYourBookings.AutoSize = true;
-            lblManageYourBookings.BackColor = Color.FromArgb(14, 36, 66);
-            lblManageYourBookings.Cursor = Cursors.Hand;
-            lblManageYourBookings.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblManageYourBookings.ForeColor = Color.White;
-            lblManageYourBookings.Location = new Point(30, 508);
-            lblManageYourBookings.Margin = new Padding(4, 0, 4, 0);
-            lblManageYourBookings.Name = "lblManageYourBookings";
-            lblManageYourBookings.Size = new Size(208, 25);
-            lblManageYourBookings.TabIndex = 8;
-            lblManageYourBookings.Text = "Manage Your Bookings";
-            // 
-            // lblWelcomeUser
-            // 
-            lblWelcomeUser.AutoSize = true;
-            lblWelcomeUser.FlatStyle = FlatStyle.Flat;
-            lblWelcomeUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblWelcomeUser.ForeColor = Color.White;
-            lblWelcomeUser.Location = new Point(17, 311);
-            lblWelcomeUser.Margin = new Padding(4, 0, 4, 0);
-            lblWelcomeUser.Name = "lblWelcomeUser";
-            lblWelcomeUser.Size = new Size(126, 32);
-            lblWelcomeUser.TabIndex = 11;
-            lblWelcomeUser.Text = "Welcome,";
+            pictureBoxLogo3.Location = new Point(30, 34);
+            pictureBoxLogo3.Name = "pictureBoxLogo3";
+            pictureBoxLogo3.Size = new Size(181, 181);
+            pictureBoxLogo3.TabIndex = 15;
+            pictureBoxLogo3.TabStop = false;
             // 
             // label1
             // 
@@ -176,14 +155,60 @@
             lblClock.TabIndex = 12;
             lblClock.Text = "Clock";
             // 
-            // tabPageManageYourBookings
+            // lblHome
             // 
-            tabPageManageYourBookings.Location = new Point(4, 34);
-            tabPageManageYourBookings.Name = "tabPageManageYourBookings";
-            tabPageManageYourBookings.Size = new Size(1342, 922);
-            tabPageManageYourBookings.TabIndex = 2;
-            tabPageManageYourBookings.Text = "Manage Your Bookings";
-            tabPageManageYourBookings.UseVisualStyleBackColor = true;
+            lblHome.AutoSize = true;
+            lblHome.BackColor = Color.FromArgb(14, 36, 66);
+            lblHome.Cursor = Cursors.Hand;
+            lblHome.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblHome.ForeColor = Color.White;
+            lblHome.Location = new Point(26, 330);
+            lblHome.Margin = new Padding(4, 0, 4, 0);
+            lblHome.Name = "lblHome";
+            lblHome.Size = new Size(63, 25);
+            lblHome.TabIndex = 6;
+            lblHome.Text = "Home";
+            // 
+            // lblFindARoom
+            // 
+            lblFindARoom.AutoSize = true;
+            lblFindARoom.BackColor = Color.FromArgb(14, 36, 66);
+            lblFindARoom.Cursor = Cursors.Hand;
+            lblFindARoom.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblFindARoom.ForeColor = Color.White;
+            lblFindARoom.Location = new Point(26, 389);
+            lblFindARoom.Margin = new Padding(4, 0, 4, 0);
+            lblFindARoom.Name = "lblFindARoom";
+            lblFindARoom.Size = new Size(121, 25);
+            lblFindARoom.TabIndex = 7;
+            lblFindARoom.Text = "Find A Room";
+            // 
+            // lblManageYourBookings
+            // 
+            lblManageYourBookings.AutoSize = true;
+            lblManageYourBookings.BackColor = Color.FromArgb(14, 36, 66);
+            lblManageYourBookings.Cursor = Cursors.Hand;
+            lblManageYourBookings.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblManageYourBookings.ForeColor = Color.White;
+            lblManageYourBookings.Location = new Point(26, 451);
+            lblManageYourBookings.Margin = new Padding(4, 0, 4, 0);
+            lblManageYourBookings.Name = "lblManageYourBookings";
+            lblManageYourBookings.Size = new Size(208, 25);
+            lblManageYourBookings.TabIndex = 8;
+            lblManageYourBookings.Text = "Manage Your Bookings";
+            // 
+            // lblWelcomeUser
+            // 
+            lblWelcomeUser.AutoSize = true;
+            lblWelcomeUser.FlatStyle = FlatStyle.Flat;
+            lblWelcomeUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblWelcomeUser.ForeColor = Color.White;
+            lblWelcomeUser.Location = new Point(13, 254);
+            lblWelcomeUser.Margin = new Padding(4, 0, 4, 0);
+            lblWelcomeUser.Name = "lblWelcomeUser";
+            lblWelcomeUser.Size = new Size(126, 32);
+            lblWelcomeUser.TabIndex = 11;
+            lblWelcomeUser.Text = "Welcome,";
             // 
             // Customer_Access
             // 
@@ -193,10 +218,13 @@
             Controls.Add(panel1);
             Controls.Add(tabControl1);
             Name = "Customer_Access";
-            Text = "Customer_Access";
+            Text = "Hyarriot Hotel";
             tabControl1.ResumeLayout(false);
+            tabPageHome.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogo3).EndInit();
             ResumeLayout(false);
         }
 
@@ -214,5 +242,7 @@
         private Button btnLogout;
         private Label lblClock;
         private TabPage tabPageManageYourBookings;
+        private PictureBox pictureBoxLogo3;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer;
     }
 }

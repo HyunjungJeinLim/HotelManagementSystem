@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            labelLogIn = new Label();
             lblLastName = new Label();
             txtLastName = new TextBox();
             label5 = new Label();
-            btnLogin = new Button();
             lblPhoneNumber = new Label();
             txtPhoneNumber = new TextBox();
             btnSignUp = new Button();
@@ -48,10 +48,10 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(14, 36, 66);
+            panel1.Controls.Add(labelLogIn);
             panel1.Controls.Add(lblLastName);
             panel1.Controls.Add(txtLastName);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(lblPhoneNumber);
             panel1.Controls.Add(txtPhoneNumber);
             panel1.Controls.Add(btnSignUp);
@@ -62,14 +62,26 @@
             panel1.Controls.Add(txtEmail);
             panel1.Location = new Point(-2, -5);
             panel1.Name = "panel1";
-            panel1.Size = new Size(804, 721);
+            panel1.Size = new Size(809, 773);
             panel1.TabIndex = 6;
+            // 
+            // labelLogIn
+            // 
+            labelLogIn.AutoSize = true;
+            labelLogIn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            labelLogIn.ForeColor = Color.White;
+            labelLogIn.Location = new Point(475, 669);
+            labelLogIn.Name = "labelLogIn";
+            labelLogIn.Size = new Size(65, 25);
+            labelLogIn.TabIndex = 18;
+            labelLogIn.Text = "Log In";
+            labelLogIn.Click += btnLogin_Click;
             // 
             // lblLastName
             // 
             lblLastName.AutoSize = true;
             lblLastName.ForeColor = Color.White;
-            lblLastName.Location = new Point(226, 432);
+            lblLastName.Location = new Point(194, 464);
             lblLastName.Name = "lblLastName";
             lblLastName.Size = new Size(99, 25);
             lblLastName.TabIndex = 17;
@@ -77,51 +89,41 @@
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(337, 429);
+            txtLastName.Location = new Point(337, 464);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(164, 31);
+            txtLastName.Size = new Size(203, 31);
             txtLastName.TabIndex = 16;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.ForeColor = Color.White;
-            label5.Location = new Point(194, 605);
+            label5.Location = new Point(332, 669);
             label5.Name = "label5";
             label5.Size = new Size(137, 25);
             label5.TabIndex = 15;
             label5.Text = "Already A User?";
             // 
-            // btnLogin
-            // 
-            btnLogin.Location = new Point(360, 600);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(112, 34);
-            btnLogin.TabIndex = 14;
-            btnLogin.Text = "Log In";
-            btnLogin.UseVisualStyleBackColor = true;
-            btnLogin.Click += btnLogin_Click;
-            // 
             // lblPhoneNumber
             // 
             lblPhoneNumber.AutoSize = true;
             lblPhoneNumber.ForeColor = Color.White;
-            lblPhoneNumber.Location = new Point(194, 486);
+            lblPhoneNumber.Location = new Point(194, 518);
             lblPhoneNumber.Name = "lblPhoneNumber";
-            lblPhoneNumber.Size = new Size(136, 25);
+            lblPhoneNumber.Size = new Size(66, 25);
             lblPhoneNumber.TabIndex = 12;
-            lblPhoneNumber.Text = "Phone Number:";
+            lblPhoneNumber.Text = "Phone:";
             // 
             // txtPhoneNumber
             // 
-            txtPhoneNumber.Location = new Point(337, 483);
+            txtPhoneNumber.Location = new Point(337, 518);
             txtPhoneNumber.Name = "txtPhoneNumber";
-            txtPhoneNumber.Size = new Size(164, 31);
+            txtPhoneNumber.Size = new Size(203, 31);
             txtPhoneNumber.TabIndex = 10;
             // 
             // btnSignUp
             // 
-            btnSignUp.Location = new Point(360, 535);
+            btnSignUp.Location = new Point(389, 586);
             btnSignUp.Name = "btnSignUp";
             btnSignUp.Size = new Size(112, 34);
             btnSignUp.TabIndex = 9;
@@ -131,7 +133,7 @@
             // 
             // pictureBoxLogo
             // 
-            pictureBoxLogo.Location = new Point(251, 59);
+            pictureBoxLogo.Location = new Point(251, 61);
             pictureBoxLogo.Name = "pictureBoxLogo";
             pictureBoxLogo.Size = new Size(250, 250);
             pictureBoxLogo.TabIndex = 7;
@@ -141,7 +143,7 @@
             // 
             lblFirstName.AutoSize = true;
             lblFirstName.ForeColor = Color.White;
-            lblFirstName.Location = new Point(226, 378);
+            lblFirstName.Location = new Point(194, 413);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(101, 25);
             lblFirstName.TabIndex = 6;
@@ -151,7 +153,7 @@
             // 
             lblEmail.AutoSize = true;
             lblEmail.ForeColor = Color.White;
-            lblEmail.Location = new Point(269, 326);
+            lblEmail.Location = new Point(194, 361);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(58, 25);
             lblEmail.TabIndex = 5;
@@ -159,26 +161,27 @@
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(337, 378);
+            txtFirstName.Location = new Point(337, 413);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(164, 31);
+            txtFirstName.Size = new Size(203, 31);
             txtFirstName.TabIndex = 4;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(337, 326);
+            txtEmail.Location = new Point(337, 361);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(164, 31);
+            txtEmail.Size = new Size(203, 31);
             txtEmail.TabIndex = 3;
             // 
             // SignUp
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 716);
+            ClientSize = new Size(800, 763);
             Controls.Add(panel1);
             Name = "SignUp";
-            Text = "SignUp";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Sign Up";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).EndInit();
@@ -188,7 +191,6 @@
         #endregion
 
         private Panel panel1;
-        private Button btnLogin;
         private Label lblPhoneNumber;
         private TextBox txtPhoneNumber;
         private Button btnSignUp;
@@ -200,5 +202,6 @@
         private Label label5;
         private Label lblLastName;
         private TextBox txtLastName;
+        private Label labelLogIn;
     }
 }
