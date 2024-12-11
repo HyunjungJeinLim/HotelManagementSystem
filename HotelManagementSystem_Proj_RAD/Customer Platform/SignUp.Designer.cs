@@ -123,7 +123,7 @@
             // 
             // btnSignUp
             // 
-            btnSignUp.Location = new Point(389, 586);
+            btnSignUp.Location = new Point(428, 585);
             btnSignUp.Name = "btnSignUp";
             btnSignUp.Size = new Size(112, 34);
             btnSignUp.TabIndex = 9;

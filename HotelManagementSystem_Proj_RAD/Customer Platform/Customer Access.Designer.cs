@@ -87,16 +87,17 @@
             // 
             // tabPageFindARoom
             // 
+            tabPageFindARoom.BackColor = Color.FromArgb(14, 36, 66);
             tabPageFindARoom.Location = new Point(4, 34);
             tabPageFindARoom.Name = "tabPageFindARoom";
             tabPageFindARoom.Padding = new Padding(3);
             tabPageFindARoom.Size = new Size(1342, 922);
             tabPageFindARoom.TabIndex = 1;
             tabPageFindARoom.Text = "Find A Room";
-            tabPageFindARoom.UseVisualStyleBackColor = true;
             // 
             // tabPageManageYourBookings
             // 
+            tabPageManageYourBookings.BackColor = Color.FromArgb(14, 36, 66);
             tabPageManageYourBookings.Controls.Add(btnCancelBooking);
             tabPageManageYourBookings.Controls.Add(dataGridViewManageYourBookings);
             tabPageManageYourBookings.Location = new Point(4, 34);
@@ -104,7 +105,6 @@
             tabPageManageYourBookings.Size = new Size(1342, 922);
             tabPageManageYourBookings.TabIndex = 2;
             tabPageManageYourBookings.Text = "Manage Your Bookings";
-            tabPageManageYourBookings.UseVisualStyleBackColor = true;
             // 
             // btnCancelBooking
             // 
@@ -121,12 +121,12 @@
             // 
             dataGridViewManageYourBookings.BackgroundColor = Color.FromArgb(14, 36, 66);
             dataGridViewManageYourBookings.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewManageYourBookings.Location = new Point(1, 0);
+            dataGridViewManageYourBookings.Location = new Point(4, 4);
             dataGridViewManageYourBookings.Margin = new Padding(4);
             dataGridViewManageYourBookings.Name = "dataGridViewManageYourBookings";
             dataGridViewManageYourBookings.RowHeadersWidth = 51;
             dataGridViewManageYourBookings.RowTemplate.Height = 29;
-            dataGridViewManageYourBookings.Size = new Size(1326, 750);
+            dataGridViewManageYourBookings.Size = new Size(1334, 750);
             dataGridViewManageYourBookings.TabIndex = 1;
             // 
             // panel1

@@ -1,12 +1,6 @@
 ﻿using HotelManagementSystem_Proj_RAD;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 
@@ -41,18 +35,11 @@ namespace HotelManagementSystem_Proj.Customer_Platform
             this.Hide();
             Login loginDashboard = new Login();
             loginDashboard.Show();
-
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            // Connection string to your database
-             string connectionString = "Server=STEPH-LAPTOP\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
-            //string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
-
-
-
-            
+            // Retrieve input data
             string firstName = txtFirstName.Text.Trim();
             string lastName = txtLastName.Text.Trim();
             string phone = txtPhoneNumber.Text.Trim();
@@ -62,7 +49,7 @@ namespace HotelManagementSystem_Proj.Customer_Platform
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString)) // Use global connection string
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -71,14 +58,17 @@ namespace HotelManagementSystem_Proj.Customer_Platform
                         command.Parameters.AddWithValue("@Phone", phone);
                         command.Parameters.AddWithValue("@Email", email);
 
-                        
                         connection.Open();
                         int rowsAffected = command.ExecuteNonQuery();
 
-                       
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Customer registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Redirect to login after successful registration
+                            this.Hide();
+                            Login loginDashboard = new Login();
+                            loginDashboard.Show();
                         }
                         else
                         {

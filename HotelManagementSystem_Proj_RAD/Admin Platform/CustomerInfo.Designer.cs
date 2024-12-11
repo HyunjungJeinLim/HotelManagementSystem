@@ -175,7 +175,6 @@
         private TextBox txtPhone;
         private TextBox txtEmail;
         private CheckBox chkIsActive;
-        private Button btnAddCustomer;
         private Button btnCancel;
         private Button btnSaveCustomer;
     }

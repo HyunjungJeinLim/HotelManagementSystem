@@ -49,8 +49,8 @@ namespace HotelManagementSystem_Proj_RAD
         private System.Windows.Forms.Button btnUpdateCustomer;
         private System.Windows.Forms.Button btnDeleteCustomer;
         private System.Windows.Forms.Button btnUpdateBooking;
-        private System.Windows.Forms.CheckedListBox checkedListBoxTasks;
-        private System.Windows.Forms.Label lblTaskTitle;
+
+
 
         /// <summary>
         /// Clean up any resources being used.
@@ -689,7 +689,6 @@ namespace HotelManagementSystem_Proj_RAD
         private DataGridView dgvReport;
         private Button btnGenerateReport;
         private ComboBox cbReportType;
-        private DateTimePicker dtpReportTime;
         private PictureBox pictureBoxLogo2;
         private Label label1;
         private Button btnDeleteBooking;

@@ -11,8 +11,6 @@ namespace HotelManagementSystem_Proj.Customer_Platform
 {
     public partial class Customer_Access : Form
     {
-        //private readonly string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
-        private readonly string connectionString = "Server=STEPH-LAPTOP\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
         private readonly string userEmail;
 
         public Customer_Access(string email)
@@ -80,7 +78,7 @@ namespace HotelManagementSystem_Proj.Customer_Platform
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString)) // Use global connection string
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -118,7 +116,7 @@ namespace HotelManagementSystem_Proj.Customer_Platform
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString)) // Use global connection string
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -139,7 +137,6 @@ namespace HotelManagementSystem_Proj.Customer_Platform
                 MessageBox.Show($"An error occurred while loading bookings: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private async void btnCancelBooking_Click_1(object sender, EventArgs e)
         {
@@ -166,7 +163,7 @@ namespace HotelManagementSystem_Proj.Customer_Platform
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString)) // Use global connection string
                 {
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {

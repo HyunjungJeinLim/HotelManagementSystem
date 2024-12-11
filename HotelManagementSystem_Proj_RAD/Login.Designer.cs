@@ -41,7 +41,7 @@
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(361, 449);
+            btnLogin.Location = new Point(413, 444);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(112, 34);
             btnLogin.TabIndex = 1;
@@ -50,9 +50,9 @@
             // 
             // txtUser
             // 
-            txtUser.Location = new Point(339, 383);
+            txtUser.Location = new Point(324, 384);
             txtUser.Name = "txtUser";
-            txtUser.Size = new Size(164, 31);
+            txtUser.Size = new Size(201, 31);
             txtUser.TabIndex = 3;
             // 
             // panel1
@@ -74,7 +74,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(395, 624);
+            label3.Location = new Point(399, 625);
             label3.Name = "label3";
             label3.Size = new Size(78, 25);
             label3.TabIndex = 10;
@@ -85,7 +85,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.White;
-            label1.Location = new Point(277, 624);
+            label1.Location = new Point(281, 625);
             label1.Name = "label1";
             label1.Size = new Size(112, 25);
             label1.TabIndex = 8;
@@ -103,7 +103,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.White;
-            label2.Location = new Point(263, 383);
+            label2.Location = new Point(248, 384);
             label2.Name = "label2";
             label2.Size = new Size(58, 25);
             label2.TabIndex = 5;

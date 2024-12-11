@@ -2,13 +2,12 @@ using HotelManagementSystem_Proj.Customer_Platform;
 using System;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
+using HotelManagementSystem_Proj;
 
 namespace HotelManagementSystem_Proj_RAD
 {
     public partial class Login : Form
     {
-        //string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
-       string connectionString = "Server=STEPH-LAPTOP\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
         public Login()
         {
             InitializeComponent();
@@ -30,10 +29,8 @@ namespace HotelManagementSystem_Proj_RAD
                 MessageBox.Show($"Image not found at: {imagePath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-
             btnLogin.Click += BtnLogin_Click;
         }
-
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
@@ -51,7 +48,7 @@ namespace HotelManagementSystem_Proj_RAD
 
                 try
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString)) // Use global connection string
                     {
                         using (SqlCommand command = new SqlCommand(query, connection))
                         {
@@ -80,12 +77,12 @@ namespace HotelManagementSystem_Proj_RAD
                 }
             }
         }
+
         private void btnSignUp_Click(object sender, EventArgs e)
         {
             this.Hide();
             SignUp signUpDashboard = new SignUp();
             signUpDashboard.Show();
         }
-    } 
+    }
 }
-

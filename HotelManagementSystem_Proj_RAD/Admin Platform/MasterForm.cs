@@ -13,9 +13,6 @@ namespace HotelManagementSystem_Proj_RAD
 {
     public partial class MasterForm : Form
     {
-        //private string connectionString = "Server=JEIN\\SQLEXPRESS;Database=HotelManagement;Trusted_Connection=True;";
-        //private string connectionString = "Server=PL\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
-        private string connectionString = "Server=STEPH-LAPTOP\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True; TrustServerCertificate=true;";
         private Chart roomSalesChart;
         private Chart cleaningStatusChart;
         private readonly Reports _reports;
@@ -57,13 +54,11 @@ namespace HotelManagementSystem_Proj_RAD
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
 
             // TabControl Design
-         
             tabControl1.ItemSize = new Size(150, 40);
             tabControl1.Padding = new Point(10, 10);
 
             MainForm_Load(this, EventArgs.Empty);
-            _reports = new Reports(connectionString);
-
+            _reports = new Reports(DatabaseConfig.ConnectionString); // Use global connection string
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -169,7 +164,7 @@ namespace HotelManagementSystem_Proj_RAD
             SUM(CASE WHEN Availability = 1 THEN 1 ELSE 0 END) AS AvailableRooms
         FROM Rooms";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 try
@@ -203,7 +198,7 @@ namespace HotelManagementSystem_Proj_RAD
                     SUM(CASE WHEN CleaningStatus = 2 THEN 1 ELSE 0 END) AS MaintenanceRooms
                 FROM Rooms";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 try
@@ -285,7 +280,7 @@ namespace HotelManagementSystem_Proj_RAD
         {
             string query = "SELECT RoomID, RoomType, Price, Amenities, Availability, RoomNumber, CleaningStatus FROM Rooms";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 try
@@ -343,7 +338,7 @@ namespace HotelManagementSystem_Proj_RAD
         private void LoadCustomers()
         {
             string query = "SELECT CustomerID, FirstName, LastName, Phone, Email, IsActive FROM Customers";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 try
@@ -380,7 +375,7 @@ namespace HotelManagementSystem_Proj_RAD
             BookingStatus 
         FROM Bookings";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 try
@@ -439,7 +434,7 @@ namespace HotelManagementSystem_Proj_RAD
         {
             string query = "SELECT FirstName + ' ' + LastName AS FullName FROM Customers WHERE CustomerID = @CustomerID";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@CustomerID", customerId);
@@ -461,7 +456,7 @@ namespace HotelManagementSystem_Proj_RAD
         {
             string query = "SELECT RoomNumber FROM Rooms WHERE RoomID = @RoomID";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@RoomID", roomId);
@@ -517,7 +512,7 @@ namespace HotelManagementSystem_Proj_RAD
 
         private void btnAddRoom_Click(object sender, EventArgs e)
         {
-            RoomInfo addRoomForm = new RoomInfo(connectionString);
+            RoomInfo addRoomForm = new RoomInfo(DatabaseConfig.ConnectionString);
             addRoomForm.ShowDialog(); // Open as modal dialog
             LoadRooms(); // Refresh the grid after adding a room
         }
@@ -531,7 +526,7 @@ namespace HotelManagementSystem_Proj_RAD
                 int roomId = Convert.ToInt32(dataGridViewRooms.SelectedRows[0].Cells["RoomID"].Value);
 
                 // Open the AddRoomForm for editing
-                RoomInfo addRoomForm = new RoomInfo(connectionString, roomId);
+                RoomInfo addRoomForm = new RoomInfo(DatabaseConfig.ConnectionString, roomId);
                 addRoomForm.ShowDialog();
 
                 // Refresh the DataGridView after the form closes
@@ -562,7 +557,7 @@ namespace HotelManagementSystem_Proj_RAD
                 {
                     string query = "DELETE FROM Rooms WHERE RoomID = @RoomID";
 
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
                     {
                         SqlCommand command = new SqlCommand(query, connection);
                         command.Parameters.AddWithValue("@RoomID", roomId);
@@ -608,7 +603,7 @@ namespace HotelManagementSystem_Proj_RAD
         // Customers Tab
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            CustomerInfo addCustomerForm = new CustomerInfo(connectionString);
+            CustomerInfo addCustomerForm = new CustomerInfo(DatabaseConfig.ConnectionString);
             addCustomerForm.ShowDialog(); // Show as a modal dialog
             LoadCustomers(); // Refresh the DataGridView after adding a customer
         }
@@ -622,7 +617,7 @@ namespace HotelManagementSystem_Proj_RAD
                 int customerId = Convert.ToInt32(dataGridViewCustomers.SelectedRows[0].Cells["CustomerID"].Value);
 
                 // Open the AddCustomerForm for editing
-                CustomerInfo addCustomerForm = new CustomerInfo(connectionString, customerId);
+                CustomerInfo addCustomerForm = new CustomerInfo(DatabaseConfig.ConnectionString, customerId);
                 addCustomerForm.ShowDialog();
 
                 // Refresh the customer data grid after the form closes
@@ -654,7 +649,7 @@ namespace HotelManagementSystem_Proj_RAD
                     // SQL DELETE Query
                     string query = "DELETE FROM Customers WHERE CustomerID = @CustomerID";
 
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
                     {
                         SqlCommand command = new SqlCommand(query, connection);
                         command.Parameters.AddWithValue("@CustomerID", customerId);
@@ -693,7 +688,7 @@ namespace HotelManagementSystem_Proj_RAD
                 int bookingId = Convert.ToInt32(dataGridViewBookings.SelectedRows[0].Cells["BookingID"].Value);
 
                 // Open the BookingInfo form for editing
-                BookingInfo bookingInfoForm = new BookingInfo(connectionString, bookingId);
+                BookingInfo bookingInfoForm = new BookingInfo(DatabaseConfig.ConnectionString, bookingId);
                 bookingInfoForm.ShowDialog();
 
                 // Refresh the bookings data grid after the form closes
@@ -725,7 +720,7 @@ namespace HotelManagementSystem_Proj_RAD
                     // SQL DELETE Query
                     string query = "DELETE FROM Bookings WHERE BookingID = @BookingID";
 
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
                     {
                         SqlCommand command = new SqlCommand(query, connection);
                         command.Parameters.AddWithValue("@BookingID", bookingId);
