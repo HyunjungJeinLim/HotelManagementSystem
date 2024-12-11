@@ -108,13 +108,13 @@ namespace HotelManagementSystem_Proj_RAD
             btnUpdateCustomer = new Button();
             btnDeleteCustomer = new Button();
             tabPageBookings = new TabPage();
+            btnDeleteBooking = new Button();
             dataGridViewBookings = new DataGridView();
             btnUpdateBooking = new Button();
             tabPageReport = new TabPage();
             dgvReport = new DataGridView();
             btnGenerateReport = new Button();
             cbReportType = new ComboBox();
-            btnDeleteBooking = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo2).BeginInit();
             tabControl1.SuspendLayout();
@@ -457,11 +457,14 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // dataGridViewRooms
             // 
+            dataGridViewRooms.AllowUserToAddRows = false;
+            dataGridViewRooms.AllowUserToDeleteRows = false;
             dataGridViewRooms.BackgroundColor = Color.FromArgb(14, 36, 66);
             dataGridViewRooms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewRooms.Location = new Point(8, 8);
             dataGridViewRooms.Margin = new Padding(4);
             dataGridViewRooms.Name = "dataGridViewRooms";
+            dataGridViewRooms.ReadOnly = true;
             dataGridViewRooms.RowHeadersWidth = 51;
             dataGridViewRooms.RowTemplate.Height = 29;
             dataGridViewRooms.Size = new Size(1325, 750);
@@ -565,13 +568,26 @@ namespace HotelManagementSystem_Proj_RAD
             tabPageBookings.TabIndex = 4;
             tabPageBookings.Text = "Manage Bookings";
             // 
+            // btnDeleteBooking
+            // 
+            btnDeleteBooking.Location = new Point(1115, 826);
+            btnDeleteBooking.Name = "btnDeleteBooking";
+            btnDeleteBooking.Size = new Size(167, 50);
+            btnDeleteBooking.TabIndex = 3;
+            btnDeleteBooking.Text = "Delete Bookings";
+            btnDeleteBooking.UseVisualStyleBackColor = true;
+            btnDeleteBooking.Click += btnDeleteBooking_Click;
+            // 
             // dataGridViewBookings
             // 
+            dataGridViewBookings.AllowUserToAddRows = false;
+            dataGridViewBookings.AllowUserToDeleteRows = false;
             dataGridViewBookings.BackgroundColor = Color.FromArgb(14, 36, 66);
             dataGridViewBookings.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewBookings.Location = new Point(8, 8);
             dataGridViewBookings.Margin = new Padding(4);
             dataGridViewBookings.Name = "dataGridViewBookings";
+            dataGridViewBookings.ReadOnly = true;
             dataGridViewBookings.RowHeadersWidth = 51;
             dataGridViewBookings.RowTemplate.Height = 29;
             dataGridViewBookings.Size = new Size(1326, 750);
@@ -604,10 +620,13 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             // dgvReport
             // 
+            dgvReport.AllowUserToAddRows = false;
+            dgvReport.AllowUserToDeleteRows = false;
             dgvReport.BackgroundColor = Color.FromArgb(14, 36, 66);
             dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvReport.Location = new Point(7, 8);
             dgvReport.Name = "dgvReport";
+            dgvReport.ReadOnly = true;
             dgvReport.RowHeadersWidth = 62;
             dgvReport.Size = new Size(1327, 656);
             dgvReport.TabIndex = 3;
@@ -629,16 +648,6 @@ namespace HotelManagementSystem_Proj_RAD
             cbReportType.Name = "cbReportType";
             cbReportType.Size = new Size(182, 33);
             cbReportType.TabIndex = 1;
-            // 
-            // btnDeleteBooking
-            // 
-            btnDeleteBooking.Location = new Point(1115, 826);
-            btnDeleteBooking.Name = "btnDeleteBooking";
-            btnDeleteBooking.Size = new Size(167, 50);
-            btnDeleteBooking.TabIndex = 3;
-            btnDeleteBooking.Text = "Delete Bookings";
-            btnDeleteBooking.UseVisualStyleBackColor = true;
-            btnDeleteBooking.Click += btnDeleteBooking_Click;
             // 
             // MasterForm
             // 
