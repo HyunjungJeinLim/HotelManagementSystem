@@ -74,7 +74,31 @@ VALUES
     ('Suite', 370.00, 'Wi-Fi, Pool, Gym', 1, 'R015', 2), -- Under Maintenance
     ('Single', 100.00, 'Wi-Fi, Parking', 1, 'R016', 1), -- Clean
     ('Double', 190.00, 'Wi-Fi, Breakfast, Pool', 1, 'R017', 1), -- Clean
-    ('Suite', 400.00, 'Wi-Fi, Lounge, Spa', 1, 'R018', 0); -- Dirty
+    ('Suite', 400.00, 'Wi-Fi, Lounge, Spa', 1, 'R018', 0), -- Dirty
+	('Single', 95.00, 'Wi-Fi, Breakfast, Parking', 1, 'R019', 1), -- Clean
+    ('Double', 155.00, 'Wi-Fi, Breakfast, Pool, Parking', 1, 'R020', 1), -- Clean
+    ('Suite', 310.00, 'Wi-Fi, Breakfast, Pool, Gym, Spa', 1, 'R021', 0), -- Dirty
+    ('Single', 100.00, 'Wi-Fi, TV, Breakfast', 1, 'R022', 1), -- Clean
+    ('Double', 175.00, 'Wi-Fi, Pool, Lounge', 0, 'R023', 2), -- Under Maintenance
+    ('Suite', 420.00, 'Wi-Fi, Breakfast, Spa, Gym, Lounge', 1, 'R024', 1), -- Clean
+    ('Single', 105.00, 'Wi-Fi, Parking, Breakfast', 1, 'R025', 1), -- Clean
+    ('Double', 185.00, 'Wi-Fi, Pool, Spa', 1, 'R026', 1), -- Clean
+    ('Suite', 450.00, 'Wi-Fi, Breakfast, Pool, Gym, Parking', 1, 'R027', 0), -- Dirty
+    ('Single', 98.00, 'Wi-Fi, Breakfast, Lounge', 1, 'R028', 1), -- Clean
+    ('Double', 165.00, 'Wi-Fi, Parking', 0, 'R029', 1), -- Clean
+    ('Suite', 385.00, 'Wi-Fi, Breakfast, Lounge, Pool', 1, 'R030', 2), -- Under Maintenance
+    ('Single', 102.00, 'Wi-Fi, Breakfast, Pool', 1, 'R031', 1), -- Clean
+    ('Double', 178.00, 'Wi-Fi, Pool, Spa, Breakfast', 1, 'R032', 1), -- Clean
+    ('Suite', 420.00, 'Wi-Fi, Breakfast, Spa', 0, 'R033', 0), -- Dirty
+    ('Single', 108.00, 'Wi-Fi, Parking', 1, 'R034', 1), -- Clean
+    ('Double', 192.00, 'Wi-Fi, Breakfast, Parking, Gym', 1, 'R035', 1), -- Clean
+    ('Suite', 460.00, 'Wi-Fi, Lounge, Breakfast, Pool', 1, 'R036', 2), -- Under Maintenance
+    ('Single', 120.00, 'Wi-Fi, Breakfast, Spa', 1, 'R037', 1), -- Clean
+    ('Double', 180.00, 'Wi-Fi, Pool, Breakfast', 1, 'R038', 1), -- Clean
+    ('Suite', 400.00, 'Wi-Fi, Spa, Gym', 0, 'R039', 1), -- Clean
+    ('Single', 115.00, 'Wi-Fi, Breakfast', 1, 'R040', 0), -- Dirty
+    ('Double', 165.00, 'Wi-Fi, Pool, Parking', 1, 'R041', 1), -- Clean
+    ('Suite', 380.00, 'Wi-Fi, Spa, Lounge', 1, 'R042', 2), -- Under Maintenance;
 GO
 
 -- 6. Insert initial data into the Customers table

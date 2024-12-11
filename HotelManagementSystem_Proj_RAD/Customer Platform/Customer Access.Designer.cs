@@ -32,7 +32,14 @@
             tabControl1 = new TabControl();
             tabPageHome = new TabPage();
             axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
-            tabPageFindARoom = new TabPage();
+            tabPageBookARoom = new TabPage();
+            cbAmenities = new ComboBox();
+            btnSearchRooms = new Button();
+            cbRoomType = new ComboBox();
+            btnBookRoom = new Button();
+            dtpCheckOutDate = new DateTimePicker();
+            dtpCheckInDate = new DateTimePicker();
+            dataGridViewAvailableRooms = new DataGridView();
             tabPageManageYourBookings = new TabPage();
             btnCancelBooking = new Button();
             dataGridViewManageYourBookings = new DataGridView();
@@ -45,9 +52,15 @@
             lblFindARoom = new Label();
             lblManageYourBookings = new Label();
             lblWelcomeUser = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
             tabControl1.SuspendLayout();
             tabPageHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer).BeginInit();
+            tabPageBookARoom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewAvailableRooms).BeginInit();
             tabPageManageYourBookings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewManageYourBookings).BeginInit();
             panel1.SuspendLayout();
@@ -57,7 +70,7 @@
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPageHome);
-            tabControl1.Controls.Add(tabPageFindARoom);
+            tabControl1.Controls.Add(tabPageBookARoom);
             tabControl1.Controls.Add(tabPageManageYourBookings);
             tabControl1.Location = new Point(256, 0);
             tabControl1.Name = "tabControl1";
@@ -85,15 +98,89 @@
             axWindowsMediaPlayer.Size = new Size(1343, 755);
             axWindowsMediaPlayer.TabIndex = 1;
             // 
-            // tabPageFindARoom
+            // tabPageBookARoom
             // 
-            tabPageFindARoom.BackColor = Color.FromArgb(14, 36, 66);
-            tabPageFindARoom.Location = new Point(4, 34);
-            tabPageFindARoom.Name = "tabPageFindARoom";
-            tabPageFindARoom.Padding = new Padding(3);
-            tabPageFindARoom.Size = new Size(1342, 922);
-            tabPageFindARoom.TabIndex = 1;
-            tabPageFindARoom.Text = "Find A Room";
+            tabPageBookARoom.BackColor = Color.FromArgb(14, 36, 66);
+            tabPageBookARoom.Controls.Add(label5);
+            tabPageBookARoom.Controls.Add(label4);
+            tabPageBookARoom.Controls.Add(label3);
+            tabPageBookARoom.Controls.Add(label2);
+            tabPageBookARoom.Controls.Add(cbAmenities);
+            tabPageBookARoom.Controls.Add(btnSearchRooms);
+            tabPageBookARoom.Controls.Add(cbRoomType);
+            tabPageBookARoom.Controls.Add(btnBookRoom);
+            tabPageBookARoom.Controls.Add(dtpCheckOutDate);
+            tabPageBookARoom.Controls.Add(dtpCheckInDate);
+            tabPageBookARoom.Controls.Add(dataGridViewAvailableRooms);
+            tabPageBookARoom.Location = new Point(4, 34);
+            tabPageBookARoom.Name = "tabPageBookARoom";
+            tabPageBookARoom.Padding = new Padding(3);
+            tabPageBookARoom.Size = new Size(1342, 922);
+            tabPageBookARoom.TabIndex = 1;
+            tabPageBookARoom.Text = "Book A Room";
+            // 
+            // cbAmenities
+            // 
+            cbAmenities.FormattingEnabled = true;
+            cbAmenities.Location = new Point(548, 766);
+            cbAmenities.Name = "cbAmenities";
+            cbAmenities.Size = new Size(182, 33);
+            cbAmenities.TabIndex = 6;
+            // 
+            // btnSearchRooms
+            // 
+            btnSearchRooms.Location = new Point(897, 836);
+            btnSearchRooms.Name = "btnSearchRooms";
+            btnSearchRooms.Size = new Size(160, 50);
+            btnSearchRooms.TabIndex = 5;
+            btnSearchRooms.Text = "Search Room";
+            btnSearchRooms.UseVisualStyleBackColor = true;
+            btnSearchRooms.Click += btnSearchRooms_Click;
+            // 
+            // cbRoomType
+            // 
+            cbRoomType.FormattingEnabled = true;
+            cbRoomType.Location = new Point(548, 713);
+            cbRoomType.Name = "cbRoomType";
+            cbRoomType.Size = new Size(182, 33);
+            cbRoomType.TabIndex = 4;
+            // 
+            // btnBookRoom
+            // 
+            btnBookRoom.Location = new Point(1103, 836);
+            btnBookRoom.Name = "btnBookRoom";
+            btnBookRoom.Size = new Size(158, 50);
+            btnBookRoom.TabIndex = 3;
+            btnBookRoom.Text = "Book Room";
+            btnBookRoom.UseVisualStyleBackColor = true;
+            btnBookRoom.Click += btnBookRoom_Click;
+            // 
+            // dtpCheckOutDate
+            // 
+            dtpCheckOutDate.Location = new Point(961, 764);
+            dtpCheckOutDate.Name = "dtpCheckOutDate";
+            dtpCheckOutDate.Size = new Size(300, 31);
+            dtpCheckOutDate.TabIndex = 2;
+            // 
+            // dtpCheckInDate
+            // 
+            dtpCheckInDate.Location = new Point(961, 713);
+            dtpCheckInDate.Name = "dtpCheckInDate";
+            dtpCheckInDate.Size = new Size(300, 31);
+            dtpCheckInDate.TabIndex = 1;
+            // 
+            // dataGridViewAvailableRooms
+            // 
+            dataGridViewAvailableRooms.AllowUserToAddRows = false;
+            dataGridViewAvailableRooms.AllowUserToDeleteRows = false;
+            dataGridViewAvailableRooms.BackgroundColor = Color.FromArgb(14, 36, 66);
+            dataGridViewAvailableRooms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewAvailableRooms.Location = new Point(3, 3);
+            dataGridViewAvailableRooms.Name = "dataGridViewAvailableRooms";
+            dataGridViewAvailableRooms.ReadOnly = true;
+            dataGridViewAvailableRooms.RowHeadersWidth = 62;
+            dataGridViewAvailableRooms.Size = new Size(1333, 626);
+            dataGridViewAvailableRooms.TabIndex = 0;
             // 
             // tabPageManageYourBookings
             // 
@@ -104,11 +191,11 @@
             tabPageManageYourBookings.Name = "tabPageManageYourBookings";
             tabPageManageYourBookings.Size = new Size(1342, 922);
             tabPageManageYourBookings.TabIndex = 2;
-            tabPageManageYourBookings.Text = "Manage Your Bookings";
+            tabPageManageYourBookings.Text = "Booking History";
             // 
             // btnCancelBooking
             // 
-            btnCancelBooking.Location = new Point(1061, 836);
+            btnCancelBooking.Location = new Point(1080, 836);
             btnCancelBooking.Margin = new Padding(4);
             btnCancelBooking.Name = "btnCancelBooking";
             btnCancelBooking.Size = new Size(200, 50);
@@ -119,11 +206,14 @@
             // 
             // dataGridViewManageYourBookings
             // 
+            dataGridViewManageYourBookings.AllowUserToAddRows = false;
+            dataGridViewManageYourBookings.AllowUserToDeleteRows = false;
             dataGridViewManageYourBookings.BackgroundColor = Color.FromArgb(14, 36, 66);
             dataGridViewManageYourBookings.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewManageYourBookings.Location = new Point(4, 4);
             dataGridViewManageYourBookings.Margin = new Padding(4);
             dataGridViewManageYourBookings.Name = "dataGridViewManageYourBookings";
+            dataGridViewManageYourBookings.ReadOnly = true;
             dataGridViewManageYourBookings.RowHeadersWidth = 51;
             dataGridViewManageYourBookings.RowTemplate.Height = 29;
             dataGridViewManageYourBookings.Size = new Size(1334, 750);
@@ -210,9 +300,9 @@
             lblFindARoom.Location = new Point(26, 389);
             lblFindARoom.Margin = new Padding(4, 0, 4, 0);
             lblFindARoom.Name = "lblFindARoom";
-            lblFindARoom.Size = new Size(121, 25);
+            lblFindARoom.Size = new Size(129, 25);
             lblFindARoom.TabIndex = 7;
-            lblFindARoom.Text = "Find A Room";
+            lblFindARoom.Text = "Book A Room";
             lblFindARoom.Click += lblFindARoom_Click;
             // 
             // lblManageYourBookings
@@ -225,9 +315,9 @@
             lblManageYourBookings.Location = new Point(26, 451);
             lblManageYourBookings.Margin = new Padding(4, 0, 4, 0);
             lblManageYourBookings.Name = "lblManageYourBookings";
-            lblManageYourBookings.Size = new Size(208, 25);
+            lblManageYourBookings.Size = new Size(151, 25);
             lblManageYourBookings.TabIndex = 8;
-            lblManageYourBookings.Text = "Manage Your Bookings";
+            lblManageYourBookings.Text = "Booking History";
             lblManageYourBookings.Click += lblManageYourBookings_Click;
             // 
             // lblWelcomeUser
@@ -236,12 +326,53 @@
             lblWelcomeUser.FlatStyle = FlatStyle.Flat;
             lblWelcomeUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblWelcomeUser.ForeColor = Color.White;
-            lblWelcomeUser.Location = new Point(13, 254);
+            lblWelcomeUser.Location = new Point(13, 253);
             lblWelcomeUser.Margin = new Padding(4, 0, 4, 0);
             lblWelcomeUser.Name = "lblWelcomeUser";
-            lblWelcomeUser.Size = new Size(126, 32);
+            lblWelcomeUser.Size = new Size(120, 32);
             lblWelcomeUser.TabIndex = 11;
-            lblWelcomeUser.Text = "Welcome,";
+            lblWelcomeUser.Text = "Hi, Name";
+            lblWelcomeUser.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(422, 713);
+            label2.Name = "label2";
+            label2.Size = new Size(106, 25);
+            label2.TabIndex = 7;
+            label2.Text = "Room Type:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(422, 766);
+            label3.Name = "label3";
+            label3.Size = new Size(94, 25);
+            label3.TabIndex = 8;
+            label3.Text = "Amenities:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(842, 764);
+            label4.Name = "label4";
+            label4.Size = new Size(100, 25);
+            label4.TabIndex = 9;
+            label4.Text = "Check-Out:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(842, 713);
+            label5.Name = "label5";
+            label5.Size = new Size(85, 25);
+            label5.TabIndex = 10;
+            label5.Text = "Check-In:";
             // 
             // Customer_Access
             // 
@@ -255,6 +386,9 @@
             tabControl1.ResumeLayout(false);
             tabPageHome.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer).EndInit();
+            tabPageBookARoom.ResumeLayout(false);
+            tabPageBookARoom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewAvailableRooms).EndInit();
             tabPageManageYourBookings.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewManageYourBookings).EndInit();
             panel1.ResumeLayout(false);
@@ -267,7 +401,7 @@
 
         private TabControl tabControl1;
         private TabPage tabPageHome;
-        private TabPage tabPageFindARoom;
+        private TabPage tabPageBookARoom;
         private Panel panel1;
         private Label lblHome;
         private Label lblFindARoom;
@@ -281,5 +415,16 @@
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer;
         private Button btnCancelBooking;
         private DataGridView dataGridViewManageYourBookings;
+        private DateTimePicker dtpCheckOutDate;
+        private DateTimePicker dtpCheckInDate;
+        private DataGridView dataGridViewAvailableRooms;
+        private ComboBox cbRoomType;
+        private Button btnBookRoom;
+        private Button btnSearchRooms;
+        private ComboBox cbAmenities;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label5;
     }
 }
