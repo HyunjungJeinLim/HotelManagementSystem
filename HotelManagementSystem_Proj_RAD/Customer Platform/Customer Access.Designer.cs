@@ -31,17 +31,24 @@
             tabControl1 = new TabControl();
             tabPageHome = new TabPage();
             tabPageFindARoom = new TabPage();
+            tabPageManageYourBookings = new TabPage();
+            btnCancelBooking = new Button();
+            dataGridViewManageYourBookings = new DataGridView();
             panel1 = new Panel();
+            label1 = new Label();
+            btnLogout = new Button();
+            lblClock = new Label();
             lblHome = new Label();
             lblFindARoom = new Label();
             lblManageYourBookings = new Label();
             lblWelcomeUser = new Label();
-            label1 = new Label();
-            btnLogout = new Button();
-            lblClock = new Label();
-            tabPageManageYourBookings = new TabPage();
+            dataGridViewFindARoom = new DataGridView();
             tabControl1.SuspendLayout();
+            tabPageFindARoom.SuspendLayout();
+            tabPageManageYourBookings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewManageYourBookings).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewFindARoom).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -67,6 +74,7 @@
             // 
             // tabPageFindARoom
             // 
+            tabPageFindARoom.Controls.Add(dataGridViewFindARoom);
             tabPageFindARoom.Location = new Point(4, 34);
             tabPageFindARoom.Name = "tabPageFindARoom";
             tabPageFindARoom.Padding = new Padding(3);
@@ -74,6 +82,40 @@
             tabPageFindARoom.TabIndex = 1;
             tabPageFindARoom.Text = "Find A Room";
             tabPageFindARoom.UseVisualStyleBackColor = true;
+            // 
+            // tabPageManageYourBookings
+            // 
+            tabPageManageYourBookings.Controls.Add(btnCancelBooking);
+            tabPageManageYourBookings.Controls.Add(dataGridViewManageYourBookings);
+            tabPageManageYourBookings.Location = new Point(4, 34);
+            tabPageManageYourBookings.Name = "tabPageManageYourBookings";
+            tabPageManageYourBookings.Size = new Size(1342, 922);
+            tabPageManageYourBookings.TabIndex = 2;
+            tabPageManageYourBookings.Text = "Manage Your Bookings";
+            tabPageManageYourBookings.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelBooking
+            // 
+            btnCancelBooking.Location = new Point(1031, 836);
+            btnCancelBooking.Margin = new Padding(4);
+            btnCancelBooking.Name = "btnCancelBooking";
+            btnCancelBooking.Size = new Size(191, 50);
+            btnCancelBooking.TabIndex = 14;
+            btnCancelBooking.Text = "Cancel Booking";
+            btnCancelBooking.UseVisualStyleBackColor = true;
+            btnCancelBooking.Click += btnCancelBooking_Click;
+            // 
+            // dataGridViewManageYourBookings
+            // 
+            dataGridViewManageYourBookings.BackgroundColor = Color.FromArgb(14, 36, 66);
+            dataGridViewManageYourBookings.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewManageYourBookings.Location = new Point(4, 0);
+            dataGridViewManageYourBookings.Margin = new Padding(4);
+            dataGridViewManageYourBookings.Name = "dataGridViewManageYourBookings";
+            dataGridViewManageYourBookings.RowHeadersWidth = 51;
+            dataGridViewManageYourBookings.RowTemplate.Height = 29;
+            dataGridViewManageYourBookings.Size = new Size(1326, 750);
+            dataGridViewManageYourBookings.TabIndex = 3;
             // 
             // panel1
             // 
@@ -89,6 +131,38 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 960);
             panel1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(44, 811);
+            label1.Name = "label1";
+            label1.Size = new Size(54, 25);
+            label1.TabIndex = 14;
+            label1.Text = "Time:";
+            // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(70, 870);
+            btnLogout.Margin = new Padding(4);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(125, 50);
+            btnLogout.TabIndex = 13;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
+            // 
+            // lblClock
+            // 
+            lblClock.AutoSize = true;
+            lblClock.ForeColor = Color.White;
+            lblClock.Location = new Point(105, 811);
+            lblClock.Margin = new Padding(4, 0, 4, 0);
+            lblClock.Name = "lblClock";
+            lblClock.Size = new Size(55, 25);
+            lblClock.TabIndex = 12;
+            lblClock.Text = "Clock";
             // 
             // lblHome
             // 
@@ -145,45 +219,17 @@
             lblWelcomeUser.TabIndex = 11;
             lblWelcomeUser.Text = "Welcome,";
             // 
-            // label1
+            // dataGridViewFindARoom
             // 
-            label1.AutoSize = true;
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(44, 811);
-            label1.Name = "label1";
-            label1.Size = new Size(54, 25);
-            label1.TabIndex = 14;
-            label1.Text = "Time:";
-            // 
-            // btnLogout
-            // 
-            btnLogout.Location = new Point(70, 870);
-            btnLogout.Margin = new Padding(4);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(125, 50);
-            btnLogout.TabIndex = 13;
-            btnLogout.Text = "Logout";
-            btnLogout.UseVisualStyleBackColor = true;
-            // 
-            // lblClock
-            // 
-            lblClock.AutoSize = true;
-            lblClock.ForeColor = Color.White;
-            lblClock.Location = new Point(105, 811);
-            lblClock.Margin = new Padding(4, 0, 4, 0);
-            lblClock.Name = "lblClock";
-            lblClock.Size = new Size(55, 25);
-            lblClock.TabIndex = 12;
-            lblClock.Text = "Clock";
-            // 
-            // tabPageManageYourBookings
-            // 
-            tabPageManageYourBookings.Location = new Point(4, 34);
-            tabPageManageYourBookings.Name = "tabPageManageYourBookings";
-            tabPageManageYourBookings.Size = new Size(1342, 922);
-            tabPageManageYourBookings.TabIndex = 2;
-            tabPageManageYourBookings.Text = "Manage Your Bookings";
-            tabPageManageYourBookings.UseVisualStyleBackColor = true;
+            dataGridViewFindARoom.BackgroundColor = Color.FromArgb(14, 36, 66);
+            dataGridViewFindARoom.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewFindARoom.Location = new Point(4, 0);
+            dataGridViewFindARoom.Margin = new Padding(4);
+            dataGridViewFindARoom.Name = "dataGridViewFindARoom";
+            dataGridViewFindARoom.RowHeadersWidth = 51;
+            dataGridViewFindARoom.RowTemplate.Height = 29;
+            dataGridViewFindARoom.Size = new Size(1326, 750);
+            dataGridViewFindARoom.TabIndex = 2;
             // 
             // Customer_Access
             // 
@@ -195,8 +241,12 @@
             Name = "Customer_Access";
             Text = "Customer_Access";
             tabControl1.ResumeLayout(false);
+            tabPageFindARoom.ResumeLayout(false);
+            tabPageManageYourBookings.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewManageYourBookings).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewFindARoom).EndInit();
             ResumeLayout(false);
         }
 
@@ -214,5 +264,8 @@
         private Button btnLogout;
         private Label lblClock;
         private TabPage tabPageManageYourBookings;
+        private DataGridView dataGridViewManageYourBookings;
+        private Button btnCancelBooking;
+        private DataGridView dataGridViewFindARoom;
     }
 }
