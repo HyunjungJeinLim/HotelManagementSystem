@@ -60,6 +60,8 @@ namespace HotelManagementSystem_Proj.Customer_Platform
 
 
             this.Load += new EventHandler(Customer_Access_Load);
+
+
         }
 
         private void ClockTimer_Tick(object sender, EventArgs e)
@@ -71,10 +73,15 @@ namespace HotelManagementSystem_Proj.Customer_Platform
         {
             await LoadUserDataAsync();
             await LoadUserBookingsAsync();
+            
             LoadRoomTypes();
             LoadAmenities();
             LoadAllAvailableRooms();
+            await LoadIncomingBookingAsync();
         }
+
+
+
 
         private async Task LoadUserDataAsync()
         {
@@ -196,7 +203,11 @@ namespace HotelManagementSystem_Proj.Customer_Platform
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Booking cancelled successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Refresh the bookings grid and available rooms
                             await LoadUserBookingsAsync();
+                            RefreshAvailableRooms();
+                            await LoadIncomingBookingAsync();
                         }
                         else
                         {
@@ -443,7 +454,7 @@ namespace HotelManagementSystem_Proj.Customer_Platform
             }
 
             // Calculate the number of days
-            int numberOfDays = (checkOutDate - checkInDate).Days;
+            int numberOfDays = (checkOutDate - checkInDate).Days+1;
 
             if (numberOfDays <= 0)
             {
@@ -481,6 +492,7 @@ namespace HotelManagementSystem_Proj.Customer_Platform
                             // Refresh the bookings grid and available rooms
                             await LoadUserBookingsAsync();
                             RefreshAvailableRooms();
+                            await LoadIncomingBookingAsync();
                         }
                         else
                         {
@@ -581,6 +593,59 @@ namespace HotelManagementSystem_Proj.Customer_Platform
                 return 0;
             }
         }
+
+        // Home Tab
+        private async Task LoadIncomingBookingAsync()
+        {
+            string query = @"
+        SELECT TOP 1 
+            B.CheckInDate, 
+            B.CheckOutDate, 
+            R.RoomNumber, 
+            R.RoomType 
+        FROM Bookings B
+        INNER JOIN Rooms R ON B.RoomID = R.RoomID
+        INNER JOIN Customers C ON B.CustomerID = C.CustomerID
+        WHERE C.Email = @Email 
+          AND B.CheckInDate >= CAST(GETDATE() AS DATE)
+          AND B.BookingStatus = 'Confirmed'
+        ORDER BY B.CheckInDate ASC";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(DatabaseConfig.ConnectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Email", userEmail);
+
+                        await connection.OpenAsync();
+                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                        {
+                            if (reader.Read())
+                            {
+                                DateTime checkInDate = reader.GetDateTime(0);
+                                DateTime checkOutDate = reader.GetDateTime(1);
+                                string roomNumber = reader.GetString(2);
+                                string roomType = reader.GetString(3);
+
+                                lblIncomingBooking.Text = $"Room {roomNumber}, {roomType}, Check-in: {checkInDate:d}, Check-out: {checkOutDate:d}";
+                            }
+                            else
+                            {
+                                lblIncomingBooking.Text = "No upcoming bookings.";
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading upcoming booking: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblIncomingBooking.Text = "Unable to load upcoming bookings.";
+            }
+        }
+
 
     }
 }

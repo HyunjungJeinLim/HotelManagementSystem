@@ -54,7 +54,7 @@ CREATE TABLE Bookings (
 );
 GO
 
--- 5. Insert initial data into the Rooms table
+-- 5. Insert additional data into the Rooms table (add more rooms to ensure RoomID exists)
 INSERT INTO Rooms (RoomType, Price, Amenities, Availability, RoomNumber, CleaningStatus)
 VALUES
     ('Single', 100.00, 'Wi-Fi, Breakfast', 1, 'R001', 1), -- Clean
@@ -69,13 +69,13 @@ VALUES
     ('Single', 90.00, 'Wi-Fi, Parking', 0, 'R010', 1),   -- Clean
     ('Double', 170.00, 'Wi-Fi, Breakfast', 1, 'R011', 0), -- Dirty
     ('Suite', 380.00, 'Wi-Fi, Breakfast, Gym, Spa', 0, 'R012', 2), -- Under Maintenance
-	('Single', 110.00, 'Wi-Fi, TV', 1, 'R013', 1), -- Clean
+    ('Single', 110.00, 'Wi-Fi, TV', 1, 'R013', 1), -- Clean
     ('Double', 160.00, 'Wi-Fi, Breakfast', 1, 'R014', 0), -- Dirty
     ('Suite', 370.00, 'Wi-Fi, Pool, Gym', 1, 'R015', 2), -- Under Maintenance
     ('Single', 100.00, 'Wi-Fi, Parking', 1, 'R016', 1), -- Clean
     ('Double', 190.00, 'Wi-Fi, Breakfast, Pool', 1, 'R017', 1), -- Clean
     ('Suite', 400.00, 'Wi-Fi, Lounge, Spa', 1, 'R018', 0), -- Dirty
-	('Single', 95.00, 'Wi-Fi, Breakfast, Parking', 1, 'R019', 1), -- Clean
+    ('Single', 95.00, 'Wi-Fi, Breakfast, Parking', 1, 'R019', 1), -- Clean
     ('Double', 155.00, 'Wi-Fi, Breakfast, Pool, Parking', 1, 'R020', 1), -- Clean
     ('Suite', 310.00, 'Wi-Fi, Breakfast, Pool, Gym, Spa', 1, 'R021', 0), -- Dirty
     ('Single', 100.00, 'Wi-Fi, TV, Breakfast', 1, 'R022', 1), -- Clean
@@ -98,8 +98,11 @@ VALUES
     ('Suite', 400.00, 'Wi-Fi, Spa, Gym', 0, 'R039', 1), -- Clean
     ('Single', 115.00, 'Wi-Fi, Breakfast', 1, 'R040', 0), -- Dirty
     ('Double', 165.00, 'Wi-Fi, Pool, Parking', 1, 'R041', 1), -- Clean
-    ('Suite', 380.00, 'Wi-Fi, Spa, Lounge', 1, 'R042', 2), -- Under Maintenance;
-GO
+    ('Suite', 380.00, 'Wi-Fi, Spa, Lounge', 1, 'R042', 2); -- Under Maintenance
+
+-- Update Booking RoomID to match existing RoomIDs
+UPDATE Bookings SET RoomID = (SELECT TOP 1 RoomID FROM Rooms WHERE RoomID = Bookings.RoomID);
+
 
 -- 6. Insert initial data into the Customers table
 INSERT INTO Customers (FirstName, LastName, Phone, Email)

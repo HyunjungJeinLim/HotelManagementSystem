@@ -629,7 +629,6 @@ namespace HotelManagementSystem_Proj_RAD
             }
         }
 
-
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
             if (dataGridViewCustomers.SelectedRows.Count > 0)
@@ -663,9 +662,25 @@ namespace HotelManagementSystem_Proj_RAD
                             // Refresh the DataGridView
                             LoadCustomers();
                         }
+                        catch (SqlException sqlEx)
+                        {
+                            // Check if the error is related to foreign key constraints
+                            if (sqlEx.Number == 547) // Foreign key violation
+                            {
+                                MessageBox.Show(
+                                    "This customer is linked to existing bookings and cannot be deleted. Please delete associated bookings first.",
+                                    "Error",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Error deleting customer: {sqlEx.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                         catch (Exception ex)
                         {
-                            MessageBox.Show($"Error deleting customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -676,7 +691,7 @@ namespace HotelManagementSystem_Proj_RAD
             }
         }
 
- 
+
 
         // Bookings Tab
 

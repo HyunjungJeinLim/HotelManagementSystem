@@ -459,6 +459,8 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             dataGridViewRooms.AllowUserToAddRows = false;
             dataGridViewRooms.AllowUserToDeleteRows = false;
+            dataGridViewRooms.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewRooms.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewRooms.BackgroundColor = Color.FromArgb(14, 36, 66);
             dataGridViewRooms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewRooms.Location = new Point(8, 8);
@@ -521,6 +523,8 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             dataGridViewCustomers.AllowUserToAddRows = false;
             dataGridViewCustomers.AllowUserToDeleteRows = false;
+            dataGridViewCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewCustomers.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCustomers.BackgroundColor = Color.FromArgb(14, 36, 66);
             dataGridViewCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCustomers.Location = new Point(8, 8);
@@ -582,6 +586,8 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             dataGridViewBookings.AllowUserToAddRows = false;
             dataGridViewBookings.AllowUserToDeleteRows = false;
+            dataGridViewBookings.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewBookings.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewBookings.BackgroundColor = Color.FromArgb(14, 36, 66);
             dataGridViewBookings.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewBookings.Location = new Point(8, 8);
@@ -622,6 +628,8 @@ namespace HotelManagementSystem_Proj_RAD
             // 
             dgvReport.AllowUserToAddRows = false;
             dgvReport.AllowUserToDeleteRows = false;
+            dgvReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvReport.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvReport.BackgroundColor = Color.FromArgb(14, 36, 66);
             dgvReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvReport.Location = new Point(7, 8);

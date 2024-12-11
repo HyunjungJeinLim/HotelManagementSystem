@@ -31,8 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Customer_Access));
             tabControl1 = new TabControl();
             tabPageHome = new TabPage();
+            lblIncomingBooking = new Label();
+            label6 = new Label();
             axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             tabPageBookARoom = new TabPage();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
             cbAmenities = new ComboBox();
             btnSearchRooms = new Button();
             cbRoomType = new ComboBox();
@@ -52,10 +58,6 @@
             lblFindARoom = new Label();
             lblManageYourBookings = new Label();
             lblWelcomeUser = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
             tabControl1.SuspendLayout();
             tabPageHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer).BeginInit();
@@ -81,6 +83,8 @@
             // tabPageHome
             // 
             tabPageHome.BackColor = Color.FromArgb(14, 36, 66);
+            tabPageHome.Controls.Add(lblIncomingBooking);
+            tabPageHome.Controls.Add(label6);
             tabPageHome.Controls.Add(axWindowsMediaPlayer);
             tabPageHome.Location = new Point(4, 34);
             tabPageHome.Name = "tabPageHome";
@@ -89,10 +93,32 @@
             tabPageHome.TabIndex = 0;
             tabPageHome.Text = "Home";
             // 
+            // lblIncomingBooking
+            // 
+            lblIncomingBooking.AutoSize = true;
+            lblIncomingBooking.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblIncomingBooking.ForeColor = Color.White;
+            lblIncomingBooking.Location = new Point(215, 35);
+            lblIncomingBooking.Name = "lblIncomingBooking";
+            lblIncomingBooking.Size = new Size(215, 25);
+            lblIncomingBooking.TabIndex = 3;
+            lblIncomingBooking.Text = "No upcoming bookings.";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(29, 35);
+            label6.Name = "label6";
+            label6.Size = new Size(180, 25);
+            label6.TabIndex = 2;
+            label6.Text = "Upcoming Booking:";
+            // 
             // axWindowsMediaPlayer
             // 
             axWindowsMediaPlayer.Enabled = true;
-            axWindowsMediaPlayer.Location = new Point(-4, 0);
+            axWindowsMediaPlayer.Location = new Point(0, 86);
             axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
             axWindowsMediaPlayer.OcxState = (AxHost.State)resources.GetObject("axWindowsMediaPlayer.OcxState");
             axWindowsMediaPlayer.Size = new Size(1343, 755);
@@ -118,6 +144,46 @@
             tabPageBookARoom.Size = new Size(1342, 922);
             tabPageBookARoom.TabIndex = 1;
             tabPageBookARoom.Text = "Book A Room";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(842, 713);
+            label5.Name = "label5";
+            label5.Size = new Size(85, 25);
+            label5.TabIndex = 10;
+            label5.Text = "Check-In:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(842, 764);
+            label4.Name = "label4";
+            label4.Size = new Size(100, 25);
+            label4.TabIndex = 9;
+            label4.Text = "Check-Out:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(422, 766);
+            label3.Name = "label3";
+            label3.Size = new Size(94, 25);
+            label3.TabIndex = 8;
+            label3.Text = "Amenities:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(422, 713);
+            label2.Name = "label2";
+            label2.Size = new Size(106, 25);
+            label2.TabIndex = 7;
+            label2.Text = "Room Type:";
             // 
             // cbAmenities
             // 
@@ -173,6 +239,8 @@
             // 
             dataGridViewAvailableRooms.AllowUserToAddRows = false;
             dataGridViewAvailableRooms.AllowUserToDeleteRows = false;
+            dataGridViewAvailableRooms.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewAvailableRooms.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewAvailableRooms.BackgroundColor = Color.FromArgb(14, 36, 66);
             dataGridViewAvailableRooms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAvailableRooms.Location = new Point(3, 3);
@@ -208,6 +276,8 @@
             // 
             dataGridViewManageYourBookings.AllowUserToAddRows = false;
             dataGridViewManageYourBookings.AllowUserToDeleteRows = false;
+            dataGridViewManageYourBookings.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewManageYourBookings.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewManageYourBookings.BackgroundColor = Color.FromArgb(14, 36, 66);
             dataGridViewManageYourBookings.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewManageYourBookings.Location = new Point(4, 4);
@@ -334,46 +404,6 @@
             lblWelcomeUser.Text = "Hi, Name";
             lblWelcomeUser.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(422, 713);
-            label2.Name = "label2";
-            label2.Size = new Size(106, 25);
-            label2.TabIndex = 7;
-            label2.Text = "Room Type:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(422, 766);
-            label3.Name = "label3";
-            label3.Size = new Size(94, 25);
-            label3.TabIndex = 8;
-            label3.Text = "Amenities:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(842, 764);
-            label4.Name = "label4";
-            label4.Size = new Size(100, 25);
-            label4.TabIndex = 9;
-            label4.Text = "Check-Out:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(842, 713);
-            label5.Name = "label5";
-            label5.Size = new Size(85, 25);
-            label5.TabIndex = 10;
-            label5.Text = "Check-In:";
-            // 
             // Customer_Access
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -385,6 +415,7 @@
             Text = "Hyarriot Hotel";
             tabControl1.ResumeLayout(false);
             tabPageHome.ResumeLayout(false);
+            tabPageHome.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer).EndInit();
             tabPageBookARoom.ResumeLayout(false);
             tabPageBookARoom.PerformLayout();
@@ -426,5 +457,7 @@
         private Label label3;
         private Label label2;
         private Label label5;
+        private Label lblIncomingBooking;
+        private Label label6;
     }
 }
