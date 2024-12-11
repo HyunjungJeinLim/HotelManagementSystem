@@ -34,6 +34,8 @@
             axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             tabPageFindARoom = new TabPage();
             tabPageManageYourBookings = new TabPage();
+            btnCancelBooking = new Button();
+            dataGridViewManageYourBookings = new DataGridView();
             panel1 = new Panel();
             pictureBoxLogo3 = new PictureBox();
             label1 = new Label();
@@ -46,6 +48,8 @@
             tabControl1.SuspendLayout();
             tabPageHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer).BeginInit();
+            tabPageManageYourBookings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewManageYourBookings).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo3).BeginInit();
             SuspendLayout();
@@ -93,12 +97,37 @@
             // 
             // tabPageManageYourBookings
             // 
+            tabPageManageYourBookings.Controls.Add(btnCancelBooking);
+            tabPageManageYourBookings.Controls.Add(dataGridViewManageYourBookings);
             tabPageManageYourBookings.Location = new Point(4, 34);
             tabPageManageYourBookings.Name = "tabPageManageYourBookings";
             tabPageManageYourBookings.Size = new Size(1342, 922);
             tabPageManageYourBookings.TabIndex = 2;
             tabPageManageYourBookings.Text = "Manage Your Bookings";
             tabPageManageYourBookings.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelBooking
+            // 
+            btnCancelBooking.Location = new Point(1061, 836);
+            btnCancelBooking.Margin = new Padding(4);
+            btnCancelBooking.Name = "btnCancelBooking";
+            btnCancelBooking.Size = new Size(200, 50);
+            btnCancelBooking.TabIndex = 14;
+            btnCancelBooking.Text = "Cancel Booking";
+            btnCancelBooking.UseVisualStyleBackColor = true;
+            btnCancelBooking.Click += btnCancelBooking_Click_1;
+            // 
+            // dataGridViewManageYourBookings
+            // 
+            dataGridViewManageYourBookings.BackgroundColor = Color.FromArgb(14, 36, 66);
+            dataGridViewManageYourBookings.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewManageYourBookings.Location = new Point(1, 0);
+            dataGridViewManageYourBookings.Margin = new Padding(4);
+            dataGridViewManageYourBookings.Name = "dataGridViewManageYourBookings";
+            dataGridViewManageYourBookings.RowHeadersWidth = 51;
+            dataGridViewManageYourBookings.RowTemplate.Height = 29;
+            dataGridViewManageYourBookings.Size = new Size(1326, 750);
+            dataGridViewManageYourBookings.TabIndex = 1;
             // 
             // panel1
             // 
@@ -143,6 +172,7 @@
             btnLogout.TabIndex = 13;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click_1;
             // 
             // lblClock
             // 
@@ -168,6 +198,7 @@
             lblHome.Size = new Size(63, 25);
             lblHome.TabIndex = 6;
             lblHome.Text = "Home";
+            lblHome.Click += lblHome_Click;
             // 
             // lblFindARoom
             // 
@@ -182,6 +213,7 @@
             lblFindARoom.Size = new Size(121, 25);
             lblFindARoom.TabIndex = 7;
             lblFindARoom.Text = "Find A Room";
+            lblFindARoom.Click += lblFindARoom_Click;
             // 
             // lblManageYourBookings
             // 
@@ -196,6 +228,7 @@
             lblManageYourBookings.Size = new Size(208, 25);
             lblManageYourBookings.TabIndex = 8;
             lblManageYourBookings.Text = "Manage Your Bookings";
+            lblManageYourBookings.Click += lblManageYourBookings_Click;
             // 
             // lblWelcomeUser
             // 
@@ -222,6 +255,8 @@
             tabControl1.ResumeLayout(false);
             tabPageHome.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer).EndInit();
+            tabPageManageYourBookings.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewManageYourBookings).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo3).EndInit();
@@ -244,5 +279,7 @@
         private TabPage tabPageManageYourBookings;
         private PictureBox pictureBoxLogo3;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer;
+        private Button btnCancelBooking;
+        private DataGridView dataGridViewManageYourBookings;
     }
 }
