@@ -8,10 +8,10 @@
 ![Booking Screen](Preview/Image2.png)
 ![Admin Dashboard](Preview/Image3.png)
 
-📌 Project Overview
-- The **Hyarriot Hotel Management System** allows hotel administrators to manage bookings, rooms, customers, 
-  and reports efficiently. Customers can search for available rooms, make or cancel reservations, 
-  and complete payment seamlessly.
+📋 Description
+-The Hyarriot Hotel Management System is a Windows Forms application designed to streamline hotel operations. 
+ It enables administrators to manage bookings, rooms, customers, and reports, 
+ while providing customers with an intuitive interface to search for available rooms, make or cancel reservations, and complete payments.
 
 ✨ Features
 - Room availability search based on date
