@@ -426,7 +426,10 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo3).EndInit();
             ResumeLayout(false);
+<<<<<<< HEAD
             this.StartPosition = FormStartPosition.CenterScreen;
+=======
+>>>>>>> 528293c2466e8ae475319c324346c9c86ec8a6c4
         }
 
         #endregion
