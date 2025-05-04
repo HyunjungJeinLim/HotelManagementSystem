@@ -1,6 +1,7 @@
 # Hotel Management System 
 
-A Windows Forms-based hotel management application designed to streamline room booking, customer management, and administrative operations.
+- A Windows Forms-based hotel management application 
+  designed to streamline room booking, customer management, and administrative operations.
 
 🖼️ Preview Image
 ![User Screen](Preview/Image1.png)
@@ -8,9 +9,9 @@ A Windows Forms-based hotel management application designed to streamline room b
 ![Admin Dashboard](Preview/Image3.png)
 
 📌 Project Overview
--The **Hyarriot Hotel Management System** allows hotel administrators to manage bookings, rooms, customers, 
- and reports efficiently. Customers can search for available rooms, make or cancel reservations, 
- and complete payment seamlessly.
+- The **Hyarriot Hotel Management System** allows hotel administrators to manage bookings, rooms, customers, 
+  and reports efficiently. Customers can search for available rooms, make or cancel reservations, 
+  and complete payment seamlessly.
 
 ✨ Features
 - Room availability search based on date
